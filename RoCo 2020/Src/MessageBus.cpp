@@ -1,0 +1,215 @@
+/*
+ * message_bus.cpp
+ *
+ *  Created on: 10 Dec 2019
+ *      Author: Arion
+ */
+
+/*
+ * Dynamic allocation should be avoided. If needed, use pvPortMalloc and pvPortFree instead of new and delete respectively.
+ */
+
+#include "MessageBus.h"
+
+#include <stddef.h>
+#include <typeinfo>
+
+/*
+ * Initialises the protocol when the bus is created.
+ *
+ * Requests the implementation to register (once)
+ * all message IDs and handlers before any I/O transmission
+ */
+MessageBus::MessageBus() {
+	initProtocol();
+}
+
+
+/*
+ * Registers a message identifier for the specified structure/class.
+ *
+ * Allows I/O communication for the given message ID according to the bus specification.
+ * Using std::typeindex allows more flexibility insofar as the message ID is directly inferred
+ * using the template of send_packet.
+ *
+ * The two first bits of the identifier are used for storing dispatching metadata.
+ *
+ * Warning: this method is not thread-safe.
+ */
+template<typename T> bool MessageBus::define(uint8_t identifier) {
+	size_t struct_size = sizeof(T);
+
+	std::type_index type = std::type_index(typeid(T));
+	uint32_t insertion_point = type.hash_code() % 256;
+
+	if(definitions_by_id[identifier & 0b00111111].type != null_type) {
+		return false; // Packet ID already in use
+	}
+
+	if(definitions_by_type[insertion_point]->type == type) {
+		return false; // Packet type already in use
+	}
+
+	if(struct_size > max_packet_size) {
+		return false; // Packet size too large
+	}
+
+	while(definitions_by_type[insertion_point]->type != null_type) {
+		insertion_point++;
+
+		if(insertion_point == 256) {
+			insertion_point = 0;
+		}
+	}
+
+	PacketDefinition* def = &definitions_by_id[identifier & 0b00111111];
+
+	def->id = identifier;
+	def->size = (uint8_t) struct_size;
+	def->type = type;
+
+	definitions_by_type[insertion_point] = def;
+
+	return true;
+}
+
+
+
+/*
+ * Registers a handler for this event bus.
+ *
+ * Accepts a function reference as message handler.
+ *
+ * Warning: this method is not thread-safe.
+ */
+template<typename T> bool MessageBus::handle(void (*handler)(T*)) {
+	std::type_index type = std::type_index(typeid(T));
+
+	uint8_t packetID = retrieve(type)->id;
+
+	if(handler[packetID] != nullptr) {
+		return false; // A handler is already registered for this packet type
+	}
+
+	handlers[packetID] = handler;
+
+	return true;
+}
+
+/*
+ * Registers a forwarder for this event bus.
+ *
+ * Every time a packet matching to given type is received, forwards it to the other message bus.
+ *
+ * Warning: this method is not thread-safe.
+ */
+template<typename T> bool MessageBus::forward(MessageBus* bus) {
+	std::type_index type = std::type_index(typeid(T));
+
+	uint8_t packetID = retrieve(type)->id;
+
+	if(forwarders[packetID] != nullptr) {
+		return false; // A handler is already registered for this packet type
+	}
+
+	forwarders[packetID] = bus;
+
+	return true;
+}
+
+
+/*
+ * Sends the given message using the implemented transmission protocol.
+ */
+template<typename T> bool MessageBus::send(T *message) {
+	std::type_index type = std::type_index(typeid(T));
+
+	PacketDefinition* def = retrieve(type);
+
+	return send(def, (uint8_t*) message);
+}
+
+bool MessageBus::send(PacketDefinition* def, uint8_t* data) {
+	if(def->type != null_type) {
+		uint32_t data_bytes_written = 0;
+
+		while(data_bytes_written < def->size) {
+			write(&def->id, 1); // Write the packet ID for each transmission frame.
+								// This is only to facilitate the packet reconstruction and should not increment data_bytes_written.
+
+			data_bytes_written += write(data, def->size - data_bytes_written); // Send the data
+
+			flush();
+
+			if(data_bytes_written == 0) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
+
+/*
+ * Handles the reception of a message.
+ *
+ * Provided an external thread calls this method with a buffer to the next incoming message,
+ * dispatches the message to the appropriate message handlers.
+ */
+bool MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint8_t length) {
+	if(length > 0) {
+		// Safe-cast verification
+		uint8_t packet_id = *pointer++;
+
+		PacketDefinition* def = &definitions_by_id[packet_id & 0b00111111];
+		ReconstructionBuffer* indexable_buffer = &reconstruction_buffers[sender_id];
+
+		if(indexable_buffer->index + length > max_packet_size) {
+			indexable_buffer->index = 0; // Corrupted packet
+			return false;
+		}
+
+		for(uint16_t i = 0; i < length; i++) {
+			indexable_buffer->buffer[indexable_buffer->index++] = *pointer++;
+		}
+
+		if(indexable_buffer->index > def->size) {
+			// Packet is complete. Forward buffer to handler.
+
+			if(handlers[packet_id & 0b00111111] != nullptr) {
+				handlers[packet_id & 0b00111111](indexable_buffer->buffer);
+			}
+
+			if(handlers[packet_id & 0b00111111] != nullptr) {
+				forwarders[packet_id & 0b00111111]->send(def, indexable_buffer->buffer);
+			}
+		}
+
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/*
+ * Searches a packet definition matching the given type in the hash table.
+ */
+PacketDefinition* MessageBus::retrieve(std::type_index type) {
+	uint32_t searchPoint = type.hash_code() % 256;
+	uint32_t searchStart = searchPoint;
+
+	while(definitions_by_type[searchPoint]->type != type) {
+		searchPoint++;
+
+		if(searchPoint == 256) {
+			searchPoint = 0;
+		}
+
+		if(searchStart == searchPoint) {
+			return nullptr; // No packet definition matching the given template type
+		}
+	}
+
+	return definitions_by_type[searchPoint];
+}

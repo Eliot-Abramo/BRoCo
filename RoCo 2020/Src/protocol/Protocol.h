@@ -1,0 +1,17 @@
+/*
+ * Protocol.h
+ *
+ *  Created on: 12 Feb 2020
+ *      Author: Arion
+ */
+
+#ifndef APPLICATION_HOSTBOARD_INC_COMMUNICATION_PROTOCOL_PROTOCOL_H_
+#define APPLICATION_HOSTBOARD_INC_COMMUNICATION_PROTOCOL_PROTOCOL_H_
+
+#include "../build/Build.h"
+
+#ifdef PROTOCOL_20W18
+#include "Protocol20W18.h"
+#endif
+
+#endif /* APPLICATION_HOSTBOARD_INC_COMMUNICATION_PROTOCOL_PROTOCOL_H_ */
