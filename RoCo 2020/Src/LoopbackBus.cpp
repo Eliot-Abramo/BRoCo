@@ -12,7 +12,6 @@
 
 
 #include "LoopbackBus.h"
-#include <iostream>
 
 #include <thread>
 
@@ -21,8 +20,8 @@ LoopbackBus::LoopbackBus(uint64_t latency) {
 	this->buffer_index = 0;
 }
 
-uint8_t LoopbackBus::append(uint8_t* buffer, uint8_t length) {
-	uint32_t remaining_length = BUFFER_LENGTH - buffer_index;
+uint8_t LoopbackBus::append(uint8_t* buffer, uint32_t length) {
+	uint32_t remaining_length = LOOPBACK_BUFFER_LENGTH - buffer_index;
 
 	if(length > remaining_length) {
 		length = remaining_length;
@@ -37,8 +36,6 @@ uint8_t LoopbackBus::append(uint8_t* buffer, uint8_t length) {
 
 void LoopbackBus::transmit() {
 	std::this_thread::sleep_for(std::chrono::milliseconds(latency));
-
-
 
 	receive(0, packet_buffer, buffer_index);
 

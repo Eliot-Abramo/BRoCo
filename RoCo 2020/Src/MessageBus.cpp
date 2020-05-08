@@ -161,7 +161,7 @@ bool MessageBus::send(PacketDefinition* def, uint8_t* data) {
  * Provided an external thread calls this method with a buffer to the next incoming message,
  * dispatches the message to the appropriate message handlers.
  */
-bool MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint8_t length) {
+void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 	if(length > 0) {
 		// Safe-cast verification
 		uint8_t packet_id = *pointer++;
@@ -171,7 +171,7 @@ bool MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint8_t length) {
 
 		if(indexable_buffer->index + length > max_packet_size) {
 			indexable_buffer->index = 0; // Corrupted packet
-			return false;
+			return;
 		}
 
 		for(uint16_t i = 0; i < length - 1; i++) {
@@ -189,10 +189,6 @@ bool MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint8_t length) {
 				forwarders[packet_id & 0b00111111]->send(def, indexable_buffer->buffer);
 			}
 		}
-
-		return true;
-	} else {
-		return false;
 	}
 }
 

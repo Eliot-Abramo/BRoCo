@@ -14,7 +14,7 @@
 
 #include "MessageBus.h"
 
-#define BUFFER_LENGTH 5
+#define LOOPBACK_BUFFER_LENGTH 5
 
 class LoopbackBus : public MessageBus {
 public:
@@ -22,10 +22,10 @@ public:
 
 private:
 	uint64_t latency;
-	uint8_t packet_buffer[BUFFER_LENGTH];
+	uint8_t packet_buffer[LOOPBACK_BUFFER_LENGTH];
 	uint8_t buffer_index;
 
-	uint8_t append(uint8_t* buffer, uint8_t length);
+	uint8_t append(uint8_t* buffer, uint32_t length);
 	void transmit();
 };
 

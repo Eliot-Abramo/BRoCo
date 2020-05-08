@@ -42,8 +42,8 @@ public:
 
 protected:
 	virtual void initProtocol() {};
-	bool receive(uint8_t senderID, uint8_t *pointer, uint8_t length);
-	virtual uint8_t append(uint8_t* buffer, uint8_t length) = 0; // Must be atomic
+	void receive(uint8_t senderID, uint8_t *pointer, uint32_t length);
+	virtual uint8_t append(uint8_t* buffer, uint32_t length) = 0; // Must be atomic
 	virtual void transmit() = 0;
 
 private:
