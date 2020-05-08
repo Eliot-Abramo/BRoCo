@@ -1,5 +1,5 @@
 /*
- * VirtualIO.cpp
+ * NetworkClientIO.cpp
  *
  *  Created on: 26 Apr 2020
  *      Author: Arion
@@ -35,7 +35,7 @@ NetworkClientIO::NetworkClientIO(const char* address_str, uint16_t port) {
  * Releases IO resources
  */
 NetworkClientIO::~NetworkClientIO() {
-	disconnect();
+	disconnectClient();
 }
 
 
@@ -70,7 +70,7 @@ int8_t NetworkClientIO::connectClient() {
 
 	if(result < 0) {
 		close(socket_id);
-		return -5;
+		return -4;
 	}
 
 	// Finalises the instance's state and adds the socket server to the array of opened sockets
@@ -87,7 +87,7 @@ int8_t NetworkClientIO::connectClient() {
  * In particular, this function resets the ExternalIO to an initial state and closes all used IO resources.
  * Make sure the disconnect member function is only called in the reception thread.
  */
-void NetworkClientIO::disconnect() {
+void NetworkClientIO::disconnectClient() {
 	if(connected) {
 		this->connected = false;
 		closeSocket();
@@ -137,7 +137,7 @@ void NetworkClientIO::receiveThread() {
 
 	std::cout << "[Client@" << ntohs(address.sin_port) << "] Client disconnected" << std::endl;
 
-	disconnect();
+	disconnectClient();
 }
 
 /*
@@ -151,10 +151,12 @@ void NetworkClientIO::receive(const std::function<void (uint8_t sender_id, uint8
  * Broadcasts data to the array of connected sockets (excluding the server instance)
  */
 void NetworkClientIO::transmit(uint8_t* buffer, uint32_t length) { // Broadcast
-	int32_t result;
+	if(connected) {
+		int32_t result;
 
-	while((result = send(socket_id, buffer, length, 0)) > 0) {
-		length -= result;
+		while((result = send(socket_id, buffer, length, 0)) > 0) {
+			length -= result;
+		}
 	}
 }
 

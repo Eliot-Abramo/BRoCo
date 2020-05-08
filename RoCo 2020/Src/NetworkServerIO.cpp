@@ -1,14 +1,14 @@
 /*
- * VirtualIO.cpp
+ * NetworkServerIO.cpp
  *
  *  Created on: 26 Apr 2020
  *      Author: Arion
  */
 
-#include "NetworkIO.h"
+#include "NetworkServerIO.h"
 
 
-#ifdef BUILD_WITH_NETWORK_IO
+#ifdef BUILD_WITH_NETWORK_SERVER_IO
 #include <iostream>
 
 #include <sys/socket.h>
@@ -19,7 +19,7 @@
  * Creates an ExternalIO interface using the given port number.
  * This constructor invocation is a light operation.
  */
-NetworkIO::NetworkIO(uint16_t port) {
+NetworkServerIO::NetworkServerIO(uint16_t port) {
 	this->address = { 0 };
 	this->connected = false;
 	this->num_sockets = 0;
@@ -34,8 +34,8 @@ NetworkIO::NetworkIO(uint16_t port) {
 /*
  * Releases IO resources
  */
-NetworkIO::~NetworkIO() {
-	disconnect();
+NetworkServerIO::~NetworkServerIO() {
+	disconnectServer();
 }
 
 /*
@@ -44,7 +44,7 @@ NetworkIO::~NetworkIO() {
  * This operation is heavy and may fail.
  * Check the returned error code and set breakpoints accordingly if needed.
  */
-int8_t NetworkIO::connectServer() {
+int8_t NetworkServerIO::connectServer() {
 	if(connected) {
 		return -1; // Server already connected
 	}
@@ -101,7 +101,7 @@ int8_t NetworkIO::connectServer() {
 	num_sockets++;
 
 	// Creates the reception thread
-	this->reception_thread = std::thread(&NetworkIO::receiveThread, this);
+	this->reception_thread = std::thread(&NetworkServerIO::receiveThread, this);
 
 	return true;
 }
@@ -111,7 +111,7 @@ int8_t NetworkIO::connectServer() {
  * In particular, this function resets the ExternalIO to an initial state and closes all used IO resources.
  * Make sure the disconnect member function is only called in the reception thread.
  */
-void NetworkIO::disconnect() {
+void NetworkServerIO::disconnectServer() {
 	if(connected) {
 		this->connected = false;
 		closeSockets();
@@ -121,7 +121,7 @@ void NetworkIO::disconnect() {
 /*
  * Closes all used IO resources
  */
-void NetworkIO::closeSockets() {
+void NetworkServerIO::closeSockets() {
 	for(uint32_t i = 0; i < num_sockets; i++) {
 		uint32_t fd = sockets[i].fd;
 
@@ -141,7 +141,7 @@ void NetworkIO::closeSockets() {
  * Processes input from the remote connections and passes it to the reception handler.
  * Handles closing connections.
  */
-void NetworkIO::receiveThread() {
+void NetworkServerIO::receiveThread() {
 	int32_t result;
 
 	uint8_t buffer[256];
@@ -204,14 +204,14 @@ void NetworkIO::receiveThread() {
 /*
  * Sets the receiver callback function
  */
-void NetworkIO::receive(const std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> &receiver) {
+void NetworkServerIO::receive(const std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> &receiver) {
 	this->receiver = receiver;
 }
 
 /*
  * Broadcasts data to the array of connected sockets (excluding the server instance)
  */
-void NetworkIO::transmit(uint8_t* buffer, uint32_t length) { // Broadcast
+void NetworkServerIO::transmit(uint8_t* buffer, uint32_t length) { // Broadcast
 	int32_t result;
 
 	for(uint32_t i = 1; i < num_sockets; i++) {
@@ -223,4 +223,4 @@ void NetworkIO::transmit(uint8_t* buffer, uint32_t length) { // Broadcast
 	}
 }
 
-#endif /* BUILD_WITH_NETWORK_IO */
+#endif /* BUILD_WITH_NETWORK_SERVER_IO */

@@ -8,9 +8,16 @@
 #ifndef APPLICATION_HOSTBOARD_INC_COMMUNICATION_MESSAGE_BUS_H_
 #define APPLICATION_HOSTBOARD_INC_COMMUNICATION_MESSAGE_BUS_H_
 
-
-#include <stdint.h>
+#include <cstdint>
 #include <typeindex>
+
+
+// Template explicit instantiation
+#define REGISTER(P) 										\
+	template bool MessageBus::define<P>(uint8_t);		\
+	template bool MessageBus::handle<P>(void (*)(P*));	\
+	template bool MessageBus::forward<P>(MessageBus*);	\
+	template bool MessageBus::send<P>(P*);
 
 
 static const std::type_index null_type = std::type_index(typeid(nullptr));
@@ -22,7 +29,6 @@ struct PacketDefinition {
 	std::type_index type = null_type;
 };
 
-
 class MessageBus {
 public:
 	MessageBus();
@@ -32,13 +38,13 @@ public:
 	template<typename T> bool handle(void (*handler)(T*));
 	template<typename T> bool forward(MessageBus* bus);
 	template<typename T> bool send(T *message);
-	bool receive(uint8_t senderID, uint8_t *pointer, uint8_t length);
 
 
 protected:
 	virtual void initProtocol() {};
-	virtual uint8_t write(uint8_t* buffer, uint8_t length) = 0; // Must be atomic
-	virtual void flush() = 0;
+	bool receive(uint8_t senderID, uint8_t *pointer, uint8_t length);
+	virtual uint8_t append(uint8_t* buffer, uint8_t length) = 0; // Must be atomic
+	virtual void transmit() = 0;
 
 private:
 	static const uint32_t max_packet_size = 255;

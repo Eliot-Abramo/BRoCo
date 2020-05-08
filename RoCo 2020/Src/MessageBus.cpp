@@ -10,9 +10,9 @@
  */
 
 #include "MessageBus.h"
+#include "protocol/Protocol.h"
 
-#include <stddef.h>
-#include <typeinfo>
+#include <iostream>
 
 /*
  * Initialises the protocol when the bus is created.
@@ -24,6 +24,12 @@ MessageBus::MessageBus() {
 	initProtocol();
 }
 
+/*
+ * Packet definitions
+ *
+ * Explicit template instantiation is needed.
+ */
+REGISTER(TestPacket)
 
 /*
  * Registers a message identifier for the specified structure/class.
@@ -46,15 +52,15 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 		return false; // Packet ID already in use
 	}
 
-	if(definitions_by_type[insertion_point]->type == type) {
-		return false; // Packet type already in use
-	}
-
 	if(struct_size > max_packet_size) {
 		return false; // Packet size too large
 	}
 
-	while(definitions_by_type[insertion_point]->type != null_type) {
+	while(definitions_by_type[insertion_point] != nullptr) {
+		if(definitions_by_type[insertion_point]->type == type) {
+			return false; // Packet type already defined
+		}
+
 		insertion_point++;
 
 		if(insertion_point == 256) {
@@ -74,7 +80,6 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 }
 
 
-
 /*
  * Registers a handler for this event bus.
  *
@@ -87,11 +92,11 @@ template<typename T> bool MessageBus::handle(void (*handler)(T*)) {
 
 	uint8_t packetID = retrieve(type)->id;
 
-	if(handler[packetID] != nullptr) {
+	if(handlers[packetID] != nullptr) {
 		return false; // A handler is already registered for this packet type
 	}
 
-	handlers[packetID] = handler;
+	handlers[packetID] = (void (*)(void*)) handler;
 
 	return true;
 }
@@ -130,19 +135,20 @@ template<typename T> bool MessageBus::send(T *message) {
 }
 
 bool MessageBus::send(PacketDefinition* def, uint8_t* data) {
-	if(def->type != null_type) {
+	if(def != nullptr) {
 		uint32_t data_bytes_written = 0;
 
 		while(data_bytes_written < def->size) {
-			write(&def->id, 1); // Write the packet ID for each transmission frame.
-								// This is only to facilitate the packet reconstruction and should not increment data_bytes_written.
+			append(&def->id, 1); // Write the packet ID for each transmission frame.
+							     // This is only to facilitate the packet reconstruction and should not increment data_bytes_written.
 
-			data_bytes_written += write(data, def->size - data_bytes_written); // Send the data
+			uint32_t new_bytes = append(data + data_bytes_written, def->size - data_bytes_written); // Send the data
 
-			flush();
-
-			if(data_bytes_written == 0) {
+			if(new_bytes == 0) {
 				return false;
+			} else {
+				transmit();
+				data_bytes_written += new_bytes;
 			}
 		}
 	}
@@ -170,18 +176,18 @@ bool MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint8_t length) {
 			return false;
 		}
 
-		for(uint16_t i = 0; i < length; i++) {
+		for(uint16_t i = 0; i < length - 1; i++) {
 			indexable_buffer->buffer[indexable_buffer->index++] = *pointer++;
 		}
 
-		if(indexable_buffer->index > def->size) {
+		if(indexable_buffer->index >= def->size) {
 			// Packet is complete. Forward buffer to handler.
 
 			if(handlers[packet_id & 0b00111111] != nullptr) {
 				handlers[packet_id & 0b00111111](indexable_buffer->buffer);
 			}
 
-			if(handlers[packet_id & 0b00111111] != nullptr) {
+			if(forwarders[packet_id & 0b00111111] != nullptr) {
 				forwarders[packet_id & 0b00111111]->send(def, indexable_buffer->buffer);
 			}
 		}

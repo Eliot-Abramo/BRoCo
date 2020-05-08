@@ -12,6 +12,10 @@
 #define PROTOCOL_20W18
 #define BUILD_FOR_CONTROL_STATION
 
+#define BUILD_WITH_NETWORK_SERVER_IO
+#define BUILD_WITH_NETWORK_CLIENT_IO
+#define BUILD_WITH_LOOPBACK_BUS
+
 #ifdef BUILD_FOR_CONTROL_STATION
 
 #elif BUILD_FOR_COMPUTER_VISION
@@ -20,10 +24,6 @@
 #else
 #error "Please specify a build target"
 #endif
-
-#define BUILD_WITH_NETWORK_IO
-#define BUILD_WITH_NETWORK_CLIENT_IO
-#define BUILD_WITH_LOOPBACK_BUS
 
 
 #endif /* BUILD_BUILD_H_ */

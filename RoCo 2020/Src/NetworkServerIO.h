@@ -1,17 +1,17 @@
 /*
- * NetworkClientIO.h
+ * NetworkServerIO.h
  *
  *  Created on: 27 Apr 2020
  *      Author: Arion
  */
 
-#ifndef NETWORKCLIENTIO_H_
-#define NETWORKCLIENTIO_H_
+#ifndef NETWORKSERVERIO_H_
+#define NETWORKSERVERIO_H_
 
 #include "build/Build.h"
 
 
-#ifdef BUILD_WITH_NETWORK_CLIENT_IO
+#ifdef BUILD_WITH_NETWORK_SERVER_IO
 
 
 #include "IODriver.h"
@@ -25,30 +25,32 @@
 #include <sys/poll.h>
 
 
-class NetworkClientIO : public IODriver {
-public:
-	NetworkClientIO(const char* address, uint16_t port);
-	~NetworkClientIO();
+static const uint32_t MAX_CLIENTS = 64;
 
-	int8_t connectClient();
-	void disconnectClient();
+class NetworkServerIO : public IODriver {
+public:
+	NetworkServerIO(uint16_t port);
+	~NetworkServerIO();
+
+	int8_t connectServer();
+	void disconnectServer();
 
 	void receive(const std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> &receiver);
 	void transmit(uint8_t* buffer, uint32_t length);
 
 private:
-	const char* address_str;
 	sockaddr_in address;
-	uint32_t socket_id;
 	bool connected;
 	std::thread reception_thread;
+	struct pollfd sockets[MAX_CLIENTS];
+	uint32_t num_sockets;
 	std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> receiver;
 
 	void receiveThread();
-	void closeSocket();
+	void closeSockets();
 };
 
 
-#endif /* BUILD_WITH_NETWORK_CLIENT_IO */
+#endif /* BUILD_WITH_NETWORK_SERVER_IO */
 
-#endif /* NETWORKCLIENTIO_H_ */
+#endif /* NETWORKSERVERIO_H_ */
