@@ -1,5 +1,5 @@
 /*
- * message_bus.cpp
+ * MessageBus.cpp
  *
  *  Created on: 10 Dec 2019
  *      Author: Arion

@@ -1,24 +1,21 @@
 /*
- * echo_test.cpp
+ * MainTest.cpp
  *
  *  Created on: 27 Apr 2020
  *      Author: Arion
  */
 
 
-#include <sys/errno.h>
-#include <chrono>
 #include <cstdint>
-#include <cstring>
 #include <iomanip>
 #include <iostream>
 #include <thread>
 
+#include "../Src/Protocol/Protocol.h"
 #include "../Src/NetworkBus.h"
 #include "../Src/NetworkClientIO.h"
 #include "../Src/NetworkIO.h"
 #include "../Src/NetworkServerIO.h"
-#include "../Src/Protocol/Protocol20W18.h"
 
 struct TestPacket;
 

@@ -5,8 +5,8 @@
  *      Author: Arion
  */
 
-#ifndef APPLICATION_HOSTBOARD_INC_COMMUNICATION_MESSAGE_BUS_H_
-#define APPLICATION_HOSTBOARD_INC_COMMUNICATION_MESSAGE_BUS_H_
+#ifndef MESSAGE_BUS_H_
+#define MESSAGE_BUS_H_
 
 #include <cstdint>
 #include <typeindex>
@@ -57,4 +57,4 @@ private:
 };
 
 
-#endif /* APPLICATION_HOSTBOARD_INC_COMMUNICATION_MESSAGE_BUS_H_ */
+#endif /* MESSAGE_BUS_H_ */
