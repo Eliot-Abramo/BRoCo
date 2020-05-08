@@ -13,7 +13,6 @@
 
 #ifdef PROTOCOL_20W18
 #include "Protocol20W18.h"
-REGISTER(TestPacket)
 #endif /* PROTOCOL_20W18 */
 
 

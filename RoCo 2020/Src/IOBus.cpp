@@ -7,8 +7,10 @@
 
 #include "IOBus.h"
 
-IOBus::IOBus(IODriver* driver) {
+IOBus::IOBus(IODriver* driver, uint8_t* buffer, uint32_t length) {
 	this->driver = driver;
+	this->packet_buffer = buffer;
+	this->buffer_length = length;
 	this->buffer_index = 0;
 
 	using namespace std::placeholders;
@@ -16,7 +18,7 @@ IOBus::IOBus(IODriver* driver) {
 }
 
 uint8_t IOBus::append(uint8_t* buffer, uint32_t length) {
-	uint32_t remaining_length = IO_BUFFER_LENGTH - buffer_index;
+	uint32_t remaining_length = buffer_length - buffer_index;
 
 	if(length > remaining_length) {
 		length = remaining_length;

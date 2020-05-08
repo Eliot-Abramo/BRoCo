@@ -215,12 +215,14 @@ void NetworkServerIO::receive(const std::function<void (uint8_t sender_id, uint8
  */
 void NetworkServerIO::transmit(uint8_t* buffer, uint32_t length) { // Broadcast
 	int32_t result;
+	uint32_t remaining;
 
 	for(uint32_t i = 1; i < num_sockets; i++) {
 		uint32_t socket_id = sockets[i].fd;
+		remaining = length;
 
-		while((result = send(socket_id, buffer, length, 0)) > 0) {
-			length -= result;
+		while((result = send(socket_id, buffer, remaining, 0)) > 0) {
+			remaining -= result;
 		}
 	}
 }

@@ -12,14 +12,6 @@
 #include <typeindex>
 
 
-// Template explicit instantiation
-#define REGISTER(P) 										\
-	template bool MessageBus::define<P>(uint8_t);		\
-	template bool MessageBus::handle<P>(void (*)(P*));	\
-	template bool MessageBus::forward<P>(MessageBus*);	\
-	template bool MessageBus::send<P>(P*);
-
-
 static const std::type_index null_type = std::type_index(typeid(nullptr));
 
 
@@ -31,7 +23,6 @@ struct PacketDefinition {
 
 class MessageBus {
 public:
-	MessageBus();
 	virtual ~MessageBus() {}
 
 	template<typename T> bool define(uint8_t identifier);
@@ -41,7 +32,6 @@ public:
 
 
 protected:
-	virtual void initProtocol() {};
 	void receive(uint8_t senderID, uint8_t *pointer, uint32_t length);
 	virtual uint8_t append(uint8_t* buffer, uint32_t length) = 0; // Must be atomic
 	virtual void transmit() = 0;

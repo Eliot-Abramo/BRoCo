@@ -10,18 +10,20 @@
  */
 
 #include "MessageBus.h"
-#include <iostream>
-#include "Protocol/Protocol.h"
 
-/*
- * Initialises the protocol when the bus is created.
- *
- * Requests the implementation to register (once)
- * all message IDs and handlers before any I/O transmission
- */
-MessageBus::MessageBus() {
-	initProtocol();
-}
+
+// Template explicit instantiation
+#define REGISTER(P) 									\
+	template bool MessageBus::define<P>(uint8_t);		\
+	template bool MessageBus::handle<P>(void (*)(P*));	\
+	template bool MessageBus::forward<P>(MessageBus*);	\
+	template bool MessageBus::send<P>(P*);
+
+
+#include "Protocol/ProtocolRegisters.h"
+
+#undef REGISTER
+
 
 /*
  * Packet definitions
@@ -120,7 +122,6 @@ template<typename T> bool MessageBus::forward(MessageBus* bus) {
 	return true;
 }
 
-
 /*
  * Sends the given message using the implemented transmission protocol.
  */
@@ -149,9 +150,11 @@ bool MessageBus::send(PacketDefinition* def, uint8_t* data) {
 				data_bytes_written += new_bytes;
 			}
 		}
+
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 
@@ -199,7 +202,11 @@ PacketDefinition* MessageBus::retrieve(std::type_index type) {
 	uint32_t searchPoint = type.hash_code() % 256;
 	uint32_t searchStart = searchPoint;
 
-	while(definitions_by_type[searchPoint]->type != type) {
+	while(definitions_by_type[searchPoint] != nullptr) {
+		if(definitions_by_type[searchPoint]->type == type) {
+			return definitions_by_type[searchPoint];
+		}
+
 		searchPoint++;
 
 		if(searchPoint == 256) {
@@ -207,9 +214,9 @@ PacketDefinition* MessageBus::retrieve(std::type_index type) {
 		}
 
 		if(searchStart == searchPoint) {
-			return nullptr; // No packet definition matching the given template type
+			break; // No packet definition matching the given template type
 		}
 	}
 
-	return definitions_by_type[searchPoint];
+	return nullptr;
 }

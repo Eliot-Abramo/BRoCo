@@ -14,7 +14,7 @@
 #include <iostream>
 #include <thread>
 
-#include "../Src/LoopbackBus.h"
+#include "../Src/NetworkBus.h"
 #include "../Src/NetworkClientIO.h"
 #include "../Src/NetworkIO.h"
 #include "../Src/NetworkServerIO.h"
@@ -48,11 +48,12 @@ void handle_packet(TestPacket* packet) {
 int main() {
 	std::cout << "Starting main test..." << std::endl;
 
-	NetworkServerIO* io = new NetworkServerIO(PORT_B);
 
-	io->receive(&handle_input);
+	NetworkServerIO* server_io = new NetworkServerIO(PORT_B);
 
-	int32_t result = io->connectServer();
+	// server_io->receive(&handle_input);
+
+	int32_t result = server_io->connectServer();
 
 	if(result < 0) {
 		std::cout << "Network Server IO connection failed with error code " << result << std::endl;
@@ -61,33 +62,42 @@ int main() {
 		std::cout << "Connected to network server IO" << std::endl;
 	}
 
-	std::this_thread::sleep_for(std::chrono::seconds(1));
 
-	NetworkClientIO* client_io = new NetworkClientIO("127.0.0.1", PORT_B);
 
-	result = client_io->connectClient();
+	NetworkClientIO* client_io_1 = new NetworkClientIO("127.0.0.1", PORT_B);
+
+	// client_io_1->receive(&handle_input);
+
+	result = client_io_1->connectClient();
 
 	if(result < 0) {
 		std::cout << "Network Client IO connection failed with error code " << result << std::endl;
 		std::cout << std::strerror(errno) << std::endl;
-	} else {
-		std::cout << "Connected to network client IO" << std::endl;
 	}
 
-	std::this_thread::sleep_for(std::chrono::seconds(1));
+	NetworkClientIO* client_io_2 = new NetworkClientIO("127.0.0.1", PORT_B);
 
-	LoopbackBus* bus = new LoopbackBus(100);
+	// client_io_2->receive(&handle_input);
 
-	bus->define<TestPacket>(0);
-	bus->handle(handle_packet);
+	result = client_io_2->connectClient();
 
-	TestPacket p;
-
-	bus->send(&p);
-
-	std::this_thread::sleep_for(std::chrono::seconds(1));
+	if(result < 0) {
+		std::cout << "Network Client IO connection failed with error code " << result << std::endl;
+		std::cout << std::strerror(errno) << std::endl;
+	}
 
 
+
+	TestPacket packet;
+
+	NetworkBus* server_bus = new NetworkBus(server_io);
+	NetworkBus* client_1_bus = new NetworkBus(client_io_1);
+	NetworkBus* client_2_bus = new NetworkBus(client_io_2);
+
+	server_bus->forward<TestPacket>(server_bus);
+	client_2_bus->handle(handle_packet);
+
+	client_1_bus->send(&packet);
 
 	std::cout << "Test finished" << std::endl;
 
