@@ -8,7 +8,7 @@
 #ifndef NETWORKCLIENTIO_H_
 #define NETWORKCLIENTIO_H_
 
-#include "build/Build.h"
+#include "Build/Build.h"
 
 
 #ifdef BUILD_WITH_NETWORK_CLIENT_IO

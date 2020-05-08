@@ -8,7 +8,7 @@
 #ifndef LOOPBACKBUS_H_
 #define LOOPBACKBUS_H_
 
-#include "build/Build.h"
+#include "Build/Build.h"
 
 #ifdef BUILD_WITH_LOOPBACK_BUS
 

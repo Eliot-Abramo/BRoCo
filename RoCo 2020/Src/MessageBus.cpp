@@ -10,9 +10,8 @@
  */
 
 #include "MessageBus.h"
-#include "protocol/Protocol.h"
-
 #include <iostream>
+#include "Protocol/Protocol.h"
 
 /*
  * Initialises the protocol when the bus is created.
@@ -29,7 +28,6 @@ MessageBus::MessageBus() {
  *
  * Explicit template instantiation is needed.
  */
-REGISTER(TestPacket)
 
 /*
  * Registers a message identifier for the specified structure/class.

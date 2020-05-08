@@ -18,7 +18,7 @@
 #include "../Src/NetworkClientIO.h"
 #include "../Src/NetworkIO.h"
 #include "../Src/NetworkServerIO.h"
-#include "../Src/protocol/Protocol20W18.h"
+#include "../Src/Protocol/Protocol20W18.h"
 
 struct TestPacket;
 
