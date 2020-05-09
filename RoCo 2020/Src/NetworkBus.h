@@ -22,7 +22,7 @@ public:
 	NetworkBus(IODriver* driver); // Constructor is inherited
 
 private:
-	uint8_t network_frame[256];
+	uint8_t network_frame[4];
 };
 
 

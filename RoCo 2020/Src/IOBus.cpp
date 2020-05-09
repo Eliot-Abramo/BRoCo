@@ -7,6 +7,8 @@
 
 #include "IOBus.h"
 
+#include <iostream>
+
 IOBus::IOBus(IODriver* driver, uint8_t* buffer, uint32_t length) {
 	this->driver = driver;
 	this->packet_buffer = buffer;
@@ -15,6 +17,16 @@ IOBus::IOBus(IODriver* driver, uint8_t* buffer, uint32_t length) {
 
 	using namespace std::placeholders;
 	driver->receive(std::bind(&IOBus::receive, this, _1, _2, _3));
+}
+
+void IOBus::receive(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
+	while(length > buffer_length) {
+		MessageBus::receive(sender_id, buffer, buffer_length);
+		length -= buffer_length;
+		buffer += buffer_length;
+	}
+
+	MessageBus::receive(sender_id, buffer, length);
 }
 
 uint8_t IOBus::append(uint8_t* buffer, uint32_t length) {
@@ -27,6 +39,7 @@ uint8_t IOBus::append(uint8_t* buffer, uint32_t length) {
 	memcpy(packet_buffer + buffer_index, buffer, length);
 
 	buffer_index += length;
+
 
 	return length;
 }

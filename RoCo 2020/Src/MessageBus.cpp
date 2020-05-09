@@ -157,7 +157,7 @@ bool MessageBus::send(PacketDefinition* def, uint8_t* data) {
 	return false;
 }
 
-
+#include <iostream>
 /*
  * Handles the reception of a message.
  *
@@ -191,6 +191,8 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 			if(forwarders[packet_id & 0b00111111] != nullptr) {
 				forwarders[packet_id & 0b00111111]->send(def, indexable_buffer->buffer);
 			}
+
+			indexable_buffer->index = 0;
 		}
 	}
 }
