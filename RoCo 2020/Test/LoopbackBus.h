@@ -8,13 +8,13 @@
 #ifndef LOOPBACKBUS_H_
 #define LOOPBACKBUS_H_
 
-#include "Build/Build.h"
+#include "../Src/Build/Build.h"
 
 
 #ifdef BUILD_WITH_LOOPBACK_BUS
 
 
-#include "MessageBus.h"
+#include "../Src/MessageBus.h"
 
 #define LOOPBACK_BUFFER_LENGTH 5
 

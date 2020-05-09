@@ -13,10 +13,10 @@
 
 
 // Template explicit instantiation
-#define REGISTER(P) 									\
-	template bool MessageBus::define<P>(uint8_t);		\
-	template bool MessageBus::handle<P>(void (*)(P*));	\
-	template bool MessageBus::forward<P>(MessageBus*);	\
+#define REGISTER(P) 												\
+	template bool MessageBus::define<P>(uint8_t);					\
+	template bool MessageBus::handle<P>(void (*)(uint8_t, P*));		\
+	template bool MessageBus::forward<P>(MessageBus*);				\
 	template bool MessageBus::send<P>(P*);
 
 
@@ -87,7 +87,7 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
  *
  * Warning: this method is not thread-safe.
  */
-template<typename T> bool MessageBus::handle(void (*handler)(T*)) {
+template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*)) {
 	std::type_index type = std::type_index(typeid(T));
 
 	uint8_t packetID = retrieve(type)->id;
@@ -96,7 +96,7 @@ template<typename T> bool MessageBus::handle(void (*handler)(T*)) {
 		return false; // A handler is already registered for this packet type
 	}
 
-	handlers[packetID] = (void (*)(void*)) handler;
+	handlers[packetID] = (void (*)(uint8_t, void*)) handler;
 
 	return true;
 }
@@ -185,7 +185,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 			// Packet is complete. Forward buffer to handler.
 
 			if(handlers[packet_id & 0b00111111] != nullptr) {
-				handlers[packet_id & 0b00111111](indexable_buffer->buffer);
+				handlers[packet_id & 0b00111111](sender_id, indexable_buffer->buffer);
 			}
 
 			if(forwarders[packet_id & 0b00111111] != nullptr) {

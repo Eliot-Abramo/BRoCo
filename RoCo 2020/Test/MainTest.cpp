@@ -6,6 +6,11 @@
  */
 
 
+#include "../Src/Build/Build.h"
+
+#ifdef BUILD_FOR_TESTING
+
+
 #include <cstdint>
 #include <iomanip>
 #include <iostream>
@@ -37,7 +42,7 @@ void handle_input(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
 	std::cout << std::dec << std::endl << "---------- Frame end ----------" << std::endl << std::endl;
 }
 
-void handle_packet(TestPacket* packet) {
+void handle_packet(uint8_t source, TestPacket* packet) {
 	std::cout << std::hex << packet->magic << std::endl;
 	std::cout << packet->data << std::endl;
 }
@@ -100,3 +105,5 @@ int main() {
 
 	while(true);
 }
+
+#endif /* BUILD_FOR_TESTING */

@@ -152,7 +152,7 @@ void NetworkClientIO::receive(const std::function<void (uint8_t sender_id, uint8
 /*
  * Broadcasts data to the array of connected sockets (excluding the server instance)
  */
-void NetworkClientIO::transmit(uint8_t* buffer, uint32_t length) { // Broadcast
+void NetworkClientIO::transmit(uint8_t* buffer, uint32_t length) {
 	if(connected) {
 		int32_t result;
 
