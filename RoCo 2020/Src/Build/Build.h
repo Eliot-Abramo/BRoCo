@@ -10,7 +10,6 @@
 
 
 #define PROTOCOL_20W18
-#define BUILD_FOR_TESTING
 
 
 
