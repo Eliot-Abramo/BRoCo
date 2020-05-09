@@ -15,6 +15,7 @@
 #include <iomanip>
 #include <iostream>
 #include <thread>
+#include <chrono>
 
 #include "../Src/Protocol/Protocol.h"
 #include "../Src/NetworkBus.h"
@@ -22,7 +23,6 @@
 #include "../Src/NetworkIO.h"
 #include "../Src/NetworkServerIO.h"
 
-struct TestPacket;
 
 void handle_input(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
 	std::cout << std::endl << "---------- Frame begin from sender ID " << (uint32_t) sender_id << " ----------" << std::endl << std::endl << " ";
@@ -42,9 +42,8 @@ void handle_input(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
 	std::cout << std::dec << std::endl << "---------- Frame end ----------" << std::endl << std::endl;
 }
 
-void handle_packet(uint8_t source, TestPacket* packet) {
-	std::cout << std::hex << packet->magic << std::endl;
-	std::cout << packet->data << std::endl;
+void handle_packet(uint8_t sender_id, PingPacket* packet) {
+	std::cout << "Ping C2C: " << (PingPacket().time - packet->time).count() << "ns" << std::endl;
 }
 
 int main() {
@@ -90,13 +89,13 @@ int main() {
 
 
 
-	TestPacket packet;
+	PingPacket packet;
 
 	NetworkBus* server_bus = new NetworkBus(server_io);
 	NetworkBus* client_1_bus = new NetworkBus(client_io_1);
 	NetworkBus* client_2_bus = new NetworkBus(client_io_2);
 
-	server_bus->forward<TestPacket>(server_bus);
+	server_bus->forward<PingPacket>(server_bus);
 	client_2_bus->handle(handle_packet);
 
 	client_1_bus->send(&packet);
