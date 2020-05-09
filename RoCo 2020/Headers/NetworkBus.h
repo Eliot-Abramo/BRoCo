@@ -1,0 +1,31 @@
+/*
+ * NetworkBus.h
+ *
+ *  Created on: 8 May 2020
+ *      Author: Arion
+ */
+
+#ifndef NETWORKBUS_H_
+#define NETWORKBUS_H_
+
+#include "Build/Build.h"
+
+
+#ifdef BUILD_WITH_NETWORK_BUS
+
+
+#include "IOBus.h"
+
+
+class NetworkBus : public IOBus {
+public:
+	NetworkBus(IODriver* driver); // Constructor is inherited
+
+private:
+	uint8_t network_frame[4];
+};
+
+
+#endif /* BUILD_WITH_NETWORK_BUS */
+
+#endif /* NETWORKBUS_H_ */
