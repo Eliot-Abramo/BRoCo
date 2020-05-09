@@ -15,13 +15,8 @@
 #include <iomanip>
 #include <iostream>
 #include <thread>
-#include <chrono>
 
-#include "../Src/Protocol/Protocol.h"
-#include "../Src/NetworkBus.h"
-#include "../Src/NetworkClientIO.h"
-#include "../Src/NetworkIO.h"
-#include "../Src/NetworkServerIO.h"
+#include "../Headers/RoCo.h"
 
 
 void handle_input(uint8_t sender_id, uint8_t* buffer, uint32_t length) {

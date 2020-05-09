@@ -5,8 +5,8 @@
  *      Author: Arion
  */
 
-#ifndef HEADERS_ROCO_H_
-#define HEADERS_ROCO_H_
+#ifndef ROCO_H_
+#define ROCO_H_
 
 
 #include "Protocol/Protocol.h"
@@ -20,4 +20,4 @@
 #include "NetworkServerIO.h"
 
 
-#endif /* HEADERS_ROCO_H_ */
+#endif /* ROCO_H_ */

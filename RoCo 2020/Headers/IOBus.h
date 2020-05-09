@@ -5,6 +5,9 @@
  *      Author: Arion
  */
 
+#ifndef IOBUS_H_
+#define IOBUS_H_
+
 #include "MessageBus.h"
 #include "IODriver.h"
 
@@ -24,3 +27,4 @@ private:
 	void transmit();
 };
 
+#endif /* IOBUS_H_ */
