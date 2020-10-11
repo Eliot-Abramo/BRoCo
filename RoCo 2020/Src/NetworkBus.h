@@ -16,13 +16,15 @@
 
 #include "IOBus.h"
 
+#define NETWORK_FRAME_SIZE 256
+
 
 class NetworkBus : public IOBus {
 public:
 	NetworkBus(IODriver* driver); // Constructor is inherited
 
 private:
-	uint8_t network_frame[4];
+	uint8_t network_frame[NETWORK_FRAME_SIZE];
 };
 
 
