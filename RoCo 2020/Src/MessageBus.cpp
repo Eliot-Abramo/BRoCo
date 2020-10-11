@@ -90,15 +90,21 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*)) {
 	std::type_index type = std::type_index(typeid(T));
 
-	uint8_t packetID = retrieve(type)->id;
+	PacketDefinition* def = retrieve(type);
 
-	if(handlers[packetID] != nullptr) {
-		return false; // A handler is already registered for this packet type
+	if(def != nullptr) {
+		uint8_t packetID = def->id;
+
+		if(handlers[packetID] != nullptr) {
+			return false; // A handler is already registered for this packet type
+		}
+
+		handlers[packetID] = (void (*)(uint8_t, void*)) handler;
+
+		return true;
 	}
 
-	handlers[packetID] = (void (*)(uint8_t, void*)) handler;
-
-	return true;
+	return false;
 }
 
 /*
@@ -111,15 +117,21 @@ template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*)) {
 template<typename T> bool MessageBus::forward(MessageBus* bus) {
 	std::type_index type = std::type_index(typeid(T));
 
-	uint8_t packetID = retrieve(type)->id;
+	PacketDefinition* def = retrieve(type);
 
-	if(forwarders[packetID] != nullptr) {
-		return false; // A handler is already registered for this packet type
+	if(def != nullptr) {
+		uint8_t packetID = def->id;
+
+		if(forwarders[packetID] != nullptr) {
+			return false; // A handler is already registered for this packet type
+		}
+
+		forwarders[packetID] = bus;
+
+		return true;
 	}
 
-	forwarders[packetID] = bus;
-
-	return true;
+	return false;
 }
 
 /*
@@ -157,7 +169,6 @@ bool MessageBus::send(PacketDefinition* def, uint8_t* data) {
 	return false;
 }
 
-#include <iostream>
 /*
  * Handles the reception of a message.
  *
