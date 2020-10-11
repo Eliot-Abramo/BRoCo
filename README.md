@@ -23,7 +23,7 @@ struct SomePacket {
 If you fail to define the structure as _packed_, extra padding bytes will be added to the good will of the compiler, which is the most undesirable effect possible since the code is supposed to be completely portable between different system architectures.
 
 Another extra step to define a packet is to add it to the _protocol register_ in _Protocol/ProtocolRegister.h_.
-Doing so will allocate memory for the type of the structure previously defined.
+Doing so will allocate memory for the template type of the structure previously defined.
 
 ```cpp
 #ifdef YOUR_PROTOCOL
