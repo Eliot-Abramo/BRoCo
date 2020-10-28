@@ -18,7 +18,7 @@ static const std::type_index null_type = std::type_index(typeid(nullptr));
 struct PacketDefinition {
 	uint8_t id;
 	uint8_t size;
-	std::type_index type = null_type;
+	size_t hash;
 };
 
 class MessageBus {
@@ -53,7 +53,7 @@ private:
 	MessageBus* forwarders[64];
 
 	bool send(PacketDefinition* def, uint8_t* data);
-	PacketDefinition* retrieve(std::type_index type);
+	PacketDefinition* retrieve(size_t hash);
 };
 
 
