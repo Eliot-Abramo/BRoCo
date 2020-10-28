@@ -9,7 +9,9 @@
  #include "NetworkIO.h"
  %}
 
- %include "NetworkServerIO.h" #include "NetworkServerIO.cpp"
+ #define
+
+ %include "NetworkServerIO.h"
  %include "NetworkServerIO.cpp"
  %include "Build.h"
  %include "IODriver.h"
