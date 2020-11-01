@@ -9,6 +9,7 @@
 #define MESSAGE_BUS_H_
 
 #include <cstdint>
+#include <cstddef>
 #include <typeindex>
 
 

@@ -2735,16 +2735,16 @@ static swig_module_info swig_module = {swig_types, 33, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _RoCo.so
+              @(target):= _RoCo2.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__RoCo
+#  define SWIG_init    PyInit__RoCo2
 
 #else
-#  define SWIG_init    init_RoCo
+#  define SWIG_init    init_RoCo2
 
 #endif
-#define SWIG_name    "_RoCo"
+#define SWIG_name    "_RoCo2"
 
 #define SWIGVERSION 0x040002 
 #define SWIG_VERSION SWIGVERSION
@@ -2826,6 +2826,9 @@ namespace swig {
   };
 }
 
+
+#define BUILD_FOR_CONTROL_STATION
+#define PROTOCOL_20W18
 
 #include "../Build/Build.h"
 #include "../Protocol/Protocol.h"

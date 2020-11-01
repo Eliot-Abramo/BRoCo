@@ -1,5 +1,8 @@
-%module RoCo
+%module RoCo2
 %{
+#define BUILD_FOR_CONTROL_STATION
+#define PROTOCOL_20W18
+
 #include "../Build/Build.h"
 #include "../Protocol/Protocol.h"
 
@@ -13,7 +16,7 @@
 	%typemap(in) T {
 	    $1 = PyInt_AsLong($input);
 	}
-	
+
 	%typemap(out) T {
 	    $result = PyInt_FromLong($1);
 	}
@@ -43,6 +46,7 @@ ASINT(bool);
 #define PROTOCOL_20W18
 
 %include "../Build/Build.h"
+
 %include "../Protocol/Protocol20W18.h"
 %include "../IODriver.h"
 %include "../NetworkClientIO.h"
