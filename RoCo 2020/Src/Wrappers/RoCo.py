@@ -209,7 +209,7 @@ class NetworkClientIO(IODriver):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, address: "char const *", port: "uint16_t"):
+    def __init__(self, address: "std::string", port: "uint16_t"):
         _RoCo.NetworkClientIO_swiginit(self, _RoCo.new_NetworkClientIO(address, port))
     __swig_destroy__ = _RoCo.delete_NetworkClientIO
 

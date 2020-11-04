@@ -1,8 +1,7 @@
-%module RoCo2
-%{
-#define BUILD_FOR_CONTROL_STATION
-#define PROTOCOL_20W18
+%include "std_string.i"
 
+%module RoCo
+%{
 #include "../Build/Build.h"
 #include "../Protocol/Protocol.h"
 

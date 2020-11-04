@@ -27,7 +27,7 @@
 
 class NetworkClientIO : public IODriver {
 public:
-	NetworkClientIO(const char* address, uint16_t port);
+	NetworkClientIO(std::string address, uint16_t port);
 	~NetworkClientIO();
 
 	int8_t connectClient();
@@ -36,8 +36,11 @@ public:
 	void receive(const std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> &receiver);
 	void transmit(uint8_t* buffer, uint32_t length);
 
+
+
 private:
-	const char* address_str;
+	std::string address_str;
+
 	sockaddr_in address;
 	uint32_t socket_id;
 	bool connected;

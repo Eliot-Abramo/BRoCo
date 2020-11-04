@@ -27,7 +27,7 @@
 
 class NetworkClientIO : public IODriver {
 public:
-	NetworkClientIO(const char* address, uint16_t port);
+	NetworkClientIO(char* address, uint16_t port);
 	~NetworkClientIO();
 
 	int8_t connectClient();
@@ -37,7 +37,7 @@ public:
 	void transmit(uint8_t* buffer, uint32_t length);
 
 private:
-	const char* address_str;
+	char* address_str;
 	sockaddr_in address;
 	uint32_t socket_id;
 	bool connected;

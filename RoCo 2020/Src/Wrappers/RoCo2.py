@@ -196,10 +196,10 @@ class IODriver(object):
     __repr__ = _swig_repr
     __swig_destroy__ = _RoCo2.delete_IODriver
 
-    def receive(self, receiver):
+    def receive(self, receiver: "std::function< void (uint8_t,uint8_t *,uint32_t) > const &") -> "void":
         return _RoCo2.IODriver_receive(self, receiver)
 
-    def transmit(self, buffer, length):
+    def transmit(self, buffer: "uint8_t *", length: "uint32_t") -> "void":
         return _RoCo2.IODriver_transmit(self, buffer, length)
 
 # Register IODriver in _RoCo2:
@@ -209,20 +209,20 @@ class NetworkClientIO(IODriver):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, address, port):
+    def __init__(self, address: "char const *", port: "uint16_t"):
         _RoCo2.NetworkClientIO_swiginit(self, _RoCo2.new_NetworkClientIO(address, port))
     __swig_destroy__ = _RoCo2.delete_NetworkClientIO
 
-    def connectClient(self):
+    def connectClient(self) -> "int8_t":
         return _RoCo2.NetworkClientIO_connectClient(self)
 
-    def disconnectClient(self):
+    def disconnectClient(self) -> "void":
         return _RoCo2.NetworkClientIO_disconnectClient(self)
 
-    def receive(self, receiver):
+    def receive(self, receiver: "std::function< void (uint8_t,uint8_t *,uint32_t) > const &") -> "void":
         return _RoCo2.NetworkClientIO_receive(self, receiver)
 
-    def transmit(self, buffer, length):
+    def transmit(self, buffer: "uint8_t *", length: "uint32_t") -> "void":
         return _RoCo2.NetworkClientIO_transmit(self, buffer, length)
 
 # Register NetworkClientIO in _RoCo2:
@@ -252,124 +252,124 @@ class MessageBus(object):
     __repr__ = _swig_repr
     __swig_destroy__ = _RoCo2.delete_MessageBus
 
-    def definePingPacket(self, identifier):
+    def definePingPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_definePingPacket(self, identifier)
 
-    def handlePingPacket(self, handler):
+    def handlePingPacket(self, handler: "void (*)(uint8_t,PingPacket *)") -> "bool":
         return _RoCo2.MessageBus_handlePingPacket(self, handler)
 
-    def forwardPingPacket(self, bus):
+    def forwardPingPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardPingPacket(self, bus)
 
-    def sendPingPacket(self, message):
+    def sendPingPacket(self, message: "PingPacket") -> "bool":
         return _RoCo2.MessageBus_sendPingPacket(self, message)
 
-    def defineConnectPacket(self, identifier):
+    def defineConnectPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineConnectPacket(self, identifier)
 
-    def handleConnectPacket(self, handler):
+    def handleConnectPacket(self, handler: "void (*)(uint8_t,ConnectPacket *)") -> "bool":
         return _RoCo2.MessageBus_handleConnectPacket(self, handler)
 
-    def forwardConnectPacket(self, bus):
+    def forwardConnectPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardConnectPacket(self, bus)
 
-    def sendConnectPacket(self, message):
+    def sendConnectPacket(self, message: "ConnectPacket") -> "bool":
         return _RoCo2.MessageBus_sendConnectPacket(self, message)
 
-    def defineDisconnectPacket(self, identifier):
+    def defineDisconnectPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineDisconnectPacket(self, identifier)
 
-    def handleDisconnectPacket(self, handler):
+    def handleDisconnectPacket(self, handler: "void (*)(uint8_t,DisconnectPacket *)") -> "bool":
         return _RoCo2.MessageBus_handleDisconnectPacket(self, handler)
 
-    def forwardDisconnectPacket(self, bus):
+    def forwardDisconnectPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardDisconnectPacket(self, bus)
 
-    def sendDisconnectPacket(self, message):
+    def sendDisconnectPacket(self, message: "DisconnectPacket") -> "bool":
         return _RoCo2.MessageBus_sendDisconnectPacket(self, message)
 
-    def defineRequestPacket(self, identifier):
+    def defineRequestPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineRequestPacket(self, identifier)
 
-    def handleRequestPacket(self, handler):
+    def handleRequestPacket(self, handler: "void (*)(uint8_t,RequestPacket *)") -> "bool":
         return _RoCo2.MessageBus_handleRequestPacket(self, handler)
 
-    def forwardRequestPacket(self, bus):
+    def forwardRequestPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardRequestPacket(self, bus)
 
-    def sendRequestPacket(self, message):
+    def sendRequestPacket(self, message: "RequestPacket") -> "bool":
         return _RoCo2.MessageBus_sendRequestPacket(self, message)
 
-    def defineAcknowledgePacket(self, identifier):
+    def defineAcknowledgePacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineAcknowledgePacket(self, identifier)
 
-    def handleAcknowledgePacket(self, handler):
+    def handleAcknowledgePacket(self, handler: "void (*)(uint8_t,AcknowledgePacket *)") -> "bool":
         return _RoCo2.MessageBus_handleAcknowledgePacket(self, handler)
 
-    def forwardAcknowledgePacket(self, bus):
+    def forwardAcknowledgePacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardAcknowledgePacket(self, bus)
 
-    def sendAcknowledgePacket(self, message):
+    def sendAcknowledgePacket(self, message: "AcknowledgePacket") -> "bool":
         return _RoCo2.MessageBus_sendAcknowledgePacket(self, message)
 
-    def defineResponsePacket(self, identifier):
+    def defineResponsePacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineResponsePacket(self, identifier)
 
-    def handleResponsePacket(self, handler):
+    def handleResponsePacket(self, handler: "void (*)(uint8_t,ResponsePacket *)") -> "bool":
         return _RoCo2.MessageBus_handleResponsePacket(self, handler)
 
-    def forwardResponsePacket(self, bus):
+    def forwardResponsePacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardResponsePacket(self, bus)
 
-    def sendResponsePacket(self, message):
+    def sendResponsePacket(self, message: "ResponsePacket") -> "bool":
         return _RoCo2.MessageBus_sendResponsePacket(self, message)
 
-    def defineProgressPacket(self, identifier):
+    def defineProgressPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineProgressPacket(self, identifier)
 
-    def handleProgressPacket(self, handler):
+    def handleProgressPacket(self, handler: "void (*)(uint8_t,ProgressPacket *)") -> "bool":
         return _RoCo2.MessageBus_handleProgressPacket(self, handler)
 
-    def forwardProgressPacket(self, bus):
+    def forwardProgressPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardProgressPacket(self, bus)
 
-    def sendProgressPacket(self, message):
+    def sendProgressPacket(self, message: "ProgressPacket") -> "bool":
         return _RoCo2.MessageBus_sendProgressPacket(self, message)
 
-    def defineDataPacket(self, identifier):
+    def defineDataPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineDataPacket(self, identifier)
 
-    def handleDataPacket(self, handler):
+    def handleDataPacket(self, handler: "void (*)(uint8_t,DataPacket *)") -> "bool":
         return _RoCo2.MessageBus_handleDataPacket(self, handler)
 
-    def forwardDataPacket(self, bus):
+    def forwardDataPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardDataPacket(self, bus)
 
-    def sendDataPacket(self, message):
+    def sendDataPacket(self, message: "DataPacket") -> "bool":
         return _RoCo2.MessageBus_sendDataPacket(self, message)
 
-    def defineMessagePacket(self, identifier):
+    def defineMessagePacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineMessagePacket(self, identifier)
 
-    def handleMessagePacket(self, handler):
+    def handleMessagePacket(self, handler: "void (*)(uint8_t,MessagePacket *)") -> "bool":
         return _RoCo2.MessageBus_handleMessagePacket(self, handler)
 
-    def forwardMessagePacket(self, bus):
+    def forwardMessagePacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardMessagePacket(self, bus)
 
-    def sendMessagePacket(self, message):
+    def sendMessagePacket(self, message: "MessagePacket") -> "bool":
         return _RoCo2.MessageBus_sendMessagePacket(self, message)
 
-    def defineErrorPacket(self, identifier):
+    def defineErrorPacket(self, identifier: "uint8_t") -> "bool":
         return _RoCo2.MessageBus_defineErrorPacket(self, identifier)
 
-    def handleErrorPacket(self, handler):
+    def handleErrorPacket(self, handler: "void (*)(uint8_t,ErrorPacket *)") -> "bool":
         return _RoCo2.MessageBus_handleErrorPacket(self, handler)
 
-    def forwardErrorPacket(self, bus):
+    def forwardErrorPacket(self, bus: "MessageBus") -> "bool":
         return _RoCo2.MessageBus_forwardErrorPacket(self, bus)
 
-    def sendErrorPacket(self, message):
+    def sendErrorPacket(self, message: "ErrorPacket") -> "bool":
         return _RoCo2.MessageBus_sendErrorPacket(self, message)
 
 # Register MessageBus in _RoCo2:
@@ -379,7 +379,7 @@ class IOBus(MessageBus):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, driver, buffer, length):
+    def __init__(self, driver: "IODriver", buffer: "uint8_t *", length: "uint32_t"):
         _RoCo2.IOBus_swiginit(self, _RoCo2.new_IOBus(driver, buffer, length))
     __swig_destroy__ = _RoCo2.delete_IOBus
 
@@ -391,7 +391,7 @@ class NetworkBus(IOBus):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, driver):
+    def __init__(self, driver: "IODriver"):
         _RoCo2.NetworkBus_swiginit(self, _RoCo2.new_NetworkBus(driver))
     __swig_destroy__ = _RoCo2.delete_NetworkBus
 
