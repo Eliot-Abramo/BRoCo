@@ -1,4 +1,12 @@
------Important files in the folder-----
+-----Newly modified files-----
+-> MessageBus.cpp & .h : changed the type of function the method handle can
+take as argument (function takes now an additional void* as argument).
+Useful for callbacks with ROS on CS. Doesn't change how it is used on 
+other subsystems.
+-> Protocol21W3, ProtocolRegisters, NetworkBus: Modified for different Protocol.
+-> Files that aren't of RoCo are basically just test files. 
+
+-----Important files in the folder (for CS simulation)-----
 
 1) avionics.cpp : simulation of the avionics part of the RoCo communication
 graph.
