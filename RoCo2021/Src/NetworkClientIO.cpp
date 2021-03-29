@@ -17,16 +17,18 @@
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-
+#include <thread>
+#include <pthread.h>
 /*
  * Creates an ExternalIO interface using the given port number.
  * This constructor invocation is a light operation.
  */
-NetworkClientIO::NetworkClientIO(std::string address_str, uint16_t port) : address_str(address_str) {
+NetworkClientIO::NetworkClientIO(const char* address_str, uint16_t port) {
 	this->address = { 0 };
 	this->socket_id = 0;
 	this->connected = false;
 	this->receiver = nullptr;
+	this->address_str = address_str;
 
 	address.sin_family = AF_INET;
 	address.sin_port = htons(port);
@@ -46,7 +48,6 @@ NetworkClientIO::~NetworkClientIO() {
  * This operation is heavy and may fail.
  * Check the returned error code and set breakpoints accordingly if needed.
  */
-#include <iostream>
 int8_t NetworkClientIO::connectClient() {
 	if(connected) {
 		return -1; // Server already connected
@@ -61,14 +62,15 @@ int8_t NetworkClientIO::connectClient() {
 		return -2;
 	}
 
-	if(inet_pton(AF_INET, address_str.c_str(), &address.sin_addr) <= 0) {
+
+	if(inet_pton(AF_INET, address_str, &address.sin_addr) <= 0) {
 		close(socket_id);
 		return -3;
 	}
 
 	// Binds the client socket to the specified address and port
 	result = connect(socket_id, (struct sockaddr*) &address, sizeof(address));
-	std::cout << address_str <<std::endl;
+
 	if(result < 0) {
 		close(socket_id);
 		return -4;
@@ -93,6 +95,10 @@ void NetworkClientIO::disconnectClient() {
 		this->connected = false;
 		closeSocket();
 	}
+}
+
+bool NetworkClientIO::is_connected() {
+	return connected;
 }
 
 /*
@@ -130,15 +136,17 @@ void NetworkClientIO::receiveThread() {
 			} else {
 				// Connection was closed by server
 				std::cout << "[Client@" << ntohs(address.sin_port) << "] Client disconnected by server" << std::endl;
+				disconnectClient();
 				break;
 				// Do not decrement the num_sockets field since our IDs are not linear
 			}
 		}
 	}
 
-	std::cout << "[Client@" << ntohs(address.sin_port) << "] Client disconnected" << std::endl;
+	//std::cout << "[Client@" << ntohs(address.sin_port) << "] Client disconnected" << std::endl;
 
-	disconnectClient();
+	// disconnectClient();
+	return;
 }
 
 /*

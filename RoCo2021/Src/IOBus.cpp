@@ -7,8 +7,8 @@
 
 #include "IOBus.h"
 
-#include <cstring>
 #include <iostream>
+#include <cstring>
 
 IOBus::IOBus(IODriver* driver, uint8_t* buffer, uint32_t length) {
 	this->driver = driver;

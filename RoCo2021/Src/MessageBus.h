@@ -9,8 +9,8 @@
 #define MESSAGE_BUS_H_
 
 #include <cstdint>
-#include <cstddef>
 #include <typeindex>
+#include <functional>
 
 
 static const std::type_index null_type = std::type_index(typeid(nullptr));
@@ -19,7 +19,7 @@ static const std::type_index null_type = std::type_index(typeid(nullptr));
 struct PacketDefinition {
 	uint8_t id;
 	uint8_t size;
-	size_t hash;
+	std::type_index type = null_type;
 };
 
 class MessageBus {
@@ -27,7 +27,7 @@ public:
 	virtual ~MessageBus() {}
 
 	template<typename T> bool define(uint8_t identifier);
-	template<typename T> bool handle(void (*handler)(uint8_t source, T*));
+	template<typename T> bool handle(void (*handler)(uint8_t source, T*, void*), void*);
 	template<typename T> bool forward(MessageBus* bus);
 	template<typename T> bool send(T *message);
 
@@ -50,11 +50,12 @@ private:
 	PacketDefinition* definitions_by_type[256]; // Factor 4 to mitigate hash collisions
 	ReconstructionBuffer reconstruction_buffers[max_unique_senders];
 
-	void (*handlers[64])(uint8_t, void*);
+	void (*handlers[64])(uint8_t, void*, void*);
+	void* publishers[64];
 	MessageBus* forwarders[64];
 
 	bool send(PacketDefinition* def, uint8_t* data);
-	PacketDefinition* retrieve(size_t hash);
+	PacketDefinition* retrieve(std::type_index type);
 };
 
 

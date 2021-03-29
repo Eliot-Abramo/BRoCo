@@ -12,6 +12,8 @@
 //#define PROTOCOL_20W18
 #define PROTOCOL_21W3
 
+#define BUILD_FOR_TESTING
+
 
 
 #if defined(BUILD_FOR_CONTROL_STATION)

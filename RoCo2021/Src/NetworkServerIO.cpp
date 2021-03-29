@@ -12,10 +12,12 @@
 
 
 #include <iostream>
+#include <cstring>
 
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <pthread.h>
 
 /*
  * Creates an ExternalIO interface using the given port number.

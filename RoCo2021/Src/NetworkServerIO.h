@@ -20,6 +20,7 @@
 #include <cstdint>
 #include <functional>
 #include <thread>
+#include <pthread.h>
 
 #include <arpa/inet.h>
 #include <sys/poll.h>

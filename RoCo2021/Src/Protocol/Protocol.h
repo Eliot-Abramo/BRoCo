@@ -8,6 +8,8 @@
 #ifndef PROTOCOL_PROTOCOL_H_
 #define PROTOCOL_PROTOCOL_H_
 
+#define BUILD_FOR_TESTING
+
 #include "../Build/Build.h"
 
 

@@ -15,7 +15,7 @@
 // Template explicit instantiation
 #define REGISTER(P) 												\
 	template bool MessageBus::define<P>(uint8_t);					\
-	template bool MessageBus::handle<P>(void (*)(uint8_t, P*));		\
+	template bool MessageBus::handle<P>(void (*)(uint8_t, P*, void*), void*);		\
 	template bool MessageBus::forward<P>(MessageBus*);				\
 	template bool MessageBus::send<P>(P*);
 
@@ -42,19 +42,13 @@
  *
  * Warning: this method is not thread-safe.
  */
-
-#include <iostream>
-
-// WARNING: using a hash as a UUID is a bad idea in general but it was to only way to get SWIG working.
 template<typename T> bool MessageBus::define(uint8_t identifier) {
-	size_t struct_size = sizeof(T);
-	size_t hash = typeid(T).hash_code();
+	std::size_t struct_size = sizeof(T);
 
-	std::cout << "Type is " << typeid(T).name() << std::endl;
+	std::type_index type = std::type_index(typeid(T));
+	uint32_t insertion_point = type.hash_code() % 256;
 
-	uint32_t insertion_point = hash % 256;
-
-	if(definitions_by_id[identifier & 0b00111111].hash != 0) {
+	if(definitions_by_id[identifier & 0b00111111].type != null_type) {
 		return false; // Packet ID already in use
 	}
 
@@ -63,7 +57,7 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 	}
 
 	while(definitions_by_type[insertion_point] != nullptr) {
-		if(definitions_by_type[insertion_point]->hash == hash) {
+		if(definitions_by_type[insertion_point]->type == type) {
 			return false; // Packet type already defined
 		}
 
@@ -78,7 +72,7 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 
 	def->id = identifier;
 	def->size = (uint8_t) struct_size;
-	def->hash = hash;
+	def->type = type;
 
 	definitions_by_type[insertion_point] = def;
 
@@ -93,10 +87,10 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
  *
  * Warning: this method is not thread-safe.
  */
-template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*)) {
-	size_t hash = typeid(T).hash_code();
+template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*, void*), void* publisher) {
+	std::type_index type = std::type_index(typeid(T));
 
-	PacketDefinition* def = retrieve(hash);
+	PacketDefinition* def = retrieve(type);
 
 	if(def != nullptr) {
 		uint8_t packetID = def->id;
@@ -105,13 +99,15 @@ template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*)) {
 			return false; // A handler is already registered for this packet type
 		}
 
-		handlers[packetID] = (void (*)(uint8_t, void*)) handler;
+		handlers[packetID] = (void (*)(uint8_t, void*, void*)) handler;
+		publishers[packetID] = publisher;
 
 		return true;
 	}
 
 	return false;
 }
+
 
 /*
  * Registers a forwarder for this event bus.
@@ -121,9 +117,9 @@ template<typename T> bool MessageBus::handle(void (*handler)(uint8_t, T*)) {
  * Warning: this method is not thread-safe.
  */
 template<typename T> bool MessageBus::forward(MessageBus* bus) {
-	size_t hash = typeid(T).hash_code();
+	std::type_index type = std::type_index(typeid(T));
 
-	PacketDefinition* def = retrieve(hash);
+	PacketDefinition* def = retrieve(type);
 
 	if(def != nullptr) {
 		uint8_t packetID = def->id;
@@ -144,9 +140,9 @@ template<typename T> bool MessageBus::forward(MessageBus* bus) {
  * Sends the given message using the implemented transmission protocol.
  */
 template<typename T> bool MessageBus::send(T *message) {
-	size_t hash = typeid(T).hash_code();
+	std::type_index type = std::type_index(typeid(T));
 
-	PacketDefinition* def = retrieve(hash);
+	PacketDefinition* def = retrieve(type);
 
 	return send(def, (uint8_t*) message);
 }
@@ -187,7 +183,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 		uint8_t packet_id = *pointer++;
 
 		PacketDefinition* def = &definitions_by_id[packet_id & 0b00111111];
-		ReconstructionBuffer* indexable_buffer = &reconstruction_buffers[sender_id];
+		ReconstructionBuffer* indexable_buffer = &reconstruction_buffers[sender_id & 0b00111111];
 
 		if(indexable_buffer->index + length > max_packet_size) {
 			indexable_buffer->index = 0; // Corrupted packet
@@ -202,7 +198,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 			// Packet is complete. Forward buffer to handler.
 
 			if(handlers[packet_id & 0b00111111] != nullptr) {
-				handlers[packet_id & 0b00111111](sender_id, indexable_buffer->buffer);
+				handlers[packet_id & 0b00111111](sender_id, indexable_buffer->buffer, publishers[packet_id & 0b00111111]);
 			}
 
 			if(forwarders[packet_id & 0b00111111] != nullptr) {
@@ -217,12 +213,12 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 /*
  * Searches a packet definition matching the given type in the hash table.
  */
-PacketDefinition* MessageBus::retrieve(size_t hash) {
-	uint32_t searchPoint = hash % 256;
+PacketDefinition* MessageBus::retrieve(std::type_index type) {
+	uint32_t searchPoint = type.hash_code() % 256;
 	uint32_t searchStart = searchPoint;
 
 	while(definitions_by_type[searchPoint] != nullptr) {
-		if(definitions_by_type[searchPoint]->hash == hash) {
+		if(definitions_by_type[searchPoint]->type == type) {
 			return definitions_by_type[searchPoint];
 		}
 
