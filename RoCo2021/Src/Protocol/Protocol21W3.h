@@ -12,7 +12,7 @@
 
 // General packets
 struct PingPacket {
-	uint64_t time = static_cast<uint64_t>( std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+	uint64_t time;
 } __attribute__((packed));
 
 struct RequestPacket {
