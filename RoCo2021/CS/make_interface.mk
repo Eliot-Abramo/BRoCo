@@ -13,6 +13,10 @@ TARGETcpp = $(TARGET).cpp
 
 ROSoptions = -I/opt/ros/noetic/include -L/opt/ros/noetic/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization
 
+# check out wildcard
+# SRC = src
+# SOURCES := $(wildcard $(SRC)/*.cpp)
+
 
 $(TARGET): $(TARGETo) IOBus.o MessageBus.o NetworkBus.o NetworkClientIO.o NetworkServerIO.o
 	$(CC) -pthread $(TARGETo) IOBus.o MessageBus.o NetworkBus.o NetworkClientIO.o NetworkServerIO.o -o $(TARGET) $(ROSoptions)
