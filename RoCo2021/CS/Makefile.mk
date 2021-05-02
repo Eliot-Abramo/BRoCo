@@ -7,11 +7,13 @@ SRC=../Src
 BUILD=Build
 PRO=Protocol
 
-TARGET = interface
+TARGET = interface_cs
 TARGETo = $(TARGET).o
 TARGETcpp = $(TARGET).cpp
 
-ROSoptions = -I/opt/ros/noetic/include -L/opt/ros/noetic/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization
+ROSDIST = noetic
+
+ROSoptions = -I/opt/ros/$(ROSDIST)/include -L/opt/ros/$(ROSDIST)/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization
 
 # check out wildcard
 # SRC = src
@@ -21,7 +23,7 @@ ROSoptions = -I/opt/ros/noetic/include -L/opt/ros/noetic/lib -lroscpp -lrostime 
 $(TARGET): $(TARGETo) IOBus.o MessageBus.o NetworkBus.o NetworkClientIO.o NetworkServerIO.o
 	$(CC) -pthread $(TARGETo) IOBus.o MessageBus.o NetworkBus.o NetworkClientIO.o NetworkServerIO.o -o $(TARGET) $(ROSoptions)
 
-$(TARGETo): $(TARGETcpp) $(SRC)/$(BUILD)/Build.h $(SRC)/RoCo.h handlers.h
+$(TARGETo): $(TARGETcpp) $(SRC)/$(BUILD)/Build.h $(SRC)/RoCo.h handlers_cs.h
 	$(CC) -c $(TARGETcpp) $(ROSoptions)
 
 IOBus.o: $(SRC)/IOBus.cpp $(SRC)/IOBus.h $(SRC)/MessageBus.h
