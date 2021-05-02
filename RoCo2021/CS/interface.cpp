@@ -1,33 +1,3 @@
-/* DESCRIPTION
-
-This file serves as an interface between the RoCo protocol and the ROS
-environment.
-Packets received over RoCo are dealt with and transferred to their
-corresponding topic on ROS.
-Nodes subscribed to certain topics receive data which is transferred to the
-corresponding subsystem through RoCo.
-*/
-
-/* PACKETS TO IMPLEMENT
-
-Avionics_BaroTempPacket
-Avionics_AccelMagPacket
-
-Handling_GripperPacket
-
-Power_SystemPacket
-Power_VoltagePacket
-Power_CurrentPacket
-
-Science_MeasurePacket
-
-PingPacket
-RequestPacket
-ResponsePacket
-ProgressPacket
-ErrorPacket
-*/
-
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Float32MultiArray.h"
