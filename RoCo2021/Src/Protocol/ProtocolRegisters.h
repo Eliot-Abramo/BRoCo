@@ -46,6 +46,9 @@ REGISTER(Switch_RamanPacket)
 REGISTER(Switch_JetsonPacket)
 REGISTER(Switch_LidarPacket)
 REGISTER(Switch_EthernetPacket)
+
+REGISTER(FsmPacket)
+REGISTER(PotentiometersPacket)
 #endif /* PROTOCOL_21W3 */
 
 

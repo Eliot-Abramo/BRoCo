@@ -31,6 +31,9 @@ NetworkBus::NetworkBus(IODriver* driver) : IOBus(driver, network_frame, sizeof(n
 	define<Switch_LidarPacket>(11);
 	define<Switch_EthernetPacket>(12);
 
+	define<FsmPacket>(13);
+	define<PotentiometersPacket>(14);
+
 
 	define<DataPacket>(58);
 	define<PingPacket>(59);

@@ -106,4 +106,14 @@ struct Switch_EthernetPacket  {
 } __attribute__((packed));
 
 
+struct FsmPacket{
+	uint32_t state;
+}__attribute__((packed));
+
+struct PotentiometersPacket {
+	float angles[4];
+}__attribute__((packed));
+
+
+
 #endif /* PROTOCOL_PROTOCOL21W3_H_ */

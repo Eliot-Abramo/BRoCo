@@ -7,7 +7,7 @@ SRC=../Src
 BUILD=Build
 PRO=Protocol
 
-TARGET = interface_cs
+TARGET = interface_jetson
 TARGETo = $(TARGET).o
 TARGETcpp = $(TARGET).cpp
 

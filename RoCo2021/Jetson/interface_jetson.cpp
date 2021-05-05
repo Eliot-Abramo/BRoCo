@@ -37,33 +37,10 @@ int main(int argc, char **argv)
   // NodeHandle initializes this node
   ros::NodeHandle n;
 
-  //-----define ROS topics on which to publish-----
-
-  // ros::Publisher av_barotemp_pub = n.advertise<std_msgs::Float32MultiArray>("barotemp", 1000);
-  // ros::Publisher av_accelmag_pub = n.advertise<std_msgs::Float32MultiArray>("accelmag", 1000);
-
-  // ros::Publisher ha_gripper_pub = n.advertise<std_msgs::Float32>("gripper", 1000);
-
-  // ros::Publisher po_system_pub = n.advertise<std_msgs::Float32MultiArray>("system", 1000);
-  // ros::Publisher po_voltage_pub = n.advertise<std_msgs::Float32MultiArray>("voltages", 1000);
-  // ros::Publisher po_current_pub = n.advertise<std_msgs::Float32MultiArray>("currents", 1000);
-
-  // ros::Publisher sc_measure_pub = n.advertise<std_msgs::Float32>("measures", 1000);
-
-  // ros::Publisher ping_pub = n.advertise<std_msgs::Float32>("ping", 1000); // use time msgeg
-  // ros::Publisher request_pub = n.advertise<std_msgs::UInt32MultiArray>("request", 1000);
-  // ros::Publisher response_pub = n.advertise<std_msgs::UInt32MultiArray>("response", 1000);
-  // ros::Publisher progress_pub = n.advertise<std_msgs::UInt32MultiArray>("progress", 1000);
-  // ros::Publisher error_pub = n.advertise<std_msgs::UInt8>("error", 1000);
-
-
-
-  // 1 Hz refresh rate of the node
   ros::Rate loop_rate(10);
 
 
-	std::cout << "Starting main test..." << std::endl;
-
+  //-----define RoCo server/bus-----
 
 // create server
   NetworkServerIO* jetson_server = new NetworkServerIO(PORT_B);
@@ -80,28 +57,41 @@ int main(int argc, char **argv)
   
   NetworkBus* jetson_server_bus = new NetworkBus(jetson_server);
 
+  //-----define ROS topics on which to publish/subscribe-----
 
-  //-----set client bus to handle different packets-----
-  // client_2_bus->handle(handle_barotemp,  (void*)&av_barotemp_pub);
-  // client_2_bus->handle(handle_accelmag,  (void*)&av_accelmag_pub);
+  // PUBLISH
 
-  // client_2_bus->handle(handle_gripper,  (void*)&ha_gripper_pub);
+  // send FSM to NAV
+  ros::Publisher fsm_pub = n.advertise<std_msgs::UInt32>("fsm_av_to_nav", 1000);
+  // send potentiometer to NAV
+  ros::Publisher potent_pub = n.advertise<std_msgs::Float32MultiArray>("potentiometers", 1000);
+  // send barotemp to NAV
+  ros::Publisher barotemp_pub = n.advertise<std_msgs::Float32MultiArray>("barotemp_av_to_nav", 1000);
+  // send potentiometer to NAV
+  ros::Publisher accelmag_pub = n.advertise<std_msgs::Float32MultiArray>("potentiometers", 1000);
 
-  // client_2_bus->handle(handle_system,  (void*)&po_system_pub);
-  // client_2_bus->handle(handle_voltages,  (void*)&po_voltage_pub);
-  // client_2_bus->handle(handle_currents,  (void*)&po_current_pub);
 
-  // client_2_bus->handle(handle_measures,  (void*)&sc_measure_pub);
+  // SUBSCRIBE
+  
+  // receive FSM and send to AV
+  ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus));
+
+  //-----define handlers-----
+  jetson_server_bus->handle(handle_fsm,  (void*)&fsm_pub);
+  jetson_server_bus->handle(handle_potentiometers,  (void*)&potent_pub);
+  jetson_server_bus->handle(handle_barotemp,  (void*)&barotemp_pub);
+  jetson_server_bus->handle(handle_accelmag,  (void*)&accelmag_pub);
+
+  //-----define forwarders-----
+  jetson_server_bus->forward<Avionics_BaroTempPacket>(jetson_server_bus);
+  jetson_server_bus->forward<Avionics_AccelMagPacket>(jetson_server_bus);
+  jetson_server_bus->forward<Handling_GripperPacket>(jetson_server_bus);
+  jetson_server_bus->forward<Power_SystemPacket>(jetson_server_bus);
+  jetson_server_bus->forward<Power_VoltagePacket>(jetson_server_bus);
+  jetson_server_bus->forward<Power_CurrentPacket>(jetson_server_bus);
+  jetson_server_bus->forward<Science_MeasurePacket>(jetson_server_bus);
 
 
-  // //-----define ROS topics on which to subscribe----- Communication to avionics
-
-  // ros::Subscriber reset_power_sub= n.subscribe<std_msgs::Bool>("reset_power", 1000, boost::bind(reset_power_supply_callback, _1, client_2_bus));
-  // ros::Subscriber switch_avionics_sub = n.subscribe<std_msgs::Bool>("switch_avionics", 1000, boost::bind(switch_avionics_callback, _1, client_2_bus));
-  // ros::Subscriber switch_raman_sub = n.subscribe<std_msgs::Bool>("switch_raman", 1000, boost::bind(switch_raman_callback, _1, client_2_bus));
-  // ros::Subscriber switch_jetson_sub = n.subscribe<std_msgs::Bool>("switch_jetson", 1000, boost::bind(switch_jetson_callback, _1, client_2_bus));
-  // ros::Subscriber switch_lidar_sub = n.subscribe<std_msgs::Bool>("switch_lidar", 1000, boost::bind(switch_lidar_callback, _1, client_2_bus));
-  // ros::Subscriber switch_ethernet_sub = n.subscribe<std_msgs::Bool>("switch_ethernet", 1000, boost::bind(switch_ethernet_callback, _1, client_2_bus));
 
   while (ros::ok())
   {
