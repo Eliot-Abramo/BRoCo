@@ -31,7 +31,7 @@ int main(int argc, char **argv)
   NetworkBus* client_power_supply_bus = new NetworkBus(client_power_supply);
 
   // create client for 5ghz net
-  NetworkClientIO* client_jetson = new NetworkClientIO("127.0.0.1", PORT_B);
+  NetworkClientIO* client_jetson = new NetworkClientIO("127.0.0.1", PORT_A);
   NetworkBus* client_jetson_bus = new NetworkBus(client_jetson);
 
   int placeholder;
@@ -62,10 +62,10 @@ int main(int argc, char **argv)
 
     // send data to power supply
     if(client_jetson->is_connected()){
-      DataPacket packet;
-      packet.data = 15;
-      client_power_supply_bus->send<DataPacket>(&packet);
-      printf("Datapacket sent!\n");
+      // DataPacket packet;
+      // packet.data = 15;
+      // client_power_supply_bus->send<DataPacket>(&packet);
+      // printf("Datapacket sent!\n");
     }
 
 

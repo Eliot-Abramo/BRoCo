@@ -65,11 +65,11 @@ int main(int argc, char **argv)
 
 
   // create client for 2.4ghz net and corresponding bus
-  NetworkClientIO* client_power_supply = new NetworkClientIO("127.0.0.1", PORT_A);
+  NetworkClientIO* client_power_supply = new NetworkClientIO("127.0.0.1", PORT_PS);
   NetworkBus* client_power_supply_bus = new NetworkBus(client_power_supply);
 
   // create client for 5ghz net
-  NetworkClientIO* client_jetson = new NetworkClientIO("127.0.0.1", PORT_B);
+  NetworkClientIO* client_jetson = new NetworkClientIO("127.0.0.1", CS);
   NetworkBus* client_jetson_bus = new NetworkBus(client_jetson);
 
 

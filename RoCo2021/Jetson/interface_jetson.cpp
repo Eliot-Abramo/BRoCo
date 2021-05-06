@@ -43,10 +43,10 @@ int main(int argc, char **argv)
   //-----define RoCo server/bus-----
 
 // create server
-  NetworkServerIO* jetson_server = new NetworkServerIO(PORT_B);
+  NetworkServerIO* jetson_server_av = new NetworkServerIO(PORT_AV);
 
   // connect server
-	int32_t result = jetson_server->connectServer();
+	int32_t result = jetson_server_av->connectServer();
   
   if(result < 0) {
 		std::cout << "Network Server IO connection failed with error code " << result << std::endl;
@@ -55,7 +55,22 @@ int main(int argc, char **argv)
 		std::cout << "Connected to network server IO" << std::endl;
 	}
   
-  NetworkBus* jetson_server_bus = new NetworkBus(jetson_server);
+  NetworkBus* jetson_server_bus_av = new NetworkBus(jetson_server_av);
+
+  // create server
+  NetworkServerIO* jetson_server_cs = new NetworkServerIO(PORT_CS);
+
+  // connect server
+	result = jetson_server_cs->connectServer();
+  
+  if(result < 0) {
+		std::cout << "Network Server IO connection failed with error code " << result << std::endl;
+		std::cout << std::strerror(errno) << std::endl;
+	} else {
+		std::cout << "Connected to network server IO" << std::endl;
+	}
+  
+  NetworkBus* jetson_server_bus_cs = new NetworkBus(jetson_server_cs);
 
   //-----define ROS topics on which to publish/subscribe-----
 
@@ -73,23 +88,23 @@ int main(int argc, char **argv)
 
   // SUBSCRIBE
   
-  // receive FSM and send to AV
-  ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus));
+  // receive FSM and send to AV and CS
+  ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus_av, jetson_server_bus_cs));
 
   //-----define handlers-----
-  jetson_server_bus->handle(handle_fsm,  (void*)&fsm_pub);
-  jetson_server_bus->handle(handle_potentiometers,  (void*)&potent_pub);
-  jetson_server_bus->handle(handle_barotemp,  (void*)&barotemp_pub);
-  jetson_server_bus->handle(handle_accelmag,  (void*)&accelmag_pub);
+  jetson_server_bus_av->handle(handle_fsm,  (void*)&fsm_pub);
+  jetson_server_bus_av->handle(handle_potentiometers,  (void*)&potent_pub);
+  jetson_server_bus_av->handle(handle_barotemp,  (void*)&barotemp_pub);
+  jetson_server_bus_av->handle(handle_accelmag,  (void*)&accelmag_pub);
 
   //-----define forwarders-----
-  jetson_server_bus->forward<Avionics_BaroTempPacket>(jetson_server_bus);
-  jetson_server_bus->forward<Avionics_AccelMagPacket>(jetson_server_bus);
-  jetson_server_bus->forward<Handling_GripperPacket>(jetson_server_bus);
-  jetson_server_bus->forward<Power_SystemPacket>(jetson_server_bus);
-  jetson_server_bus->forward<Power_VoltagePacket>(jetson_server_bus);
-  jetson_server_bus->forward<Power_CurrentPacket>(jetson_server_bus);
-  jetson_server_bus->forward<Science_MeasurePacket>(jetson_server_bus);
+  jetson_server_bus_av->forward<Avionics_BaroTempPacket>(jetson_server_bus_cs);
+  jetson_server_bus_av->forward<Avionics_AccelMagPacket>(jetson_server_bus_cs);
+  jetson_server_bus_av->forward<Handling_GripperPacket>(jetson_server_bus_cs);
+  jetson_server_bus_av->forward<Power_SystemPacket>(jetson_server_bus_cs);
+  jetson_server_bus_av->forward<Power_VoltagePacket>(jetson_server_bus_cs);
+  jetson_server_bus_av->forward<Power_CurrentPacket>(jetson_server_bus_cs);
+  jetson_server_bus_av->forward<Science_MeasurePacket>(jetson_server_bus_cs);
 
 
 

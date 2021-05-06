@@ -40,11 +40,12 @@ handlers.
 
 // receive data from ROS and send to RoCo
 
-void fsm_callback(const boost::shared_ptr<std_msgs::UInt32 const> msg, NetworkBus* sender)
+void fsm_callback(const boost::shared_ptr<std_msgs::UInt32 const> msg, NetworkBus* sender_av, NetworkBus* sender_cs)
 {
   FsmPacket packet;
   packet.state = msg->data;
-  sender->send<FsmPacket>(&packet);
+  sender_av->send<FsmPacket>(&packet);
+  sender_cs->send<FsmPacket>(&packet);
 }
 
 
