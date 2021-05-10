@@ -1,6 +1,6 @@
 CXX = g++
 CC = $(CXX)
-CXXFLAGS = -std=c++17 -Wall
+#CXXFLAGS = -std=c++17 -Wall
 #LDLIBS = -lm
 
 SRC=../Src

@@ -16,11 +16,16 @@ struct PingPacket {
 } __attribute__((packed));
 
 struct RequestPacket {
-	uint16_t uuid;
+	uint16_t uuid; 
 	uint8_t action_id;
 	uint8_t target_id;
 	uint32_t payload;
 } __attribute__((packed));
+
+// calibrer la balance
+// reset les sensors
+// stop sending data
+
 
 struct ResponsePacket {
 	uint16_t uuid;
@@ -54,10 +59,10 @@ struct Avionics_AccelMagPacket {
   float magneto[3];
 } __attribute__((packed));
 
-// Handling device
-struct Handling_GripperPacket {
-  float voltage;
-} __attribute__((packed));
+// // Handling device
+// struct Handling_GripperPacket {
+//   float voltage;
+// } __attribute__((packed));
 
 // Power
 struct Power_VoltagePacket {
@@ -106,13 +111,30 @@ struct Switch_EthernetPacket  {
 } __attribute__((packed));
 
 
+
+
+
+
+
 struct FsmPacket{
 	uint32_t state;
 }__attribute__((packed));
 
 struct PotentiometersPacket {
-	float angles[4];
+	uint8_t port;
+	float voltage;
 }__attribute__((packed));
+
+// port sensors: cahr, port, tension
+//
+
+// for I2C ports sensors
+struct PortSensorsPacket{
+	uint8_t port;
+	float data;
+}
+
+
 
 
 
