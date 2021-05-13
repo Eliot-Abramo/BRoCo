@@ -16,31 +16,35 @@
 
 NetworkBus::NetworkBus(IODriver* driver) : IOBus(driver, network_frame, sizeof(network_frame)) {
 
+	// avionics
 	define<Avionics_BaroTempPacket>(0);
 	define<Avionics_AccelMagPacket>(1);
-	define<Handling_GripperPacket>(2);
-	define<Power_SystemPacket>(3);
-	define<Power_VoltagePacket>(4);
-	define<Power_CurrentPacket>(5);
-	define<Science_MeasurePacket>(6);
-
-	define<Reset_PowerSupplyPacket>(7);
-	define<Switch_AvionicsPacket>(8);
-	define<Switch_RamanPacket>(9);
-	define<Switch_JetsonPacket>(10);
-	define<Switch_LidarPacket>(11);
-	define<Switch_EthernetPacket>(12);
-
-	define<FsmPacket>(13);
-	define<PotentiometersPacket>(14);
+	define<Avionics_ADCPacket>(2);
+	define<Science_MeasurePacket>(3);
 
 
+	// power supply
+	define<Power_SystemPacket>(8);
+	define<Power_VoltagePacket>(9);
+	define<Power_CurrentPacket>(10);
+
+	define<Reset_PowerSupplyPacket>(13);
+	define<Switch_AvionicsPacket>(14);
+	define<Switch_RamanPacket>(15);
+	define<Switch_JetsonPacket>(16);
+	define<Switch_LidarPacket>(17);
+	define<Switch_EthernetPacket>(18);
+
+	// finite state machine
+	define<FsmPacket>(22);
+
+	// general packets
 	define<DataPacket>(58);
 	define<PingPacket>(59);
-	define<RequestPacket>(60);
-	define<ResponsePacket>(61);
-	define<ProgressPacket>(62);
-	define<ErrorPacket>(63);
+	define<ErrorPacket>(60);
+	define<RequestPacket>(61);
+	define<ResponsePacket>(62);
+	define<ProgressPacket>(63);
 }
 
 
