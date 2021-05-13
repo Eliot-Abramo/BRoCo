@@ -63,8 +63,8 @@ struct Avionics_AccelMagPacket {
   float magneto[3];
 } __attribute__((packed));
 
-// Handling device
-struct Handling_GripperPacket {
+// Handling device + potentiometers (ads1113)
+struct Avionics_PotentiometerPacket {
   uint8_t port;
   float voltage;
 } __attribute__((packed));
@@ -119,12 +119,6 @@ struct Switch_EthernetPacket  {
 struct FsmPacket{
 	uint32_t state;
 }__attribute__((packed));
-
-struct PotentiometerPacket {
-	uint8_t port;
-	float angle;
-}__attribute__((packed));
-
 
 
 #endif /* PROTOCOL_PROTOCOL21W3_H_ */
