@@ -22,10 +22,14 @@ struct RequestPacket {
 	uint32_t payload;
 } __attribute__((packed));
 
-// calibrer la balance
-// reset les sensors
-// stop sending data
+//Different action id definitions to be sent:
+//Avionics
+#define TARE (uint8_t)0x1 //Recalibrate sensor: ads1113, hx711, imu, barometer
+#define RESET_SENSOR (uint8_t)0x2
+#define STOP_DATA (uint8_t)0x3
 
+//Science
+#define START_ANALYSIS (uint8_t)0x4 //Random example
 
 struct ResponsePacket {
 	uint16_t uuid;
@@ -59,10 +63,11 @@ struct Avionics_AccelMagPacket {
   float magneto[3];
 } __attribute__((packed));
 
-// // Handling device
-// struct Handling_GripperPacket {
-//   float voltage;
-// } __attribute__((packed));
+// Handling device
+struct Handling_GripperPacket {
+  uint8_t port;
+  float voltage;
+} __attribute__((packed));
 
 // Power
 struct Power_VoltagePacket {
@@ -120,9 +125,9 @@ struct FsmPacket{
 	uint32_t state;
 }__attribute__((packed));
 
-struct PotentiometersPacket {
+struct PotentiometerPacket {
 	uint8_t port;
-	float voltage;
+	float angle;
 }__attribute__((packed));
 
 // port sensors: cahr, port, tension
