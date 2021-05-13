@@ -16,7 +16,7 @@ struct PingPacket {
 } __attribute__((packed));
 
 struct RequestPacket {
-	uint16_t uuid;
+	uint16_t uuid; 
 	uint8_t action_id;
 	uint8_t target_id;
 	uint32_t payload;
@@ -64,7 +64,7 @@ struct Avionics_AccelMagPacket {
 } __attribute__((packed));
 
 // Handling device + potentiometers (ads1113)
-struct Avionics_PotentiometerPacket {
+struct Avionics_ADCPacket {
   uint8_t port;
   float voltage;
 } __attribute__((packed));
@@ -114,6 +114,11 @@ struct Switch_LidarPacket  {
 struct Switch_EthernetPacket  {
 	bool on;
 } __attribute__((packed));
+
+
+
+
+
 
 
 struct FsmPacket{

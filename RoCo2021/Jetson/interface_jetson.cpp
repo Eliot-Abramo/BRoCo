@@ -91,6 +91,8 @@ int main(int argc, char **argv)
   // receive FSM and send to AV and CS
   ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus_av, jetson_server_bus_cs));
 
+  std::array pubs = {fsm_pub}
+
   //-----define handlers-----
   jetson_server_bus_av->handle(handle_fsm,  (void*)&fsm_pub);
   jetson_server_bus_av->handle(handle_potentiometers,  (void*)&potent_pub);
