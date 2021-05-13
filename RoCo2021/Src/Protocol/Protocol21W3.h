@@ -30,7 +30,7 @@ struct Avionics_ADCPacket {
 } __attribute__((packed));
 
 // Science
-struct Science_MeasurePacket {
+struct Science_MassPacket {
   float mass;
 } __attribute__((packed));
 

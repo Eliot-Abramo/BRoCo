@@ -26,7 +26,7 @@
 #include "handlers_jetson.h"
 
 // Interface between Ros and RoCo on jetson
-// Also serves as a forwarder some of the RoCo packets from avionics
+// Packets sent to CS from avionics are converted to ROS here
 
 int main(int argc, char **argv)
 {
@@ -42,26 +42,11 @@ int main(int argc, char **argv)
 
   //-----define RoCo server/bus-----
 
-// create server
-  NetworkServerIO* jetson_server_av = new NetworkServerIO(PORT_AV);
-
-  // connect server
-	int32_t result = jetson_server_av->connectServer();
-  
-  if(result < 0) {
-		std::cout << "Network Server IO connection failed with error code " << result << std::endl;
-		std::cout << std::strerror(errno) << std::endl;
-	} else {
-		std::cout << "Connected to network server IO" << std::endl;
-	}
-  
-  NetworkBus* jetson_server_bus_av = new NetworkBus(jetson_server_av);
-
   // create server
-  NetworkServerIO* jetson_server_cs = new NetworkServerIO(PORT_CS);
+  NetworkServerIO* server = new NetworkServerIO(PORT_B);
 
   // connect server
-	result = jetson_server_cs->connectServer();
+	int32_t result = server->connectServer();
   
   if(result < 0) {
 		std::cout << "Network Server IO connection failed with error code " << result << std::endl;
@@ -69,46 +54,36 @@ int main(int argc, char **argv)
 	} else {
 		std::cout << "Connected to network server IO" << std::endl;
 	}
-  
-  NetworkBus* jetson_server_bus_cs = new NetworkBus(jetson_server_cs);
+
+  // create server bus
+  NetworkBus* server_bus = new NetworkBus(server);
 
   //-----define ROS topics on which to publish/subscribe-----
 
   // PUBLISH
 
-  // send FSM to NAV
-  ros::Publisher fsm_pub = n.advertise<std_msgs::UInt32>("fsm_av_to_nav", 1000);
-  // send potentiometer to NAV
-  ros::Publisher potent_pub = n.advertise<std_msgs::Float32MultiArray>("potentiometers", 1000);
-  // send barotemp to NAV
-  ros::Publisher barotemp_pub = n.advertise<std_msgs::Float32MultiArray>("barotemp_av_to_nav", 1000);
-  // send potentiometer to NAV
-  ros::Publisher accelmag_pub = n.advertise<std_msgs::Float32MultiArray>("potentiometers", 1000);
+  // messages received from avionics directed at CS or nav
+  ros::Publisher av_barotemp_pub = n.advertise<std_msgs::Float32MultiArray>("barotemp", 1000);
+  ros::Publisher av_accelmag_pub = n.advertise<std_msgs::Float32MultiArray>("accelmag", 1000);
+  ros::Publisher av_adc_pub = n.advertise<std_msgs::Float32MultiArray>("adc", 1000);
+  ros::Publisher sc_mass_pub = n.advertise<std_msgs::Float32>("mass", 1000);
 
+  // add response packet
+  // add fsm packet
 
   // SUBSCRIBE
-  
+
+  // add fsm packet
+  // add request packet
   // receive FSM and send to AV and CS
-  ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus_av, jetson_server_bus_cs));
-
-  std::array pubs = {fsm_pub}
-
-  //-----define handlers-----
-  jetson_server_bus_av->handle(handle_fsm,  (void*)&fsm_pub);
-  jetson_server_bus_av->handle(handle_potentiometers,  (void*)&potent_pub);
-  jetson_server_bus_av->handle(handle_barotemp,  (void*)&barotemp_pub);
-  jetson_server_bus_av->handle(handle_accelmag,  (void*)&accelmag_pub);
-
-  //-----define forwarders-----
-  jetson_server_bus_av->forward<Avionics_BaroTempPacket>(jetson_server_bus_cs);
-  jetson_server_bus_av->forward<Avionics_AccelMagPacket>(jetson_server_bus_cs);
-  jetson_server_bus_av->forward<Handling_GripperPacket>(jetson_server_bus_cs);
-  jetson_server_bus_av->forward<Power_SystemPacket>(jetson_server_bus_cs);
-  jetson_server_bus_av->forward<Power_VoltagePacket>(jetson_server_bus_cs);
-  jetson_server_bus_av->forward<Power_CurrentPacket>(jetson_server_bus_cs);
-  jetson_server_bus_av->forward<Science_MeasurePacket>(jetson_server_bus_cs);
+  // ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus_av, jetson_server_bus_cs));
 
 
+  //-----define RoCo handlers-----
+  server_bus->handle(handle_barotemp, (void*)&av_barotemp_pub);
+  server_bus->handle(handle_accelmag, (void*)&av_accelmag_pub);
+  server_bus->handle(handle_adc, (void*)&av_adc_pub);
+  server_bus->handle(handle_mass, (void*)&sc_mass_pub);
 
   while (ros::ok())
   {
@@ -116,7 +91,7 @@ int main(int argc, char **argv)
     // used to handle ros communication events, i.e. callback to function
     ros::spinOnce();
 
-    // enforces the frequency at which this while loop runs (here at 1H z, see above)
+    // enforces the frequency at which this while loop runs
     loop_rate.sleep();
 
   }

@@ -28,7 +28,7 @@ REGISTER(ErrorPacket)
 REGISTER(Avionics_BaroTempPacket)
 REGISTER(Avionics_AccelMagPacket)
 REGISTER(Avionics_ADCPacket)
-REGISTER(Science_MeasurePacket)
+REGISTER(Science_MassPacket)
 
 REGISTER(Power_SystemPacket)
 REGISTER(Power_VoltagePacket)
