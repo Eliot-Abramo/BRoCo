@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+interface_jetson
+interface_cs
