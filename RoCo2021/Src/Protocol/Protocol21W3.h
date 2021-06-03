@@ -13,25 +13,25 @@
 //----------Avionics----------
 
 struct Avionics_BaroTempPacket {
-  float pressure;
-  float temperature;
+  float pressure;					//[Pa]
+  float temperature;				//[°C]
 } __attribute__((packed));
 
 struct Avionics_AccelMagPacket {
-  float acceleration[3];
-  float angular[3];
-  float magneto[3];
+  float acceleration[3];			//[m/s^2]
+  float angular[3];					//[°]
+  float magneto[3];					//[mT]
 } __attribute__((packed));
 
 // Handling device + potentiometers (ads1113)
 struct Avionics_ADCPacket {
   uint8_t port;
-  float voltage;
+  float voltage;					//[V]
 } __attribute__((packed));
 
 // Science
 struct Science_MassPacket {
-  float mass;
+  float mass;						//[g]
 } __attribute__((packed));
 
 

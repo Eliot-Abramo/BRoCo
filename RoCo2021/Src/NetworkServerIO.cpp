@@ -120,6 +120,8 @@ void NetworkServerIO::disconnectServer() {
 		this->connected = false;
 		closeSockets();
 	}
+	//this->reception_thread.detach();
+
 }
 
 /*
@@ -160,16 +162,15 @@ void NetworkServerIO::receiveThread() {
 			break;
 		}
 
+		int32_t new_socket;
 		for(uint32_t i = 0; i < num_sockets; i++) {
 			uint32_t socket_id = sockets[i].fd;
 
-			if(sockets[i].revents == 0) {
-				continue; // Nothing new on this socket
+			if(socket_id == 0 || sockets[i].revents == 0) {
+				continue;
 			}
 
-			if(i == 0) { // New connection
-				uint32_t new_socket;
-
+			if(i == 0) {
 				while((new_socket = accept(socket_id, nullptr, nullptr)) != -1) {
 					std::cout << "[Server@" << ntohs(address.sin_port) << "] Client connected (ID " << num_sockets << ")" << std::endl;
 
@@ -178,24 +179,28 @@ void NetworkServerIO::receiveThread() {
 
 					num_sockets++;
 				}
-			} else { // New data from client
-				while((result = recv(socket_id, buffer, sizeof(buffer), 0)) >= 0) {
-					if(result != 0) {
-						if(receiver != nullptr) {
-							if(ntohs(address.sin_port) == PORT_A) {
-								receiver(0b10000000 | i, buffer, result); // Sender ID marked as external
-							} else {
-								receiver(0b11000000 | i, buffer, result); // Sender ID marked as internal
-							}
-						}
+
+				continue;
+			}
+
+			 // New data from client
+			if((result = recv(socket_id, buffer, sizeof(buffer), 0)) > 0) {
+				if(receiver != nullptr) {
+					if(ntohs(address.sin_port) == PORT_A) {
+						receiver(0b10000000 | i, buffer, result); // Sender ID marked as external
 					} else {
-						// Connection was closed by client
-						std::cout << "[Server@" << ntohs(address.sin_port) << "] Client disconnected (ID " << i << ")" << std::endl;
-						close(socket_id);
-						sockets[i].fd = -1;
-						// Do not decrement the num_sockets field since our IDs are not linear
+						receiver(0b11000000 | i, buffer, result); // Sender ID marked as internal
 					}
 				}
+			}
+
+			if(result < 0) {
+				// Connection was closed by client
+				std::cout << "[Server@" << ntohs(address.sin_port) << "] Client disconnected (ID " << i << ")" << std::endl;
+				close(socket_id);
+				sockets[i].fd = 0;
+				sockets[i].revents = 0;
+				// Do not decrement the num_sockets field since our IDs are not linear
 			}
 		}
 	}

@@ -61,7 +61,8 @@ void handle_barotemp(uint8_t sender_id, Avionics_BaroTempPacket* packet, void* r
 
   msg.data.push_back(packet->pressure);
   msg.data.push_back(packet->temperature);
-  std::cout<<"pressure "<<packet->pressure<<std::endl;
+  std::cout<<"Pressure: "<<packet->pressure<<std::endl;
+  std::cout<<"Temperature: "<<packet->temperature<<std::endl;
 
   ((ros::Publisher *)ros_publisher)->publish(msg);
 }
@@ -75,7 +76,9 @@ void handle_accelmag(uint8_t sender_id, Avionics_AccelMagPacket* packet, void* r
   for (int i(0); i < 3; ++i) msg.data.push_back(packet->acceleration[i]);
   for (int i(0); i < 3; ++i) msg.data.push_back(packet->angular[i]);
   for (int i(0); i < 3; ++i) msg.data.push_back(packet->magneto[i]);
-
+  std::cout<<"accel 0: "<<packet->acceleration[0]<<std::endl;
+  std::cout<<"accel 1: "<<packet->acceleration[1]<<std::endl;
+  std::cout<<"accel 2: "<<packet->acceleration[2]<<std::endl;
   ((ros::Publisher *)ros_publisher)->publish(msg);
 }
 
@@ -88,6 +91,8 @@ void handle_adc(uint8_t sender_id, Avionics_ADCPacket* packet, void* ros_publish
   msg.data.push_back(packet->port);
   msg.data.push_back(packet->voltage);
 
+  std::cout<<"port "<<packet->port<<" : "<< packet->voltage <<std::endl;
+
   ((ros::Publisher *)ros_publisher)->publish(msg);
 }
 
@@ -95,6 +100,7 @@ void handle_mass(uint8_t sender_id, Science_MassPacket* packet, void* ros_publis
 {
   std_msgs::Float32 msg;
   msg.data = packet->mass;
+  std::cout<<"Mass: "<<packet->mass<<std::endl;
 
   ((ros::Publisher *)ros_publisher)->publish(msg);
 }
