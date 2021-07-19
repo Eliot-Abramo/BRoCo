@@ -4,6 +4,7 @@
 #include "std_msgs/UInt32MultiArray.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/UInt32.h"
+#include "std_msgs/UInt8MultiArray.h"
 #include "std_msgs/Bool.h"
 #include "std_msgs/Time.h"
 
@@ -76,7 +77,9 @@ int main(int argc, char **argv)
   // add fsm packet
   // add request packet
   // receive FSM and send to AV and CS
-  // ros::Subscriber fsm_sub= n.subscribe<std_msgs::UInt32>("fsm_nav_to_av", 1000, boost::bind(fsm_callback, _1, jetson_server_bus_av, jetson_server_bus_cs));
+  ros::Subscriber fsm_sub = n.subscribe<std_msgs::UInt8MultiArray>("state", 1000, boost::bind(fsm_callback, _1, server_bus));
+  ros::Subscriber led_sub = n.subscribe<std_msgs::Bool>("led", 1000, boost::bind(led_callback, _1, server_bus));
+
 
 
   //-----define RoCo handlers-----

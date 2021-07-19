@@ -21,6 +21,7 @@ NetworkBus::NetworkBus(IODriver* driver) : IOBus(driver, network_frame, sizeof(n
 	define<Avionics_AccelMagPacket>(1);
 	define<Avionics_ADCPacket>(2);
 	define<Science_MassPacket>(3);
+	define<Science_LedPacket>(4);
 
 
 	// power supply

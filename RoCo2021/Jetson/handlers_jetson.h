@@ -14,6 +14,7 @@ handlers.
 #include "std_msgs/UInt32MultiArray.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/UInt32.h"
+#include "std_msgs/UInt8.h"
 #include "std_msgs/Bool.h"
 
 #include <sstream>
@@ -34,19 +35,6 @@ handlers.
  layout  // specification of data layout
  data   // array of data
  */
-
-
-// callbacks 
-
-// receive data from ROS and send to RoCo
-
-// void fsm_callback(const boost::shared_ptr<std_msgs::UInt32 const> msg, NetworkBus* sender_av, NetworkBus* sender_cs)
-// {
-//   FsmPacket packet;
-//   packet.state = msg->data;
-//   sender_av->send<FsmPacket>(&packet);
-//   sender_cs->send<FsmPacket>(&packet);
-// }
 
 
 // handlers
@@ -105,3 +93,21 @@ void handle_mass(uint8_t sender_id, Science_MassPacket* packet, void* ros_publis
   ((ros::Publisher *)ros_publisher)->publish(msg);
 }
 
+// callbacks 
+
+// receive data from ROS and send to RoCo
+
+void fsm_callback(const boost::shared_ptr<std_msgs::UInt8MultiArray const> msg,  NetworkBus* sender)
+{
+  FsmPacket packet;
+  packet.task = (msg->data)[0];
+  packet.instruction = (msg->data)[1];
+  sender->send<FsmPacket>(&packet);
+}
+
+void led_callback(const boost::shared_ptr<std_msgs::Bool const> msg,  NetworkBus* sender)
+{
+  Science_LedPacket packet;
+  packet.on = msg->data;
+  sender->send<Science_LedPacket>(&packet);
+}

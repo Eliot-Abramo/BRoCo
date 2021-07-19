@@ -34,6 +34,10 @@ struct Science_MassPacket {
   float mass;						//[g]
 } __attribute__((packed));
 
+struct Science_LedPacket {
+	bool on;
+} __attribute__((packed));
+
 
 //----------Power supply----------
 
@@ -78,7 +82,8 @@ struct Switch_EthernetPacket  {
 //----------FSM----------
 
 struct FsmPacket{
-	uint32_t state;
+	uint8_t task;
+	uint8_t instruction;
 }__attribute__((packed));
 
 
