@@ -224,7 +224,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 				def = &definitions_by_id[packet_id & 0b00111111];
 
 				if(packet_id != def->id) {
-					console.printf("Corrupt packet: %d\r\n", packet_id);
+//					console.printf("Corrupt packet: %d\r\n", packet_id);
 				}
 			} while(def->id != packet_id);
 
