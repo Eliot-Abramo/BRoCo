@@ -45,6 +45,7 @@
 #elif defined(BUILD_FOR_EL2023)
 	#define BUILD_WITH_STMUART
 	#define BUILD_WITH_NETWORK_BUS
+	#define BUILD_WITH_CACHES
 #else
 	#error "Please specify a build target"
 #endif

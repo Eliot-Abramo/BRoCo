@@ -20,6 +20,7 @@
 
 #ifdef BUILD_WITH_STMUART
 
+
 static STMUARTDriver* instance;
 
 /**
@@ -56,7 +57,9 @@ void STMUARTDriver::init() {
 	this->last_dma_index = 0;
 
 	__HAL_UART_SEND_REQ(huart, UART_RXDATA_FLUSH_REQUEST);
-//	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+#ifdef BUILD_WITH_CACHES
+	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+#endif
 	if(HAL_UARTEx_ReceiveToIdle_DMA(huart, buffer, UART_BUFFER_SIZE) != HAL_OK) {
         printf("[RoCo] [STMUARTDriverInit] Unable to initialize UART in receive mode for MCU#%" PRIu32 "\r\n", getSenderID(huart));
     }
@@ -114,31 +117,15 @@ xSemaphoreHandle STMUARTDriver::getSemaphore() {
  * @param length the size of the data in the buffer to provide
  */
 void STMUARTDriver::receiveUART(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
+#ifdef BUILD_WITH_CACHES
+	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+#endif
 	this->receiver_func(sender_id, buffer, length);
 }
 
 UART_HandleTypeDef* STMUARTDriver::getHuart() {
 	return this->huart;
 }
-//void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
-//	while(xSemaphoreTakeFromISR(instance->getSemaphore(), nullptr)); // Clear semaphore
-//	__HAL_UART_SEND_REQ(huart, UART_RXDATA_FLUSH_REQUEST);
-////	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)instance->getBuffer()) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
-//	HAL_UARTEx_ReceiveToIdle_DMA(huart, instance->getBuffer(), UART_BUFFER_SIZE);
-//}
-//
-//
-//void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
-////	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)instance->getBuffer()) & ~(uint32_t)0x1F), 128+32);
-//	xSemaphoreGiveFromISR(instance->getSemaphore(), nullptr);
-////	HAL_UART_Receive_DMA(huart, instance->getBuffer(), 128);
-//}
-
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-//{
-////  SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)instance->getBuffer()) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
-//  xSemaphoreGiveFromISR(instance->getSemaphore(), nullptr);
-//}
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
 	STMUARTDriver* driver = instance->getInstance(huart);
