@@ -12,6 +12,7 @@
 #include "MessageBus.h"
 
 #include <cstring>
+#include "stdio.h"
 
 // Template explicit instantiation
 #define REGISTER(P) 												\
@@ -193,7 +194,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 	uint8_t packet_id;
 	PacketDefinition* def;
 
-	// console.printf("Processing %d bytes\r\n", length);
+	 printf("Processing %d bytes\r\n", length);
 
 	while(length > 0) {
 		if(indexable_buffer->index == 0) { // New packet incoming
@@ -209,7 +210,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 			indexable_buffer->buffer[0] = PREAMBLE;
 			indexable_buffer->index = 1; // Got the preamble!
 
-			// console.printf("Valid preamble\r\n");
+			 printf("Valid preamble\r\n");
 		}
 
 		if(indexable_buffer->index == 1) {
@@ -224,11 +225,11 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 				def = &definitions_by_id[packet_id & 0b00111111];
 
 				if(packet_id != def->id) {
-//					console.printf("Corrupt packet: %d\r\n", packet_id);
+					printf("Corrupt packet: %d\r\n", packet_id);
 				}
 			} while(def->id != packet_id);
 
-			// console.printf("Valid packet ID %d\r\n", packet_id);
+			 printf("Valid packet ID %d\r\n", packet_id);
 
 			indexable_buffer->buffer[1] = packet_id;
 			indexable_buffer->index = 2;
@@ -238,7 +239,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 			def = &definitions_by_id[packet_id & 0b00111111];
 		}
 
-		// console.printf("Buffer: %d\r\n", indexable_buffer->index);
+		 printf("Buffer: %d\r\n", indexable_buffer->index);
 
 		size_t remaining_size = def->size + 2 - indexable_buffer->index;
 		size_t copy_length = length < remaining_size ? length : remaining_size;
@@ -248,11 +249,11 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 		pointer += copy_length;
 		length -= copy_length;
 
-		// console.printf("Got %d out of %d\r\n", copy_length, remaining_size);
+		 printf("Got %d out of %d\r\n", copy_length, remaining_size);
 
 
 		if(copy_length == remaining_size) { // Packet is complete
-			// console.printf("Full packet: %d\r\n", packet_id);
+			 printf("Full packet: %d\r\n", packet_id);
 
 			if(handlers[packet_id & 0b00111111] != nullptr) {
 				handlers[packet_id & 0b00111111](sender_id, indexable_buffer->buffer + 2);
@@ -265,7 +266,7 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 
 			indexable_buffer->index = 0;
 		} else {
-			// console.printf("Incomplete packet: %d\r\n", packet_id);
+			 printf("Incomplete packet: %d\r\n", packet_id);
 		}
 	}
 }

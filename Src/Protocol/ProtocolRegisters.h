@@ -82,3 +82,14 @@ REGISTER(ProgressPacket)
 REGISTER(PayloadPacket)
 REGISTER(FlushPacket)
 #endif
+
+#ifdef PROTOCOL_23
+
+REGISTER(DataPacket)
+REGISTER(PingPacket)
+REGISTER(ErrorPacket)
+REGISTER(RequestPacket)
+REGISTER(ResponsePacket)
+REGISTER(ProgressPacket)
+REGISTER(DummySystem_DummyPacket)
+#endif

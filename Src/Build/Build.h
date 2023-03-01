@@ -9,8 +9,8 @@
 #define BUILD_BUILD_H_
 
 
-#define PROTOCOL_22W29
-#define BUILD_FOR_POWER_CONTROLLER
+#define PROTOCOL_23
+#define BUILD_FOR_EL2023
 
 
 #if defined(BUILD_FOR_CONTROL_STATION)
@@ -42,6 +42,9 @@
 #elif defined(BUILD_FOR_DECAWAVE)
 	#define BUILD_WITH_ZEPHYR_UART_DRIVER
 	#define BUILD_WITH_RADIO_BUS
+#elif defined(BUILD_FOR_EL2023)
+	#define BUILD_WITH_STMUART
+	#define BUILD_WITH_NETWORK_BUS
 #else
 	#error "Please specify a build target"
 #endif

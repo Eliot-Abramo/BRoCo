@@ -27,4 +27,8 @@
 #include "Protocol22W29.h"
 #endif /* PROTOCOL_DWM_22W29 */
 
+#ifdef PROTOCOL_23
+#include "Protocol23.h"
+#endif
+
 #endif /* PROTOCOL_PROTOCOL_H_ */

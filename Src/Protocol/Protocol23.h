@@ -1,0 +1,86 @@
+/*
+ * Protocol23.h
+ *
+ *  Created on: Feb 26, 2023
+ *      Author: Vincent
+ */
+
+#ifndef BROCO_SRC_PROTOCOL_PROTOCOL23_H_
+#define BROCO_SRC_PROTOCOL_PROTOCOL23_H_
+
+
+
+#include "ProtocolMacros.h"
+
+#include <cstdint>
+
+//----------Avionics----------
+
+STANDARD_PACKET(DummySystem_DummyPacket,
+  int data;
+)
+
+//STANDARD_PACKET(Avionics_AccelMagPacket,
+//  float acceleration[3];			//[m/s^2]
+//  float angular[3];					//[°]
+//  float magneto[3];					//[mT]
+//)
+//
+//// Handling device + potentiometers (ads1113)
+//STANDARD_PACKET(Avionics_ADCPacket,
+//  uint8_t port;
+//  float voltage;					//[V]
+//)
+//
+//// Science
+//STANDARD_PACKET(Science_MassPacket,
+//  float mass;						//[g]
+//)
+
+
+//----------General packets----------
+
+STANDARD_PACKET(DataPacket,
+	uint32_t data;
+)
+
+RELIABLE_PACKET(PingPacket,
+	uint64_t time;
+)
+
+RELIABLE_PACKET(ErrorPacket,
+	uint8_t error_id;
+)
+
+RELIABLE_PACKET(RequestPacket,
+	uint16_t uid;
+	uint8_t action_id;
+	uint8_t target_id;
+	uint32_t payload;
+)
+
+RELIABLE_PACKET(ResponsePacket,
+	uint16_t uid;
+	uint8_t action_id;
+	uint8_t target_id;
+	uint32_t payload;
+)
+
+RELIABLE_PACKET(ProgressPacket,
+	uint16_t uid;
+	uint8_t action_id;
+	uint8_t target_id;
+	uint8_t progress;
+)
+
+RELIABLE_PACKET(PayloadPacket,
+	uint32_t length;
+	uint8_t payload[512];
+)
+
+STANDARD_PACKET(FlushPacket,
+	uint8_t blank[15];
+)
+
+
+#endif /* BROCO_SRC_PROTOCOL_PROTOCOL23_H_ */

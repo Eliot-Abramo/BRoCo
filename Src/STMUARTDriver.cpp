@@ -1,12 +1,12 @@
 /**
  * @file STMUARTDriver.cpp
  * @author Mounir Raki (mounir.raki@epfl.ch)
- * @brief 
+ * @brief
  * @version 1.0
  * @date 2022-03-29
- * 
+ *
  * UART Driver for the STM32 boards
- * 
+ *
  */
 
 #include "STMUARTDriver.h"
@@ -15,6 +15,8 @@
 
 #include <cstring>
 #include <inttypes.h>
+#include "stdio.h"
+#include <algorithm>
 
 #ifdef BUILD_WITH_STMUART
 
@@ -22,30 +24,31 @@ static STMUARTDriver* instance;
 
 /**
  * @brief Construct a new STMUARTDriver::STMUARTDriver object
- * 
+ *
  * @param huart the UART port to initialize
  */
 
 STMUARTDriver::STMUARTDriver(UART_HandleTypeDef* huart): Thread("STMUARTDriver", osPriorityRealtime), huart(huart), last_dma_index(0) {
 	instance = this;
-
+	STMUARTDriver_list.push_back(this);
 	this->buffer = (uint8_t*) pvPortMalloc(UART_BUFFER_SIZE);
 
     if(buffer == nullptr){
-//        console.printf("[RoCo] [STMUARTDriverInit] Unable to allocate DMA buffer for MCU#%" PRIu32 "\r\n", getSenderID(huart));
+        printf("[RoCo] [STMUARTDriverInit] Unable to allocate DMA buffer for MCU#%" PRIu32 "\r\n", getSenderID(huart));
     }
 
     this->semaphore = xSemaphoreCreateCounting(16, 0);
 
     if(semaphore == nullptr) {
-//        console.printf("[RoCo] [STMUARTDriverInit] Unable to allocate semaphore for MCU#%" PRIu32 "\r\n", getSenderID(huart));
+        printf("[RoCo] [STMUARTDriverInit] Unable to allocate semaphore for MCU#%" PRIu32 "\r\n", getSenderID(huart));
     }
 
     setTickDelay(0);
-} 
+}
 
 STMUARTDriver::~STMUARTDriver() {
     vPortFree(buffer);
+    STMUARTDriver_list.erase(std::remove(STMUARTDriver_list.begin(), STMUARTDriver_list.end(), this), STMUARTDriver_list.end());
 }
 
 void STMUARTDriver::init() {
@@ -53,9 +56,9 @@ void STMUARTDriver::init() {
 	this->last_dma_index = 0;
 
 	__HAL_UART_SEND_REQ(huart, UART_RXDATA_FLUSH_REQUEST);
-
+//	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
 	if(HAL_UARTEx_ReceiveToIdle_DMA(huart, buffer, UART_BUFFER_SIZE) != HAL_OK) {
-//        console.printf("[RoCo] [STMUARTDriverInit] Unable to initialize UART in receive mode for MCU#%" PRIu32 "\r\n", getSenderID(huart));
+        printf("[RoCo] [STMUARTDriverInit] Unable to initialize UART in receive mode for MCU#%" PRIu32 "\r\n", getSenderID(huart));
     }
 }
 
@@ -84,14 +87,14 @@ void STMUARTDriver::receive(const std::function<void (uint8_t sender_id, uint8_t
 
 void STMUARTDriver::transmit(uint8_t* buffer, uint32_t length) {
     if(HAL_UART_Transmit(huart, buffer, length, portMAX_DELAY) != HAL_OK){
-//        console.printf("[RoCo] [STMUARTDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(huart));
+        printf("[RoCo] [STMUARTDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(huart));
     }
 }
 
 
 /**
  * @brief Getter to the reference of the buffer
- * 
+ *
  * @return uint8_t* the reference to the buffer
  */
 uint8_t* STMUARTDriver::getBuffer() {
@@ -105,7 +108,7 @@ xSemaphoreHandle STMUARTDriver::getSemaphore() {
 
 /**
  * @brief Function handling the call to the user-defined callback routine
- * 
+ *
  * @param sender_id the ID of the MCU
  * @param buffer the buffer to provide to the user-defined callback function
  * @param length the size of the data in the buffer to provide
@@ -114,24 +117,51 @@ void STMUARTDriver::receiveUART(uint8_t sender_id, uint8_t* buffer, uint32_t len
 	this->receiver_func(sender_id, buffer, length);
 }
 
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
-	while(xSemaphoreTakeFromISR(instance->getSemaphore(), nullptr)); // Clear semaphore
-	__HAL_UART_SEND_REQ(huart, UART_RXDATA_FLUSH_REQUEST);
-	HAL_UARTEx_ReceiveToIdle_DMA(huart, instance->getBuffer(), UART_BUFFER_SIZE);
+UART_HandleTypeDef* STMUARTDriver::getHuart() {
+	return this->huart;
 }
+//void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
+//	while(xSemaphoreTakeFromISR(instance->getSemaphore(), nullptr)); // Clear semaphore
+//	__HAL_UART_SEND_REQ(huart, UART_RXDATA_FLUSH_REQUEST);
+////	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)instance->getBuffer()) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+//	HAL_UARTEx_ReceiveToIdle_DMA(huart, instance->getBuffer(), UART_BUFFER_SIZE);
+//}
+//
+//
+//void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
+////	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)instance->getBuffer()) & ~(uint32_t)0x1F), 128+32);
+//	xSemaphoreGiveFromISR(instance->getSemaphore(), nullptr);
+////	HAL_UART_Receive_DMA(huart, instance->getBuffer(), 128);
+//}
 
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//{
+////  SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)instance->getBuffer()) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+//  xSemaphoreGiveFromISR(instance->getSemaphore(), nullptr);
+//}
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
-	xSemaphoreGiveFromISR(instance->getSemaphore(), nullptr);
+	STMUARTDriver* driver = instance->getInstance(huart);
+	xSemaphoreGiveFromISR(driver->getSemaphore(), nullptr);
 }
 
+void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
+	STMUARTDriver* driver = instance->getInstance(huart);
+	while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
+	driver->init();
+}
 
+STMUARTDriver* STMUARTDriver::getInstance(UART_HandleTypeDef* huart) {
+	for (auto & driver : STMUARTDriver_list) {
+		if (driver->getHuart() == huart)
+			return driver;
+	}
+}
 
 
 /**
  * @brief Get the sender id from the USART port ID
- * 
+ *
  * @param huart the USART port to get
  * @return uint8_t the sender_id
  */
@@ -143,5 +173,7 @@ uint8_t STMUARTDriver::getSenderID(UART_HandleTypeDef* huart) {
     }
     return 0;
 }
+
+std::vector<STMUARTDriver*> STMUARTDriver::STMUARTDriver_list;
 
 #endif /* BUILD_WITH_STMUART */
