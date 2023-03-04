@@ -46,6 +46,7 @@
 	#define BUILD_WITH_STMUART
 	#define BUILD_WITH_NETWORK_BUS
 	#define BUILD_WITH_CACHES
+	#define FREERTOS_ENABLED
 #else
 	#error "Please specify a build target"
 #endif
