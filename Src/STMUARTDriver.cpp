@@ -58,7 +58,7 @@ void STMUARTDriver::init() {
 
 	__HAL_UART_SEND_REQ(huart, UART_RXDATA_FLUSH_REQUEST);
 #ifdef BUILD_WITH_CACHES
-	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+	SCB_CleanDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
 #endif
 	if(HAL_UARTEx_ReceiveToIdle_DMA(huart, buffer, UART_BUFFER_SIZE) != HAL_OK) {
         printf("[RoCo] [STMUARTDriverInit] Unable to initialize UART in receive mode for MCU#%" PRIu32 "\r\n", getSenderID(huart));
@@ -71,6 +71,9 @@ void STMUARTDriver::loop() {
 
 		uint8_t sender = getSenderID(huart);
 
+		#ifdef BUILD_WITH_CACHES
+			SCB_CleanDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+		#endif
 
 		if(end_dma_index < last_dma_index) { // Finish buffer
 			receiveUART(sender, buffer + last_dma_index, UART_BUFFER_SIZE - last_dma_index);
@@ -92,6 +95,9 @@ void STMUARTDriver::transmit(uint8_t* buffer, uint32_t length) {
     if(HAL_UART_Transmit(huart, buffer, length, portMAX_DELAY) != HAL_OK){
         printf("[RoCo] [STMUARTDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(huart));
     }
+	#ifdef BUILD_WITH_CACHES
+		SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
+	#endif
 }
 
 
@@ -117,9 +123,6 @@ xSemaphoreHandle STMUARTDriver::getSemaphore() {
  * @param length the size of the data in the buffer to provide
  */
 void STMUARTDriver::receiveUART(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
-#ifdef BUILD_WITH_CACHES
-	SCB_InvalidateDCache_by_Addr((uint32_t*)(((uint32_t)buffer) & ~(uint32_t)0x1F), UART_BUFFER_SIZE+32);
-#endif
 	this->receiver_func(sender_id, buffer, length);
 }
 
