@@ -20,6 +20,17 @@ STANDARD_PACKET(DummySystem_DummyPacket,
   int data;
 )
 
+STANDARD_PACKET(MassPacket,
+  float data;
+)
+
+STANDARD_PACKET(ALLINONE_Packet,
+  float temperature;				//[°C]//;
+  float moisture;					//[-]
+  float conductivity;				//[us/cm]
+  float pH;							//[-]
+ )
+
 //STANDARD_PACKET(Avionics_AccelMagPacket,
 //  float acceleration[3];			//[m/s^2]
 //  float angular[3];					//[°]

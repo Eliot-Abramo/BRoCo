@@ -27,5 +27,6 @@
 #include "Src/STMUARTDriver.h"
 #include "Src/PowerBus.h"
 #include "Src/LoopbackDriver.h"
+#include "Src/RoCanDriver.h"
 
 #endif /* ROCO_H_ */

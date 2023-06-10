@@ -86,6 +86,8 @@ REGISTER(FlushPacket)
 #ifdef PROTOCOL_23
 
 REGISTER(DataPacket)
+REGISTER(ALLINONE_Packet)
+REGISTER(MassPacket)
 REGISTER(PingPacket)
 REGISTER(ErrorPacket)
 REGISTER(RequestPacket)

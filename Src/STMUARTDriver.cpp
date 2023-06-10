@@ -129,17 +129,17 @@ void STMUARTDriver::receiveUART(uint8_t sender_id, uint8_t* buffer, uint32_t len
 UART_HandleTypeDef* STMUARTDriver::getHuart() {
 	return this->huart;
 }
-
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
-	STMUARTDriver* driver = instance->getInstance(huart);
-	xSemaphoreGiveFromISR(driver->getSemaphore(), nullptr);
-}
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
-	STMUARTDriver* driver = instance->getInstance(huart);
-	while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
-	driver->init();
-}
+//
+//void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
+//	STMUARTDriver* driver = instance->getInstance(huart);
+//	xSemaphoreGiveFromISR(driver->getSemaphore(), nullptr);
+//}
+//
+//void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
+//	STMUARTDriver* driver = instance->getInstance(huart);
+//	while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
+//	driver->init();
+//}
 
 STMUARTDriver* STMUARTDriver::getInstance(UART_HandleTypeDef* huart) {
 	for (auto & driver : STMUARTDriver_list) {

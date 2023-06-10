@@ -18,6 +18,8 @@ NetworkBus::NetworkBus(IODriver* driver) : IOBus(driver, network_frame, sizeof(n
 
 	// avionics
 	define<DummySystem_DummyPacket>(0);
+	define<MassPacket>(1);
+	define<ALLINONE_Packet>(2);
 
 	// general packets
 	define<DataPacket>(58);
