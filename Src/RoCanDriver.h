@@ -26,11 +26,6 @@
 #define DATA_FIELD_SIZE		  16
 #define NB_CAN_PORTS           2                    // CHANGE ONLY IF NEEDED
 
-
-//#define UART_BUFFER_SIZE    2048
-//#define THREAD_STACK_SIZE   4096                // DON'T CHANGE IF NOT NECESSARY TO DO SO
-//#define NB_UART_PORTS       8                   // CHANGE ONLY IF NEEDED
-
 class ROCANDriver: public IODriver,  public Thread{
     public:
 		ROCANDriver(FDCAN_HandleTypeDef* fdcan, uint32_t can_id); // Constructor
@@ -61,9 +56,7 @@ class ROCANDriver: public IODriver,  public Thread{
     private:
         static std::vector<ROCANDriver*> FDCANDriver_list;
         FDCAN_HandleTypeDef* fdcan;
-//        uint32_t last_dma_index;
 
-        // Needed for the HAL_UART_RxCpltCallback to access STMUARTDriver's class attributes (i.e. receiver_func & buffer)
         FDCAN_GlobalTypeDef* mapper[NB_CAN_PORTS] = {FDCAN1, FDCAN2};
 
         FDCAN_FilterTypeDef sFilterConfig;
