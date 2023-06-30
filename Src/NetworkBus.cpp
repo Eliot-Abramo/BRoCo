@@ -20,6 +20,7 @@ NetworkBus::NetworkBus(IODriver* driver) : IOBus(driver, network_frame, sizeof(n
 	define<DummySystem_DummyPacket>(0);
 	define<MassPacket>(1);
 	define<ALLINONE_Packet>(2);
+	define<IMU_Packet>(4);
 
 	// general packets
 	define<DataPacket>(58);

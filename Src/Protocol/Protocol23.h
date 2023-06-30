@@ -31,6 +31,11 @@ STANDARD_PACKET(ALLINONE_Packet,
   float pH;							//[-]
  )
 
+STANDARD_PACKET(IMU_Packet,
+float acceleration[3];				//[m/s^2]
+float angular[3];					//[°/s]
+float orientation[4];				//[-]
+)
 //STANDARD_PACKET(Avionics_AccelMagPacket,
 //  float acceleration[3];			//[m/s^2]
 //  float angular[3];					//[°]
