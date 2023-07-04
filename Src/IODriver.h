@@ -17,6 +17,7 @@ public:
 	virtual ~IODriver() {}
 	virtual void receive(const std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> &receiver) = 0;
 	virtual void transmit(uint8_t* buffer, uint32_t length) = 0;
+//	virtual void transmit(uint8_t* buffer, uint32_t length, uint8_t id) = 0;
 };
 
 

@@ -116,7 +116,6 @@ void ROCANDriver::loop() {
 			for(int i = 0; i < (RxData[0]); ++i)
 				buffer2[i] = RxData[i+1];
 			receiveFDCan(sender, buffer2, RxData[0]);
-			printf("nothing of interest");
 		}
 	}
 }
@@ -191,7 +190,7 @@ void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorSt
 		while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
 		instance->filterConfig();
 	} else {
-		MX_FDCAN2_Init();
+//		MX_FDCAN2_Init();
 		ROCANDriver* driver = instance->getInstance(hfdcan);
 		while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
 		instance->filterConfig();
