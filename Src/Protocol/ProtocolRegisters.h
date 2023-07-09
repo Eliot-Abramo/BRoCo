@@ -87,6 +87,7 @@ REGISTER(FlushPacket)
 
 REGISTER(DataPacket)
 REGISTER(ALLINONE_Packet)
+REGISTER(VoltmeterPacket)
 REGISTER(MassPacket)
 REGISTER(IMU_Packet)
 REGISTER(PingPacket)

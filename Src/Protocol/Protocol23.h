@@ -36,6 +36,10 @@ float acceleration[3];				//[m/s^2]
 float angular[3];					//[°/s]
 float orientation[4];				//[-]
 )
+
+STANDARD_PACKET(VoltmeterPacket,
+  float voltage; 					//[V]
+)
 //STANDARD_PACKET(Avionics_AccelMagPacket,
 //  float acceleration[3];			//[m/s^2]
 //  float angular[3];					//[°]

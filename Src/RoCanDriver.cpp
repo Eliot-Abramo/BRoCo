@@ -126,10 +126,12 @@ void ROCANDriver::receive(const std::function<void (uint8_t sender_id, uint8_t* 
 
 void ROCANDriver::transmit(uint8_t* buffer, uint32_t length) {
 	//Example of TxHeader configuration
-	TxHeaderConfig(0x123, length);
-	uint8_t buffer2[RxData[0]];
-	buffer2[0] = length;
-	for(int i = 0; i < length; ++i)
+
+	static uint32_t true_length = length;
+	uint8_t buffer2[true_length+1];
+	TxHeaderConfig(0x123, true_length);
+	buffer2[0] = true_length;
+	for(int i = 0; i < true_length; ++i)
 		buffer2[i+1] = buffer[i];
 	if(HAL_FDCAN_AddMessageToTxFifoQ(fdcan, &TxHeader, buffer2) != HAL_OK) {
         printf("[RoCo] [ROCANDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
@@ -189,11 +191,13 @@ void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorSt
 		ROCANDriver* driver = instance->getInstance(hfdcan);
 		while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
 		instance->filterConfig();
+		instance->start();
 	} else {
 //		MX_FDCAN2_Init();
 		ROCANDriver* driver = instance->getInstance(hfdcan);
 		while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
 		instance->filterConfig();
+		instance->start();
 	}
 }
 
