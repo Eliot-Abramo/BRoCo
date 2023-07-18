@@ -1,8 +1,0 @@
-source;share/RocoRos/hook/cmake_prefix_path.ps1
-source;share/RocoRos/hook/cmake_prefix_path.dsv
-source;share/RocoRos/hook/cmake_prefix_path.sh
-source;share/RocoRos/local_setup.bash
-source;share/RocoRos/local_setup.dsv
-source;share/RocoRos/local_setup.ps1
-source;share/RocoRos/local_setup.sh
-source;share/RocoRos/local_setup.zsh
