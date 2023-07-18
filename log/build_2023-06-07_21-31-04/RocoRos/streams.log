@@ -1,0 +1,193 @@
+[0.092s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[0.276s] [35m[1mScanning dependencies of target cringe[0m
+[0.362s] [ 14%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/MessageBus.cpp.o[0m
+[0.938s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:[m[K In member function ‘[01m[Kvoid MessageBus::receive(uint8_t, uint8_t*, uint32_t)[m[K’:
+[0.938s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:249:21:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.939s]   249 |    printf("Buffer: [01;35m[K%d[m[K\r\n", [32m[Kindexable_buffer->index[m[K);
+[0.939s]       |                    [01;35m[K~^[m[K       [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.939s]       |                     [01;35m[K|[m[K                         [32m[K|[m[K
+[0.939s]       |                     [01;35m[Kint[m[K                       [32m[Ksize_t {aka long unsigned int}[m[K
+[0.940s]       |                    [32m[K%ld[m[K
+[0.940s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:259:17:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.940s]   259 |    printf("Got [01;35m[K%d[m[K out of %d\r\n", [32m[Kcopy_length[m[K, remaining_size);
+[0.940s]       |                [01;35m[K~^[m[K                 [32m[K~~~~~~~~~~~[m[K
+[0.941s]       |                 [01;35m[K|[m[K                 [32m[K|[m[K
+[0.941s]       |                 [01;35m[Kint[m[K               [32m[Ksize_t {aka long unsigned int}[m[K
+[0.941s]       |                [32m[K%ld[m[K
+[0.942s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:259:27:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 3 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.942s]   259 |    printf("Got %d out of [01;35m[K%d[m[K\r\n", copy_length, [32m[Kremaining_size[m[K);
+[0.942s]       |                          [01;35m[K~^[m[K                    [32m[K~~~~~~~~~~~~~~[m[K
+[0.942s]       |                           [01;35m[K|[m[K                    [32m[K|[m[K
+[0.943s]       |                           [01;35m[Kint[m[K                  [32m[Ksize_t {aka long unsigned int}[m[K
+[0.943s]       |                          [32m[K%ld[m[K
+[0.981s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = DataPacket; uint8_t = unsigned char][m[K’:
+[0.981s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:88:1:[m[K   required from here
+[0.981s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.982s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[0.982s]       |                      [01;35m[K~^[m[K
+[0.982s]       |                       [01;35m[K|[m[K
+[0.983s]       |                       [01;35m[Kint[m[K
+[0.983s]       |                      [32m[K%ld[m[K
+[0.983s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.984s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[0.984s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[0.984s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[0.984s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[0.985s]       |                       [32m[K%ld[m[K
+[0.985s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.985s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[0.986s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[0.986s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[0.986s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[0.986s]       |                        [32m[K%ld[m[K
+[0.990s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = PingPacket; uint8_t = unsigned char][m[K’:
+[0.990s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:89:1:[m[K   required from here
+[0.990s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.991s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[0.991s]       |                      [01;35m[K~^[m[K
+[0.991s]       |                       [01;35m[K|[m[K
+[0.991s]       |                       [01;35m[Kint[m[K
+[0.992s]       |                      [32m[K%ld[m[K
+[0.992s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.992s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[0.992s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[0.993s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[0.993s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[0.993s]       |                       [32m[K%ld[m[K
+[0.993s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.994s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[0.994s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[0.994s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[0.994s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[0.995s]       |                        [32m[K%ld[m[K
+[0.999s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = ErrorPacket; uint8_t = unsigned char][m[K’:
+[0.999s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:90:1:[m[K   required from here
+[0.999s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.999s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[1.000s]       |                      [01;35m[K~^[m[K
+[1.000s]       |                       [01;35m[K|[m[K
+[1.000s]       |                       [01;35m[Kint[m[K
+[1.000s]       |                      [32m[K%ld[m[K
+[1.001s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.001s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.001s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.001s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[1.002s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.002s]       |                       [32m[K%ld[m[K
+[1.002s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.002s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.003s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.003s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[1.003s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.003s]       |                        [32m[K%ld[m[K
+[1.007s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = RequestPacket; uint8_t = unsigned char][m[K’:
+[1.007s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:91:1:[m[K   required from here
+[1.008s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.008s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[1.008s]       |                      [01;35m[K~^[m[K
+[1.009s]       |                       [01;35m[K|[m[K
+[1.009s]       |                       [01;35m[Kint[m[K
+[1.009s]       |                      [32m[K%ld[m[K
+[1.009s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.010s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.010s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.010s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[1.010s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.011s]       |                       [32m[K%ld[m[K
+[1.011s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.011s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.012s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.012s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[1.012s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.012s]       |                        [32m[K%ld[m[K
+[1.018s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = ResponsePacket; uint8_t = unsigned char][m[K’:
+[1.018s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:92:1:[m[K   required from here
+[1.019s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.019s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[1.019s]       |                      [01;35m[K~^[m[K
+[1.019s]       |                       [01;35m[K|[m[K
+[1.020s]       |                       [01;35m[Kint[m[K
+[1.020s]       |                      [32m[K%ld[m[K
+[1.020s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.020s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.021s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.021s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[1.021s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.021s]       |                       [32m[K%ld[m[K
+[1.022s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.022s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.022s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.022s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[1.023s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.023s]       |                        [32m[K%ld[m[K
+[1.027s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = ProgressPacket; uint8_t = unsigned char][m[K’:
+[1.027s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:93:1:[m[K   required from here
+[1.028s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.028s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[1.028s]       |                      [01;35m[K~^[m[K
+[1.028s]       |                       [01;35m[K|[m[K
+[1.029s]       |                       [01;35m[Kint[m[K
+[1.029s]       |                      [32m[K%ld[m[K
+[1.029s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.029s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.030s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.030s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[1.030s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.031s]       |                       [32m[K%ld[m[K
+[1.031s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.031s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.031s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.032s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[1.032s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.032s]       |                        [32m[K%ld[m[K
+[1.039s] /home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp: In instantiation of ‘[01m[Kbool MessageBus::define(uint8_t) [with T = DummySystem_DummyPacket; uint8_t = unsigned char][m[K’:
+[1.039s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:94:1:[m[K   required from here
+[1.039s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:58:23:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.040s]    58 |    printf("hash is : [01;35m[K%d[m[K", definitions_by_id[identifier & 0b00111111].hash);
+[1.040s]       |                      [01;35m[K~^[m[K
+[1.040s]       |                       [01;35m[K|[m[K
+[1.040s]       |                       [01;35m[Kint[m[K
+[1.041s]       |                      [32m[K%ld[m[K
+[1.041s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:64:24:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.041s]    64 |    printf("hash2 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.041s]       |                       [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.042s]       |                        [01;35m[K|[m[K   [32m[K|[m[K
+[1.042s]       |                        [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.042s]       |                       [32m[K%ld[m[K
+[1.042s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:71:25:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.043s]    71 |     printf("hash3 is : [01;35m[K%d[m[K", [32m[Khash[m[K);
+[1.043s]       |                        [01;35m[K~^[m[K   [32m[K~~~~[m[K
+[1.043s]       |                         [01;35m[K|[m[K   [32m[K|[m[K
+[1.043s]       |                         [01;35m[Kint[m[K [32m[Ksize_t {aka long unsigned int}[m[K
+[1.044s]       |                        [32m[K%ld[m[K
+[1.275s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+[1.275s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+[1.276s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:13[m[K,
+[1.276s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:25[m[K:
+[1.276s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[1.277s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+[1.277s]    10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+[1.277s]       |                 [01;35m[K^~~~~~~~~~~[m[K
+[2.009s] [ 28%] [32m[1mLinking CXX executable cringe[0m
+[2.871s] [100%] Built target cringe
+[2.916s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[3.124s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos
+[3.157s] -- Install configuration: ""
+[3.158s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe
+[3.175s] -- Set runtime path of "/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe" to ""
+[3.175s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/package_run_dependencies/RocoRos
+[3.176s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/parent_prefix_path/RocoRos
+[3.176s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.sh
+[3.177s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.dsv
+[3.177s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.sh
+[3.178s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.dsv
+[3.178s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.bash
+[3.179s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.sh
+[3.180s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.zsh
+[3.180s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.dsv
+[3.180s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.dsv
+[3.180s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/packages/RocoRos
+[3.181s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig.cmake
+[3.181s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig-version.cmake
+[3.181s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.xml
+[3.188s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos

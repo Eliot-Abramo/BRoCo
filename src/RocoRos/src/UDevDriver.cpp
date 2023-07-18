@@ -17,7 +17,6 @@
 
 UDevDriver::UDevDriver(const char* dev) {
     this->fd = open(dev, O_RDWR | O_NONBLOCK);
-    printf("This entire process is useless and I'm tired of this crap\n");
 
     if(this->fd != -1) {
         this->connected = true;

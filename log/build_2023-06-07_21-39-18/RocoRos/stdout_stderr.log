@@ -1,0 +1,19 @@
+[35m[1mScanning dependencies of target cringe[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/CanSocketDriver.cpp.o[0m
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:[m[K In member function ‘[01m[Kvoid CanSocketDriver::TxFrameConfig(uint32_t, int, uint8_t*)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:93:58:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Klen[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   93 | void CanSocketDriver::TxFrameConfig(uint32_t can_id, [01;35m[Kint len[m[K, uint8_t buffer[64])
+      |                                                      [01;35m[K~~~~^~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:93:71:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbuffer[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   93 | void CanSocketDriver::TxFrameConfig(uint32_t can_id, int len, [01;35m[Kuint8_t buffer[64][m[K)
+      |                                                               [01;35m[K~~~~~~~~^~~~~~~~~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:[m[K In member function ‘[01m[Kvirtual void CanSocketDriver::transmit(uint8_t*, uint32_t)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:106:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  106 |         for(int i = 0; [01;35m[Ki < length[m[K; ++i)
+      |                        [01;35m[K~~^~~~~~~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:108:23:[m[K [01;31m[Kerror: [m[K‘[01m[Ki[m[K’ was not declared in this scope
+  108 |          txframe.data[[01;31m[Ki[m[K] = buffer[i];
+      |                       [01;31m[K^[m[K
+make[2]: *** [CMakeFiles/cringe.dir/build.make:128: CMakeFiles/cringe.dir/src/CanSocketDriver.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cringe.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

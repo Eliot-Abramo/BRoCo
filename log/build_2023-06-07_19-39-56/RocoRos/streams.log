@@ -1,0 +1,53 @@
+[0.082s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[0.271s] [35m[1mScanning dependencies of target cringe[0m
+[0.351s] [ 14%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/MessageBus.cpp.o[0m
+[0.918s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:[m[K In member function ‘[01m[Kvoid MessageBus::receive(uint8_t, uint8_t*, uint32_t)[m[K’:
+[0.918s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:243:21:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.919s]   243 |    printf("Buffer: [01;35m[K%d[m[K\r\n", [32m[Kindexable_buffer->index[m[K);
+[0.919s]       |                    [01;35m[K~^[m[K       [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.919s]       |                     [01;35m[K|[m[K                         [32m[K|[m[K
+[0.920s]       |                     [01;35m[Kint[m[K                       [32m[Ksize_t {aka long unsigned int}[m[K
+[0.920s]       |                    [32m[K%ld[m[K
+[0.920s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:253:17:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.921s]   253 |    printf("Got [01;35m[K%d[m[K out of %d\r\n", [32m[Kcopy_length[m[K, remaining_size);
+[0.921s]       |                [01;35m[K~^[m[K                 [32m[K~~~~~~~~~~~[m[K
+[0.921s]       |                 [01;35m[K|[m[K                 [32m[K|[m[K
+[0.922s]       |                 [01;35m[Kint[m[K               [32m[Ksize_t {aka long unsigned int}[m[K
+[0.922s]       |                [32m[K%ld[m[K
+[0.922s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:253:27:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 3 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[0.923s]   253 |    printf("Got %d out of [01;35m[K%d[m[K\r\n", copy_length, [32m[Kremaining_size[m[K);
+[0.923s]       |                          [01;35m[K~^[m[K                    [32m[K~~~~~~~~~~~~~~[m[K
+[0.923s]       |                           [01;35m[K|[m[K                    [32m[K|[m[K
+[0.924s]       |                           [01;35m[Kint[m[K                  [32m[Ksize_t {aka long unsigned int}[m[K
+[0.924s]       |                          [32m[K%ld[m[K
+[1.215s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+[1.216s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+[1.216s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:13[m[K,
+[1.217s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:25[m[K:
+[1.217s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[1.217s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+[1.218s]    10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+[1.218s]       |                 [01;35m[K^~~~~~~~~~~[m[K
+[1.928s] [ 28%] [32m[1mLinking CXX executable cringe[0m
+[2.789s] [100%] Built target cringe
+[2.839s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[3.044s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos
+[3.077s] -- Install configuration: ""
+[3.079s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe
+[3.094s] -- Set runtime path of "/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe" to ""
+[3.095s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/package_run_dependencies/RocoRos
+[3.096s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/parent_prefix_path/RocoRos
+[3.096s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.sh
+[3.097s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.dsv
+[3.097s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.sh
+[3.097s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.dsv
+[3.098s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.bash
+[3.098s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.sh
+[3.098s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.zsh
+[3.099s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.dsv
+[3.099s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.dsv
+[3.099s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/packages/RocoRos
+[3.100s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig.cmake
+[3.100s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig-version.cmake
+[3.100s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.xml
+[3.113s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos

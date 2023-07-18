@@ -1,0 +1,36 @@
+[35m[1mScanning dependencies of target cringe[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/CanSocketDriver.cpp.o[0m
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:[m[K In member function ‘[01m[Kvoid CanSocketDriver::TxFrameConfig(uint32_t, int, uint8_t*)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:93:58:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Klen[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   93 | void CanSocketDriver::TxFrameConfig(uint32_t can_id, [01;35m[Kint len[m[K, uint8_t buffer[64])
+      |                                                      [01;35m[K~~~~^~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:93:71:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbuffer[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   93 | void CanSocketDriver::TxFrameConfig(uint32_t can_id, int len, [01;35m[Kuint8_t buffer[64][m[K)
+      |                                                               [01;35m[K~~~~~~~~^~~~~~~~~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:[m[K In member function ‘[01m[Kvirtual void CanSocketDriver::transmit(uint8_t*, uint32_t)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:106:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  106 |         for(int i = 0; [01;35m[Ki < length[m[K; ++i){
+      |                        [01;35m[K~~^~~~~~~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/CanSocketDriver.cpp:103:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kresult[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  103 |   int32_t [01;35m[Kresult[m[K;
+      |           [01;35m[K^~~~~~[m[K
+[ 28%] [32m[1mLinking CXX executable cringe[0m
+[100%] Built target cringe
+-- Install configuration: ""
+-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe
+-- Set runtime path of "/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe" to ""
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/package_run_dependencies/RocoRos
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/parent_prefix_path/RocoRos
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.sh
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.sh
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.dsv
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.bash
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.sh
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.zsh
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.dsv
+-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.dsv
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/packages/RocoRos
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig.cmake
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig-version.cmake
+-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.xml

@@ -2,7 +2,7 @@
  * Protocol23.h
  *
  *  Created on: Feb 26, 2023
- *      Author: Vincent
+ *     Authors: Vincent, Yassine
  */
 
 #ifndef BROCO_SRC_PROTOCOL_PROTOCOL23_H_
@@ -20,6 +20,22 @@ STANDARD_PACKET(DummySystem_DummyPacket,
   int data;
 )
 
+STANDARD_PACKET(MassPacket,
+  float data;
+)
+
+STANDARD_PACKET(ALLINONE_Packet,
+  float temperature;				//[°C]//;
+  float moisture;					//[-]
+  float conductivity;				//[us/cm]
+  float pH;							//[-]
+ )
+
+STANDARD_PACKET(IMU_Packet,
+float acceleration[3];				//[m/s^2]
+float angular[3];					//[°/s]
+float orientation[4];				//[-]
+)
 //STANDARD_PACKET(Avionics_AccelMagPacket,
 //  float acceleration[3];			//[m/s^2]
 //  float angular[3];					//[°]

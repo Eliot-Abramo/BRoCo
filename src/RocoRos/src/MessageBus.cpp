@@ -55,15 +55,18 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 	uint32_t insertion_point = hash % 256;
 
 	if(definitions_by_id[identifier & 0b00111111].hash != 0) {
+
 		return false; // Packet ID already in use
 	}
 
 	if(struct_size > max_packet_size) {
+
 		return false; // Packet size too large
 	}
 
 	while(definitions_by_type[insertion_point] != nullptr) {
 		if(definitions_by_type[insertion_point]->hash == hash) {
+
 			return false; // Packet type already defined
 		}
 
@@ -81,7 +84,6 @@ template<typename T> bool MessageBus::define(uint8_t identifier) {
 	def->hash = hash;
 
 	definitions_by_type[insertion_point] = def;
-
 	return true;
 }
 
@@ -152,7 +154,6 @@ template<typename T> bool MessageBus::send(T *message) {
 	size_t hash = typeid(T).hash_code();
 
 	PacketDefinition* def = retrieve(hash);
-
 	return internal_send(def, (uint8_t*) message);
 }
 
@@ -175,7 +176,7 @@ bool MessageBus::internal_send(PacketDefinition* def, uint8_t* data) {
 				data_bytes_written += new_bytes;
 			}
 		}
-
+		printf("transmitting");
 		transmit();
 
 		return true;
@@ -279,7 +280,6 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 PacketDefinition* MessageBus::retrieve(size_t hash) {
 	uint32_t searchPoint = hash % 256;
 	uint32_t searchStart = searchPoint;
-
 	while(definitions_by_type[searchPoint] != nullptr) {
 		if(definitions_by_type[searchPoint]->hash == hash) {
 			return definitions_by_type[searchPoint];
@@ -295,7 +295,6 @@ PacketDefinition* MessageBus::retrieve(size_t hash) {
 			break; // No packet definition matching the given template type
 		}
 	}
-
 	return nullptr;
 }
 

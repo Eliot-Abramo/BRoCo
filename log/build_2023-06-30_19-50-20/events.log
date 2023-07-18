@@ -1,0 +1,102 @@
+[0.000000] (-) TimerEvent: {}
+[0.000942] (RocoRos) JobQueued: {'identifier': 'RocoRos', 'dependencies': OrderedDict()}
+[0.001801] (RocoRos) JobStarted: {'identifier': 'RocoRos'}
+[0.066266] (RocoRos) JobProgress: {'identifier': 'RocoRos', 'progress': 'cmake'}
+[0.070147] (RocoRos) JobProgress: {'identifier': 'RocoRos', 'progress': 'build'}
+[0.073259] (RocoRos) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos', '--', '-j8', '-l8'], 'cwd': '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'xplore'), ('SSH_AGENT_PID', '3682'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/xplore'), ('OLDPWD', '/home/xplore/Desktop/AV_ws/BRoCo/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '3318'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'xplore'), ('JOURNAL_STREAM', '7:71253'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'xplore'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/xplore/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xplore/.local/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/3742,unix/ubuntu:/tmp/.ICE-unix/3742'), ('INVOCATION_ID', '88948898ffc143308d8b60a2ba1eb787'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6cf1efbf_4ed1_4cee_9e1d_e371f279c97e'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.102'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages:/usr/local/lib:/usr/local/lib/python3.8/pyrealsense2:/usr/lib/python2.7/dist-packages/pyrealsense2'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy')]), 'shell': False}
+[0.099148] (-) TimerEvent: {}
+[0.200197] (-) TimerEvent: {}
+[0.207706] (RocoRos) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.300172] (RocoRos) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.300799] (-) TimerEvent: {}
+[0.401559] (-) TimerEvent: {}
+[0.502399] (-) TimerEvent: {}
+[0.603095] (-) TimerEvent: {}
+[0.703899] (-) TimerEvent: {}
+[0.804717] (-) TimerEvent: {}
+[0.905443] (-) TimerEvent: {}
+[1.006222] (-) TimerEvent: {}
+[1.012149] (RocoRos) StdoutLine: {'line': b'-- Found rclcpp: 2.4.2 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[1.106427] (-) TimerEvent: {}
+[1.160383] (RocoRos) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.176266] (RocoRos) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[1.206621] (-) TimerEvent: {}
+[1.307457] (-) TimerEvent: {}
+[1.408257] (-) TimerEvent: {}
+[1.509068] (-) TimerEvent: {}
+[1.609905] (-) TimerEvent: {}
+[1.610645] (RocoRos) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.710132] (-) TimerEvent: {}
+[1.796820] (RocoRos) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[1.802637] (RocoRos) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.810331] (-) TimerEvent: {}
+[1.911061] (-) TimerEvent: {}
+[2.011962] (-) TimerEvent: {}
+[2.112779] (-) TimerEvent: {}
+[2.213582] (-) TimerEvent: {}
+[2.258125] (RocoRos) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[2.313819] (-) TimerEvent: {}
+[2.414671] (-) TimerEvent: {}
+[2.515589] (-) TimerEvent: {}
+[2.586522] (RocoRos) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[2.615759] (-) TimerEvent: {}
+[2.716547] (-) TimerEvent: {}
+[2.747802] (RocoRos) StderrLine: {'line': b'WARNING: Package name "RocoRos" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.\n'}
+[2.815678] (RocoRos) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.816549] (-) TimerEvent: {}
+[2.827488] (RocoRos) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.828073] (RocoRos) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[2.828394] (RocoRos) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.839083] (RocoRos) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[2.839528] (RocoRos) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[2.844547] (RocoRos) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.857352] (RocoRos) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[2.858011] (RocoRos) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.859799] (RocoRos) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.873626] (RocoRos) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.915203] (RocoRos) StdoutLine: {'line': b'-- Generating done\n'}
+[2.916683] (-) TimerEvent: {}
+[2.921166] (RocoRos) StdoutLine: {'line': b'-- Build files have been written to: /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos\n'}
+[3.016926] (-) TimerEvent: {}
+[3.091937] (RocoRos) StdoutLine: {'line': b'[ 14%] \x1b[32m\x1b[1mLinking CXX executable cringe\x1b[0m\n'}
+[3.117172] (-) TimerEvent: {}
+[3.218058] (-) TimerEvent: {}
+[3.319022] (-) TimerEvent: {}
+[3.419995] (-) TimerEvent: {}
+[3.520833] (-) TimerEvent: {}
+[3.621652] (-) TimerEvent: {}
+[3.722638] (-) TimerEvent: {}
+[3.823466] (-) TimerEvent: {}
+[3.924221] (-) TimerEvent: {}
+[4.025009] (-) TimerEvent: {}
+[4.113170] (RocoRos) StdoutLine: {'line': b'[100%] Built target cringe\n'}
+[4.125152] (-) TimerEvent: {}
+[4.154657] (RocoRos) CommandEnded: {'returncode': 0}
+[4.225699] (-) TimerEvent: {}
+[4.299369] (RocoRos) JobProgress: {'identifier': 'RocoRos', 'progress': 'install'}
+[4.326219] (-) TimerEvent: {}
+[4.345296] (RocoRos) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos'], 'cwd': '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'xplore'), ('SSH_AGENT_PID', '3682'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/xplore'), ('OLDPWD', '/home/xplore/Desktop/AV_ws/BRoCo/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '3318'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'xplore'), ('JOURNAL_STREAM', '7:71253'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'xplore'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/xplore/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xplore/.local/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/3742,unix/ubuntu:/tmp/.ICE-unix/3742'), ('INVOCATION_ID', '88948898ffc143308d8b60a2ba1eb787'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6cf1efbf_4ed1_4cee_9e1d_e371f279c97e'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.102'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages:/usr/local/lib:/usr/local/lib/python3.8/pyrealsense2:/usr/lib/python2.7/dist-packages/pyrealsense2'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy')]), 'shell': False}
+[4.383111] (RocoRos) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[4.387432] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe\n'}
+[4.406412] (RocoRos) StdoutLine: {'line': b'-- Set runtime path of "/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe" to ""\n'}
+[4.407112] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/package_run_dependencies/RocoRos\n'}
+[4.407695] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/parent_prefix_path/RocoRos\n'}
+[4.408042] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.sh\n'}
+[4.408299] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.dsv\n'}
+[4.408812] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.sh\n'}
+[4.409183] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.dsv\n'}
+[4.409760] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.bash\n'}
+[4.410138] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.sh\n'}
+[4.410488] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.zsh\n'}
+[4.410954] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.dsv\n'}
+[4.411671] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.dsv\n'}
+[4.412586] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/packages/RocoRos\n'}
+[4.413122] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig.cmake\n'}
+[4.413410] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig-version.cmake\n'}
+[4.413729] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.xml\n'}
+[4.419555] (RocoRos) CommandEnded: {'returncode': 0}
+[4.429535] (-) TimerEvent: {}
+[4.531485] (-) TimerEvent: {}
+[4.638263] (-) TimerEvent: {}
+[4.699927] (RocoRos) JobEnded: {'identifier': 'RocoRos', 'rc': 0}
+[4.703122] (-) EventReactorShutdown: {}

@@ -1,0 +1,288 @@
+[0.000000] (-) TimerEvent: {}
+[0.000481] (RocoRos) JobQueued: {'identifier': 'RocoRos', 'dependencies': OrderedDict()}
+[0.001695] (RocoRos) JobStarted: {'identifier': 'RocoRos'}
+[0.062361] (RocoRos) JobProgress: {'identifier': 'RocoRos', 'progress': 'cmake'}
+[0.065729] (RocoRos) JobProgress: {'identifier': 'RocoRos', 'progress': 'build'}
+[0.068483] (RocoRos) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos', '--', '-j8', '-l8'], 'cwd': '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'xplore'), ('SSH_AGENT_PID', '3682'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/xplore'), ('OLDPWD', '/home/xplore/Desktop/AV_ws/BRoCo/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '3318'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'xplore'), ('JOURNAL_STREAM', '7:71253'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'xplore'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/xplore/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xplore/.local/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/3742,unix/ubuntu:/tmp/.ICE-unix/3742'), ('INVOCATION_ID', '88948898ffc143308d8b60a2ba1eb787'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6cf1efbf_4ed1_4cee_9e1d_e371f279c97e'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.102'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages:/usr/local/lib:/usr/local/lib/python3.8/pyrealsense2:/usr/lib/python2.7/dist-packages/pyrealsense2'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy')]), 'shell': False}
+[0.099086] (-) TimerEvent: {}
+[0.194810] (RocoRos) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.199206] (-) TimerEvent: {}
+[0.292076] (RocoRos) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.299333] (-) TimerEvent: {}
+[0.399947] (-) TimerEvent: {}
+[0.500668] (-) TimerEvent: {}
+[0.601352] (-) TimerEvent: {}
+[0.702085] (-) TimerEvent: {}
+[0.802842] (-) TimerEvent: {}
+[0.903648] (-) TimerEvent: {}
+[0.976847] (RocoRos) StdoutLine: {'line': b'-- Found rclcpp: 2.4.2 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[1.004034] (-) TimerEvent: {}
+[1.104804] (-) TimerEvent: {}
+[1.107826] (RocoRos) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.120941] (RocoRos) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[1.205148] (-) TimerEvent: {}
+[1.305986] (-) TimerEvent: {}
+[1.406734] (-) TimerEvent: {}
+[1.508025] (-) TimerEvent: {}
+[1.531126] (RocoRos) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.608236] (-) TimerEvent: {}
+[1.693236] (RocoRos) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[1.700813] (RocoRos) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.708364] (-) TimerEvent: {}
+[1.809126] (-) TimerEvent: {}
+[1.909899] (-) TimerEvent: {}
+[2.010699] (-) TimerEvent: {}
+[2.110413] (RocoRos) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[2.111055] (-) TimerEvent: {}
+[2.211613] (-) TimerEvent: {}
+[2.312461] (-) TimerEvent: {}
+[2.413263] (-) TimerEvent: {}
+[2.421810] (RocoRos) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[2.513437] (-) TimerEvent: {}
+[2.581095] (RocoRos) StderrLine: {'line': b'WARNING: Package name "RocoRos" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.\n'}
+[2.613552] (-) TimerEvent: {}
+[2.630320] (RocoRos) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.642375] (RocoRos) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.643073] (RocoRos) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[2.643778] (RocoRos) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.654146] (RocoRos) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[2.654677] (RocoRos) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[2.659227] (RocoRos) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.671451] (RocoRos) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[2.671967] (RocoRos) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.673598] (RocoRos) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.686171] (RocoRos) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.713766] (-) TimerEvent: {}
+[2.725518] (RocoRos) StdoutLine: {'line': b'-- Generating done\n'}
+[2.731755] (RocoRos) StdoutLine: {'line': b'-- Build files have been written to: /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos\n'}
+[2.813971] (-) TimerEvent: {}
+[2.834624] (RocoRos) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target cringe\x1b[0m\n'}
+[2.914161] (-) TimerEvent: {}
+[2.981403] (RocoRos) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/cringe.dir/src/RocoRos.cpp.o\x1b[0m\n'}
+[3.014360] (-) TimerEvent: {}
+[3.115162] (-) TimerEvent: {}
+[3.216044] (-) TimerEvent: {}
+[3.316869] (-) TimerEvent: {}
+[3.417717] (-) TimerEvent: {}
+[3.518547] (-) TimerEvent: {}
+[3.619352] (-) TimerEvent: {}
+[3.720249] (-) TimerEvent: {}
+[3.821093] (-) TimerEvent: {}
+[3.921936] (-) TimerEvent: {}
+[4.022793] (-) TimerEvent: {}
+[4.123590] (-) TimerEvent: {}
+[4.212200] (RocoRos) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:15\x1b[m\x1b[K,\n'}
+[4.212865] (RocoRos) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13\x1b[m\x1b[K:\n'}
+[4.213153] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[KPacketDefinition::size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wmissing-field-initializers\x1b[m\x1b[K]\n'}
+[4.213440] (RocoRos) StderrLine: {'line': b'   51 |  PacketDefinition definitions_by_id[64] = {0\x1b[01;35m\x1b[K}\x1b[m\x1b[K;\n'}
+[4.213738] (RocoRos) StderrLine: {'line': b'      |                                             \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[4.213998] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[KPacketDefinition::hash\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wmissing-field-initializers\x1b[m\x1b[K]\n'}
+[4.223773] (-) TimerEvent: {}
+[4.324613] (-) TimerEvent: {}
+[4.425482] (-) TimerEvent: {}
+[4.526292] (-) TimerEvent: {}
+[4.627130] (-) TimerEvent: {}
+[4.728018] (-) TimerEvent: {}
+[4.828839] (-) TimerEvent: {}
+[4.929679] (-) TimerEvent: {}
+[5.030484] (-) TimerEvent: {}
+[5.131337] (-) TimerEvent: {}
+[5.232211] (-) TimerEvent: {}
+[5.332997] (-) TimerEvent: {}
+[5.433815] (-) TimerEvent: {}
+[5.534718] (-) TimerEvent: {}
+[5.635543] (-) TimerEvent: {}
+[5.736416] (-) TimerEvent: {}
+[5.837259] (-) TimerEvent: {}
+[5.938078] (-) TimerEvent: {}
+[6.038878] (-) TimerEvent: {}
+[6.139671] (-) TimerEvent: {}
+[6.240536] (-) TimerEvent: {}
+[6.341355] (-) TimerEvent: {}
+[6.442194] (-) TimerEvent: {}
+[6.543011] (-) TimerEvent: {}
+[6.643837] (-) TimerEvent: {}
+[6.744742] (-) TimerEvent: {}
+[6.845553] (-) TimerEvent: {}
+[6.946349] (-) TimerEvent: {}
+[7.047179] (-) TimerEvent: {}
+[7.148043] (-) TimerEvent: {}
+[7.248903] (-) TimerEvent: {}
+[7.341661] (RocoRos) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:15\x1b[m\x1b[K:\n'}
+[7.342302] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid handle_IMU(uint8_t, IMU_Packet*, void*)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.342609] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:142:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Ksender_id\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[7.342870] (RocoRos) StderrLine: {'line': b'  142 | void handle_IMU(\x1b[01;35m\x1b[Kuint8_t sender_id\x1b[m\x1b[K, IMU_Packet* packet, void* ros_publisher)\n'}
+[7.343196] (RocoRos) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K~~~~~~~~^~~~~~~~~\x1b[m\x1b[K\n'}
+[7.348994] (-) TimerEvent: {}
+[7.397184] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid handle_dummy(uint8_t, DummySystem_DummyPacket*, void*)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.397846] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:172:27:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Ksender_id\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[7.398200] (RocoRos) StderrLine: {'line': b'  172 | void handle_dummy(\x1b[01;35m\x1b[Kuint8_t sender_id\x1b[m\x1b[K, DummySystem_DummyPacket* packet, void* ros_publisher)\n'}
+[7.398453] (RocoRos) StderrLine: {'line': b'      |                   \x1b[01;35m\x1b[K~~~~~~~~^~~~~~~~~\x1b[m\x1b[K\n'}
+[7.449199] (-) TimerEvent: {}
+[7.550019] (-) TimerEvent: {}
+[7.650780] (-) TimerEvent: {}
+[7.751548] (-) TimerEvent: {}
+[7.852393] (-) TimerEvent: {}
+[7.953203] (-) TimerEvent: {}
+[8.053974] (-) TimerEvent: {}
+[8.154734] (-) TimerEvent: {}
+[8.255548] (-) TimerEvent: {}
+[8.356392] (-) TimerEvent: {}
+[8.457199] (-) TimerEvent: {}
+[8.558032] (-) TimerEvent: {}
+[8.658860] (-) TimerEvent: {}
+[8.759751] (-) TimerEvent: {}
+[8.860656] (-) TimerEvent: {}
+[8.961547] (-) TimerEvent: {}
+[9.062372] (-) TimerEvent: {}
+[9.163165] (-) TimerEvent: {}
+[9.264511] (-) TimerEvent: {}
+[9.365297] (-) TimerEvent: {}
+[9.466093] (-) TimerEvent: {}
+[9.566870] (-) TimerEvent: {}
+[9.667640] (-) TimerEvent: {}
+[9.768470] (-) TimerEvent: {}
+[9.869261] (-) TimerEvent: {}
+[9.970049] (-) TimerEvent: {}
+[10.070822] (-) TimerEvent: {}
+[10.171581] (-) TimerEvent: {}
+[10.272423] (-) TimerEvent: {}
+[10.373209] (-) TimerEvent: {}
+[10.474013] (-) TimerEvent: {}
+[10.574773] (-) TimerEvent: {}
+[10.675603] (-) TimerEvent: {}
+[10.776524] (-) TimerEvent: {}
+[10.877392] (-) TimerEvent: {}
+[10.978193] (-) TimerEvent: {}
+[11.078951] (-) TimerEvent: {}
+[11.179735] (-) TimerEvent: {}
+[11.280594] (-) TimerEvent: {}
+[11.381425] (-) TimerEvent: {}
+[11.482236] (-) TimerEvent: {}
+[11.583025] (-) TimerEvent: {}
+[11.683979] (-) TimerEvent: {}
+[11.784855] (-) TimerEvent: {}
+[11.885691] (-) TimerEvent: {}
+[11.986484] (-) TimerEvent: {}
+[12.087299] (-) TimerEvent: {}
+[12.124846] (RocoRos) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13\x1b[m\x1b[K,\n'}
+[12.125897] (RocoRos) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31\x1b[m\x1b[K,\n'}
+[12.126283] (RocoRos) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:12\x1b[m\x1b[K,\n'}
+[12.126609] (RocoRos) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13\x1b[m\x1b[K:\n'}
+[12.126888] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:\x1b[m\x1b[K At global scope:\n'}
+[12.127161] (RocoRos) StderrLine: {'line': b'\x1b[01m\x1b[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)\x1b[m\x1b[K\xe2\x80\x99 defined but not used [\x1b[01;35m\x1b[K-Wunused-function\x1b[m\x1b[K]\n'}
+[12.127507] (RocoRos) StderrLine: {'line': b'   10 | static uint16_t \x1b[01;35m\x1b[K__gen_crc16\x1b[m\x1b[K(const uint8_t *data, uint16_t size) {\n'}
+[12.127760] (RocoRos) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[12.187539] (-) TimerEvent: {}
+[12.288416] (-) TimerEvent: {}
+[12.389223] (-) TimerEvent: {}
+[12.490055] (-) TimerEvent: {}
+[12.590936] (-) TimerEvent: {}
+[12.691800] (-) TimerEvent: {}
+[12.792644] (-) TimerEvent: {}
+[12.893414] (-) TimerEvent: {}
+[12.994218] (-) TimerEvent: {}
+[13.095009] (-) TimerEvent: {}
+[13.195782] (-) TimerEvent: {}
+[13.296605] (-) TimerEvent: {}
+[13.397401] (-) TimerEvent: {}
+[13.498163] (-) TimerEvent: {}
+[13.598942] (-) TimerEvent: {}
+[13.699693] (-) TimerEvent: {}
+[13.800526] (-) TimerEvent: {}
+[13.901300] (-) TimerEvent: {}
+[14.002064] (-) TimerEvent: {}
+[14.102830] (-) TimerEvent: {}
+[14.203605] (-) TimerEvent: {}
+[14.304469] (-) TimerEvent: {}
+[14.405264] (-) TimerEvent: {}
+[14.506074] (-) TimerEvent: {}
+[14.606883] (-) TimerEvent: {}
+[14.707681] (-) TimerEvent: {}
+[14.808513] (-) TimerEvent: {}
+[14.909302] (-) TimerEvent: {}
+[15.010117] (-) TimerEvent: {}
+[15.110926] (-) TimerEvent: {}
+[15.211755] (-) TimerEvent: {}
+[15.312601] (-) TimerEvent: {}
+[15.413399] (-) TimerEvent: {}
+[15.514220] (-) TimerEvent: {}
+[15.615024] (-) TimerEvent: {}
+[15.715812] (-) TimerEvent: {}
+[15.816636] (-) TimerEvent: {}
+[15.917396] (-) TimerEvent: {}
+[16.018141] (-) TimerEvent: {}
+[16.118911] (-) TimerEvent: {}
+[16.219664] (-) TimerEvent: {}
+[16.320491] (-) TimerEvent: {}
+[16.421247] (-) TimerEvent: {}
+[16.522039] (-) TimerEvent: {}
+[16.622811] (-) TimerEvent: {}
+[16.723545] (-) TimerEvent: {}
+[16.824427] (-) TimerEvent: {}
+[16.925203] (-) TimerEvent: {}
+[17.025963] (-) TimerEvent: {}
+[17.126728] (-) TimerEvent: {}
+[17.227473] (-) TimerEvent: {}
+[17.328336] (-) TimerEvent: {}
+[17.429113] (-) TimerEvent: {}
+[17.529912] (-) TimerEvent: {}
+[17.630727] (-) TimerEvent: {}
+[17.731531] (-) TimerEvent: {}
+[17.832383] (-) TimerEvent: {}
+[17.933166] (-) TimerEvent: {}
+[18.034087] (-) TimerEvent: {}
+[18.135101] (-) TimerEvent: {}
+[18.236035] (-) TimerEvent: {}
+[18.336839] (-) TimerEvent: {}
+[18.437698] (-) TimerEvent: {}
+[18.538553] (-) TimerEvent: {}
+[18.639371] (-) TimerEvent: {}
+[18.740275] (-) TimerEvent: {}
+[18.841092] (-) TimerEvent: {}
+[18.941926] (-) TimerEvent: {}
+[19.042743] (-) TimerEvent: {}
+[19.143591] (-) TimerEvent: {}
+[19.244507] (-) TimerEvent: {}
+[19.345263] (-) TimerEvent: {}
+[19.350234] (RocoRos) StdoutLine: {'line': b'[ 28%] \x1b[32m\x1b[1mLinking CXX executable cringe\x1b[0m\n'}
+[19.445444] (-) TimerEvent: {}
+[19.546249] (-) TimerEvent: {}
+[19.647111] (-) TimerEvent: {}
+[19.748024] (-) TimerEvent: {}
+[19.848858] (-) TimerEvent: {}
+[19.949677] (-) TimerEvent: {}
+[20.050496] (-) TimerEvent: {}
+[20.151350] (-) TimerEvent: {}
+[20.252249] (-) TimerEvent: {}
+[20.329792] (RocoRos) StdoutLine: {'line': b'[100%] Built target cringe\n'}
+[20.352350] (-) TimerEvent: {}
+[20.374023] (RocoRos) CommandEnded: {'returncode': 0}
+[20.453019] (-) TimerEvent: {}
+[20.513926] (RocoRos) JobProgress: {'identifier': 'RocoRos', 'progress': 'install'}
+[20.556988] (-) TimerEvent: {}
+[20.564737] (RocoRos) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos'], 'cwd': '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'xplore'), ('SSH_AGENT_PID', '3682'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/xplore'), ('OLDPWD', '/home/xplore/Desktop/AV_ws/BRoCo/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '3318'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'xplore'), ('JOURNAL_STREAM', '7:71253'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'xplore'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/xplore/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xplore/.local/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/3742,unix/ubuntu:/tmp/.ICE-unix/3742'), ('INVOCATION_ID', '88948898ffc143308d8b60a2ba1eb787'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6cf1efbf_4ed1_4cee_9e1d_e371f279c97e'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.102'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=f5d9bd29fe87d0bb7ba8b3fd649f0f98'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages:/usr/local/lib:/usr/local/lib/python3.8/pyrealsense2:/usr/lib/python2.7/dist-packages/pyrealsense2'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos:/opt/ros/foxy')]), 'shell': False}
+[20.603584] (RocoRos) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[20.604810] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe\n'}
+[20.624685] (RocoRos) StdoutLine: {'line': b'-- Set runtime path of "/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe" to ""\n'}
+[20.625262] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/package_run_dependencies/RocoRos\n'}
+[20.625735] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/parent_prefix_path/RocoRos\n'}
+[20.626312] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.sh\n'}
+[20.626611] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.dsv\n'}
+[20.627066] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.sh\n'}
+[20.627439] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.dsv\n'}
+[20.628081] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.bash\n'}
+[20.628456] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.sh\n'}
+[20.629003] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.zsh\n'}
+[20.629274] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.dsv\n'}
+[20.629696] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.dsv\n'}
+[20.630404] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/packages/RocoRos\n'}
+[20.630876] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig.cmake\n'}
+[20.631261] (RocoRos) StdoutLine: {'line': b'-- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig-version.cmake\n'}
+[20.631525] (RocoRos) StdoutLine: {'line': b'-- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.xml\n'}
+[20.641045] (RocoRos) CommandEnded: {'returncode': 0}
+[20.658299] (-) TimerEvent: {}
+[20.759950] (-) TimerEvent: {}
+[20.866874] (-) TimerEvent: {}
+[20.934377] (RocoRos) JobEnded: {'identifier': 'RocoRos', 'rc': 0}
+[20.937828] (-) EventReactorShutdown: {}

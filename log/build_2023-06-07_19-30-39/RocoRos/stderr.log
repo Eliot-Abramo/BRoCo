@@ -1,0 +1,37 @@
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:[m[K In member function ‘[01m[Kvirtual bool MessageBus::internal_send(PacketDefinition*, uint8_t*)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:177:25:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Ktransmit[m[K’
+  177 |   printf("transmitting")
+      |                         [01;31m[K^[m[K
+      |                         [32m[K;[m[K
+  178 |   [32m[Ktransmit[m[K();
+      |   [32m[K~~~~~~~~[m[K               
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:[m[K In member function ‘[01m[Kvoid MessageBus::receive(uint8_t, uint8_t*, uint32_t)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:243:21:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+  243 |    printf("Buffer: [01;35m[K%d[m[K\r\n", [32m[Kindexable_buffer->index[m[K);
+      |                    [01;35m[K~^[m[K       [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+      |                     [01;35m[K|[m[K                         [32m[K|[m[K
+      |                     [01;35m[Kint[m[K                       [32m[Ksize_t {aka long unsigned int}[m[K
+      |                    [32m[K%ld[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:253:17:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+  253 |    printf("Got [01;35m[K%d[m[K out of %d\r\n", [32m[Kcopy_length[m[K, remaining_size);
+      |                [01;35m[K~^[m[K                 [32m[K~~~~~~~~~~~[m[K
+      |                 [01;35m[K|[m[K                 [32m[K|[m[K
+      |                 [01;35m[Kint[m[K               [32m[Ksize_t {aka long unsigned int}[m[K
+      |                [32m[K%ld[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:253:27:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 3 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+  253 |    printf("Got %d out of [01;35m[K%d[m[K\r\n", copy_length, [32m[Kremaining_size[m[K);
+      |                          [01;35m[K~^[m[K                    [32m[K~~~~~~~~~~~~~~[m[K
+      |                           [01;35m[K|[m[K                    [32m[K|[m[K
+      |                           [01;35m[Kint[m[K                  [32m[Ksize_t {aka long unsigned int}[m[K
+      |                          [32m[K%ld[m[K
+In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:13[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:25[m[K:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+   10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+      |                 [01;35m[K^~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/cringe.dir/build.make:76: CMakeFiles/cringe.dir/src/MessageBus.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cringe.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

@@ -48,8 +48,8 @@ private:
 		size_t index;
 	};
 
-	PacketDefinition definitions_by_id[64];
-	PacketDefinition* definitions_by_type[256]; // Factor 4 to mitigate hash collisions
+	PacketDefinition definitions_by_id[64] = {0};
+	PacketDefinition* definitions_by_type[256] = {0}; // Factor 4 to mitigate hash collisions
 	ReconstructionBuffer reconstruction_buffers[max_unique_senders];
 
 	std::function<void(uint8_t, void*, void*)> handlers[64];

@@ -1,0 +1,10 @@
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/install/strip.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/install/local.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/install.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/list_install_components.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/rebuild_cache.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/edit_cache.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/test.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/cringe.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/RocoRos_uninstall.dir
+/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos/CMakeFiles/uninstall.dir

@@ -19,9 +19,10 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
-add_executable(cringe src/RocoRos.cpp src/MessageBus.cpp src/IOBus.cpp src/NetworkBus.cpp src/UDevDriver.cpp)
-ament_target_dependencies(cringe rclcpp std_msgs)
+add_executable(cringe src/RocoRos.cpp src/MessageBus.cpp src/IOBus.cpp src/NetworkBus.cpp src/UDevDriver.cpp src/CanSocketDriver.cpp)
+ament_target_dependencies(cringe rclcpp std_msgs sensor_msgs)
 install(TARGETS
 	cringe
 	DESTINATION lib/${PROJECT_NAME})

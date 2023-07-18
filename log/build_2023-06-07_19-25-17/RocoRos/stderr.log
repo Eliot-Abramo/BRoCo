@@ -1,0 +1,16 @@
+In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:15[m[K:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:[m[K In function ‘[01m[Kvoid handle_dummy(uint8_t, DummySystem_DummyPacket*, void*)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:174:27:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ksender_id[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  174 | void handle_dummy([01;35m[Kuint8_t sender_id[m[K, DummySystem_DummyPacket* packet, void* ros_publisher)
+      |                   [01;35m[K~~~~~~~~^~~~~~~~~[m[K
+In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:12[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13[m[K:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+   10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+      |                 [01;35m[K^~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/cringe.dir/build.make:63: CMakeFiles/cringe.dir/src/RocoRos.cpp.o] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cringe.dir/all] Interrupt
+make: *** [Makefile:141: all] Interrupt

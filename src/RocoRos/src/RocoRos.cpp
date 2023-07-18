@@ -13,9 +13,16 @@
 #include "../include/RocoRos/RoCo.h"
 #include "../include/RocoRos/UDevDriver.h"
 #include "../include/RocoRos/handlers_cs.h"
+#include "../include/RocoRos/CanSocketDriver.h"
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int32.hpp"
+#include <std_msgs/msg/int32.hpp>
+#include <sensor_msgs/msg/imu.hpp>
+
+
+#define CANNETWORK 
+// #define UARTNETWORK 
+
 
 using namespace std::chrono_literals;
 
@@ -51,7 +58,38 @@ using namespace std::chrono_literals;
 
 int main(int argc, char * argv[])
 {
-  UDevDriver* driver = new UDevDriver("/dev/ttyUSB1");
+#ifdef CANNETWORK 
+
+  CanSocketDriver* driver = new CanSocketDriver("can0");
+
+  if (driver->isConnected() != 1){
+    perror("Driver is not connected");
+    while(1);
+  }
+  uint8_t buffer[64];
+  buffer[0] = 0x12;
+  buffer[1] = 0x64;
+  std::shared_ptr<NetworkBus> bus;
+  driver->TxFrameConfig(123, 2, buffer);
+  bus = std::make_shared<NetworkBus>(driver);
+
+  rclcpp::init(argc, argv);
+  auto node = std::make_shared<rclcpp::Node>("my_node");
+  auto publisher = node->create_publisher<std_msgs::msg::Int32>("dummy_pub", 10);
+  std::function<void(const std_msgs::msg::Int32::SharedPtr)> callback = std::bind(&dummy_callback, std::placeholders::_1, bus);
+  auto subscriber = node->create_subscription<std_msgs::msg::Int32>("dummy_sub", 10, callback);
+
+  bus->handle<DummySystem_DummyPacket>(&handle_dummy, (void*)&publisher);
+
+  std::cout << "SPIN" << std::endl;
+
+  rclcpp::spin(node);
+  rclcpp::shutdown();
+  return 0;
+#endif
+
+#ifdef UARTNETWORK 
+  UDevDriver* driver = new UDevDriver("/dev/ttyUSB0");
 
   struct termios tty;
 
@@ -91,16 +129,19 @@ int main(int argc, char * argv[])
 
   rclcpp::init(argc, argv);
   auto node = std::make_shared<rclcpp::Node>("my_node");
-  auto publisher = node->create_publisher<std_msgs::msg::Int32>("dummy_pub", 10);
+  auto dummy_publisher = node->create_publisher<std_msgs::msg::Int32>("dummy_pub", 10);
+  auto imu_publisher = node->create_publisher<sensor_msgs::msg::Imu>("imu_topic", 10);
   std::function<void(const std_msgs::msg::Int32::SharedPtr)> callback = std::bind(&dummy_callback, std::placeholders::_1, bus);
-  auto subscriber = node->create_subscription<std_msgs::msg::Int32>("dummy_sub", 10, callback);
+  auto dummy_subscriber = node->create_subscription<std_msgs::msg::Int32>("dummy_sub", 10, callback);
 
-  bus->handle<DummySystem_DummyPacket>(&handle_dummy, (void*)&publisher);
-
+  bus->handle<DummySystem_DummyPacket>(&handle_dummy, (void*)&dummy_publisher);
+  bus->handle<IMU_Packet>(&handle_IMU, (void*)&imu_publisher);
   std::cout << "SPIN" << std::endl;
 
   rclcpp::spin(node);
   rclcpp::shutdown();
+  return 0;
+  #endif
   return 0;
 }
 

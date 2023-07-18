@@ -29,7 +29,8 @@ handlers.
 #include <chrono>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int32.hpp"
+#include <std_msgs/msg/int32.hpp>
+#include <sensor_msgs/msg/imu.hpp>
 #include <sstream>
 #include <string>
 #include <cstdint>
@@ -138,30 +139,27 @@ handlers.
 
 // // receive data from RoCo and send to ROS
 
-// void handle_IMU(uint8_t sender_id, avionics_IMU_packet* packet, void* ros_publisher)
-// {
-//   sensor_msgs::Imu msg;
-//   //Clear array
-// 	// msg.data.clear();
-//   msg.angular_velocity.x = packet->angular_velocity[0];
-//   msg.angular_velocity.y = packet->angular_velocity[1];
-//   msg.angular_velocity.z = packet->angular_velocity[2];
+void handle_IMU(uint8_t sender_id, IMU_Packet* packet, void* ros_publisher)
+{
+  sensor_msgs::msg::Imu msg;
+  //Clear array
+	// msg.data.clear();
+  msg.angular_velocity.x = packet->angular[0];
+  msg.angular_velocity.y = packet->angular[1];
+  msg.angular_velocity.z = packet->angular[2];
 
-//   msg.linear_acceleration.x = packet->acceleration[0];
-//   msg.linear_acceleration.y = packet->acceleration[1];
-//   msg.linear_acceleration.z = packet->acceleration[2];
+  msg.linear_acceleration.x = packet->acceleration[0];
+  msg.linear_acceleration.y = packet->acceleration[1];
+  msg.linear_acceleration.z = packet->acceleration[2];
 
-//   msg.orientation.w = packet->orientation[0];
-//   msg.orientation.x = packet->orientation[1];
-//   msg.orientation.y = packet->orientation[2];
-//   msg.orientation.z = packet->orientation[3];
+  msg.orientation.w = packet->orientation[0];
+  msg.orientation.x = packet->orientation[1];
+  msg.orientation.y = packet->orientation[2];
+  msg.orientation.z = packet->orientation[3];
 
-//   // msg.data.push_back(packet->acceleration);
-//   // msg.data.push_back(packet->angular_velocity);
-//   // msg.data.push_back(packet->magnetometer);
-
-//   ((ros::Publisher *)ros_publisher)->publish(msg);
-// }
+  auto publisher = reinterpret_cast<rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr*>(ros_publisher);
+  (*publisher)->publish(msg);
+}
 
 void dummy_callback(const std::shared_ptr<const std_msgs::msg::Int32> msg, std::shared_ptr<NetworkBus> sender)
 {

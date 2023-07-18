@@ -1,0 +1,48 @@
+[0.088s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[0.206s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.298s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.011s] -- Found rclcpp: 2.4.2 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.159s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.174s] -- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.609s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.795s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.801s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.256s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[2.585s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.746s] WARNING: Package name "RocoRos" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[2.814s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.826s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.826s] -- Configured cppcheck include dirs: 
+[2.826s] -- Configured cppcheck exclude dirs and/or files: 
+[2.837s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[2.838s] -- Configured cpplint exclude dirs and/or files: 
+[2.843s] -- Added test 'lint_cmake' to check CMake code style
+[2.856s] -- Added test 'uncrustify' to check C / C++ code style
+[2.856s] -- Configured uncrustify additional arguments: 
+[2.858s] -- Added test 'xmllint' to check XML markup files
+[2.872s] -- Configuring done
+[2.913s] -- Generating done
+[2.919s] -- Build files have been written to: /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos
+[3.090s] [ 14%] [32m[1mLinking CXX executable cringe[0m
+[4.111s] [100%] Built target cringe
+[4.153s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[4.352s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos
+[4.381s] -- Install configuration: ""
+[4.385s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe
+[4.405s] -- Set runtime path of "/home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/lib/RocoRos/cringe" to ""
+[4.405s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/package_run_dependencies/RocoRos
+[4.406s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/parent_prefix_path/RocoRos
+[4.406s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.sh
+[4.406s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/ament_prefix_path.dsv
+[4.407s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.sh
+[4.407s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/environment/path.dsv
+[4.408s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.bash
+[4.408s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.sh
+[4.409s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.zsh
+[4.409s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/local_setup.dsv
+[4.410s] -- Installing: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.dsv
+[4.411s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/ament_index/resource_index/packages/RocoRos
+[4.411s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig.cmake
+[4.411s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/cmake/RocoRosConfig-version.cmake
+[4.412s] -- Up-to-date: /home/xplore/Desktop/AV_ws/BRoCo/install/RocoRos/share/RocoRos/package.xml
+[4.421s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos

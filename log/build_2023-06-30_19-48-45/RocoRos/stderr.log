@@ -1,0 +1,29 @@
+In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:15[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13[m[K:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::size[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+   51 |  PacketDefinition definitions_by_id[64] = {0[01;35m[K}[m[K;
+      |                                             [01;35m[K^[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::hash[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:15[m[K:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:[m[K In function ‘[01m[Kvoid handle_IMU(uint8_t, IMU_Packet*, void*)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:142:25:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ksender_id[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  142 | void handle_IMU([01;35m[Kuint8_t sender_id[m[K, IMU_Packet* packet, void* ros_publisher)
+      |                 [01;35m[K~~~~~~~~^~~~~~~~~[m[K
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:[m[K In function ‘[01m[Kvoid handle_dummy(uint8_t, DummySystem_DummyPacket*, void*)[m[K’:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:172:27:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ksender_id[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  172 | void handle_dummy([01;35m[Kuint8_t sender_id[m[K, DummySystem_DummyPacket* packet, void* ros_publisher)
+      |                   [01;35m[K~~~~~~~~^~~~~~~~~[m[K
+In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:12[m[K,
+                 from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13[m[K:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+   10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+      |                 [01;35m[K^~~~~~~~~~~[m[K
+/usr/bin/ld: CMakeFiles/cringe.dir/src/RocoRos.cpp.o: in function `rclcpp::Publisher<sensor_msgs::msg::Imu_<std::allocator<void> >, std::allocator<void> >::Publisher(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&, rclcpp::PublisherOptionsWithAllocator<std::allocator<void> > const&)':
+RocoRos.cpp:(.text._ZN6rclcpp9PublisherIN11sensor_msgs3msg4Imu_ISaIvEEES4_EC2EPNS_15node_interfaces17NodeBaseInterfaceERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS_3QoSERKNS_29PublisherOptionsWithAllocatorIS4_EE[_ZN6rclcpp9PublisherIN11sensor_msgs3msg4Imu_ISaIvEEES4_EC5EPNS_15node_interfaces17NodeBaseInterfaceERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS_3QoSERKNS_29PublisherOptionsWithAllocatorIS4_EE]+0x3c): undefined reference to `rosidl_message_type_support_t const* rosidl_typesupport_cpp::get_message_type_support_handle<sensor_msgs::msg::Imu_<std::allocator<void> > >()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/cringe.dir/build.make:206: cringe] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cringe.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

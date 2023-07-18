@@ -1,0 +1,82 @@
+[0.091s] Invoking command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
+[0.332s] [35m[1mScanning dependencies of target cringe[0m
+[0.588s] [ 14%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/RocoRos.cpp.o[0m
+[0.589s] [ 42%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/NetworkBus.cpp.o[0m
+[0.589s] [ 28%] [32mBuilding CXX object CMakeFiles/cringe.dir/src/MessageBus.cpp.o[0m
+[1.254s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/IOBus.h:11[m[K,
+[1.255s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/NetworkBus.h:17[m[K,
+[1.255s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/NetworkBus.cpp:14[m[K:
+[1.255s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::size[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+[1.256s]    51 |  PacketDefinition definitions_by_id[64] = {0[01;35m[K}[m[K;
+[1.256s]       |                                             [01;35m[K^[m[K
+[1.256s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::hash[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+[1.257s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:12[m[K:
+[1.257s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::size[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+[1.257s]    51 |  PacketDefinition definitions_by_id[64] = {0[01;35m[K}[m[K;
+[1.257s]       |                                             [01;35m[K^[m[K
+[1.258s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::hash[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+[1.272s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:[m[K In member function ‘[01m[Kvoid MessageBus::receive(uint8_t, uint8_t*, uint32_t)[m[K’:
+[1.273s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:245:21:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.273s]   245 |    printf("Buffer: [01;35m[K%d[m[K\r\n", [32m[Kindexable_buffer->index[m[K);
+[1.273s]       |                    [01;35m[K~^[m[K       [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.273s]       |                     [01;35m[K|[m[K                         [32m[K|[m[K
+[1.274s]       |                     [01;35m[Kint[m[K                       [32m[Ksize_t {aka long unsigned int}[m[K
+[1.274s]       |                    [32m[K%ld[m[K
+[1.275s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:255:17:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 2 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.275s]   255 |    printf("Got [01;35m[K%d[m[K out of %d\r\n", [32m[Kcopy_length[m[K, remaining_size);
+[1.275s]       |                [01;35m[K~^[m[K                 [32m[K~~~~~~~~~~~[m[K
+[1.275s]       |                 [01;35m[K|[m[K                 [32m[K|[m[K
+[1.276s]       |                 [01;35m[Kint[m[K               [32m[Ksize_t {aka long unsigned int}[m[K
+[1.276s]       |                [32m[K%ld[m[K
+[1.276s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:255:27:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 3 has type ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[1.277s]   255 |    printf("Got %d out of [01;35m[K%d[m[K\r\n", copy_length, [32m[Kremaining_size[m[K);
+[1.277s]       |                          [01;35m[K~^[m[K                    [32m[K~~~~~~~~~~~~~~[m[K
+[1.277s]       |                           [01;35m[K|[m[K                    [32m[K|[m[K
+[1.278s]       |                           [01;35m[Kint[m[K                  [32m[Ksize_t {aka long unsigned int}[m[K
+[1.278s]       |                          [32m[K%ld[m[K
+[1.367s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+[1.367s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+[1.368s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/NetworkBus.cpp:15[m[K:
+[1.368s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+[1.370s]    10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+[1.370s]       |                 [01;35m[K^~~~~~~~~~~[m[K
+[1.748s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+[1.749s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+[1.749s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolRegisters.h:13[m[K,
+[1.749s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/MessageBus.cpp:25[m[K:
+[1.750s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[1.750s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+[1.750s]    10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+[1.751s]       |                 [01;35m[K^~~~~~~~~~~[m[K
+[2.061s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:15[m[K,
+[2.061s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13[m[K:
+[2.061s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::size[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+[2.062s]    51 |  PacketDefinition definitions_by_id[64] = {0[01;35m[K}[m[K;
+[2.062s]       |                                             [01;35m[K^[m[K
+[2.063s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/MessageBus.h:51:45:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[KPacketDefinition::hash[m[K’ [[01;35m[K-Wmissing-field-initializers[m[K]
+[5.583s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:15[m[K:
+[5.583s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:[m[K In function ‘[01m[Kvoid handle_IMU(uint8_t, IMU_Packet*, void*)[m[K’:
+[5.584s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:142:25:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ksender_id[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[5.584s]   142 | void handle_IMU([01;35m[Kuint8_t sender_id[m[K, IMU_Packet* packet, void* ros_publisher)
+[5.584s]       |                 [01;35m[K~~~~~~~~^~~~~~~~~[m[K
+[5.633s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:[m[K In function ‘[01m[Kvoid handle_dummy(uint8_t, DummySystem_DummyPacket*, void*)[m[K’:
+[5.633s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/handlers_cs.h:172:27:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ksender_id[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[5.633s]   172 | void handle_dummy([01;35m[Kuint8_t sender_id[m[K, DummySystem_DummyPacket* packet, void* ros_publisher)
+[5.634s]       |                   [01;35m[K~~~~~~~~^~~~~~~~~[m[K
+[5.733s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[5.733s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:138:63:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher[m[K’ was not declared in this scope; did you mean ‘[01m[Kimu_publisher[m[K’?
+[5.734s]   138 |   bus->handle<DummySystem_DummyPacket>(&handle_dummy, (void*)&[01;31m[Kpublisher[m[K);
+[5.734s]       |                                                               [01;31m[K^~~~~~~~~[m[K
+[5.734s]       |                                                               [32m[Kimu_publisher[m[K
+[11.065s] In file included from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol23.h:13[m[K,
+[11.065s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/Protocol.h:31[m[K,
+[11.066s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/RoCo.h:12[m[K,
+[11.066s]                  from [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/RocoRos.cpp:13[m[K:
+[11.066s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:[m[K At global scope:
+[11.067s] [01m[K/home/xplore/Desktop/AV_ws/BRoCo/src/RocoRos/src/../include/RocoRos/Protocol/ProtocolMacros.h:10:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kuint16_t __gen_crc16(const uint8_t*, uint16_t)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+[11.067s]    10 | static uint16_t [01;35m[K__gen_crc16[m[K(const uint8_t *data, uint16_t size) {
+[11.067s]       |                 [01;35m[K^~~~~~~~~~~[m[K
+[11.171s] make[2]: *** [CMakeFiles/cringe.dir/build.make:63: CMakeFiles/cringe.dir/src/RocoRos.cpp.o] Error 1
+[11.172s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cringe.dir/all] Error 2
+[11.173s] make: *** [Makefile:141: all] Error 2
+[11.183s] Invoked command in '/home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/xplore/Desktop/AV_ws/BRoCo/build/RocoRos -- -j8 -l8
