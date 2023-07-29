@@ -86,10 +86,12 @@ REGISTER(FlushPacket)
 #ifdef PROTOCOL_23
 
 REGISTER(DataPacket)
-REGISTER(ALLINONE_Packet)
+REGISTER(FOURINONE_Packet)
+REGISTER(NPK_Packet)
 REGISTER(VoltmeterPacket)
 REGISTER(MassPacket)
 REGISTER(IMU_Packet)
+REGISTER(PotentiometerPacket)
 REGISTER(PingPacket)
 REGISTER(ErrorPacket)
 REGISTER(RequestPacket)

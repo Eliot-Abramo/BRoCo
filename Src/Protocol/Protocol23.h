@@ -21,15 +21,25 @@ STANDARD_PACKET(DummySystem_DummyPacket,
 )
 
 STANDARD_PACKET(MassPacket,
-  float data;
+  float mass[4];                    // [g]
 )
 
-STANDARD_PACKET(ALLINONE_Packet,
-  float temperature;				//[°C]//;
-  float moisture;					//[-]
-  float conductivity;				//[us/cm]
-  float pH;							//[-]
+STANDARD_PACKET(FOURINONE_Packet,
+  float temperature;                // [°C]
+  float moisture;                    // [%]
+  float conductivity;                // [us/cm]
+  float pH;                            // [-]
  )
+
+STANDARD_PACKET(NPK_Packet,
+  uint16_t nitrogen;                // [mg/kg]
+  uint16_t phosphorus;                // [mg/kg]
+  uint16_t potassium;                // [mg/kg]
+)
+
+STANDARD_PACKET(PotentiometerPacket,
+  float angles[4];                     //[deg]
+)
 
 STANDARD_PACKET(IMU_Packet,
 float acceleration[3];				//[m/s^2]
