@@ -98,5 +98,5 @@ REGISTER(ErrorPacket)
 REGISTER(RequestPacket)
 REGISTER(ResponsePacket)
 REGISTER(ProgressPacket)
-REGISTER(DummySystemDummyPacket)
+REGISTER(DummyPacket)
 #endif
