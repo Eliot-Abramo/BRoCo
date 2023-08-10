@@ -50,6 +50,10 @@ float orientation[4];				//[-]
 STANDARD_PACKET(VoltmeterPacket,
   float voltage; 					//[V]
 )
+
+STANDARD_PACKET(ColorFilterPacket,
+  float data[17];
+)
 //STANDARD_PACKET(Avionics_AccelMagPacket,
 //  float acceleration[3];			//[m/s^2]
 //  float angular[3];					//[°]

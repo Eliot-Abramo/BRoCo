@@ -24,6 +24,7 @@ NetworkBus::NetworkBus(IODriver* driver) : IOBus(driver, network_frame, sizeof(n
     define<VoltmeterPacket>(4);
     define<IMU_Packet>(5);
     define<PotentiometerPacket>(6);
+    define<ColorFilterPacket>(7);
 
 	// general packets
 	define<DataPacket>(58);
