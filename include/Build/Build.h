@@ -47,7 +47,7 @@
 	// #define BUILD_WITH_FDCAN
 	#define BUILD_WITH_CAN_SOCKET_DRIVER
 	#define BUILD_WITH_CAN_BUS
-	#define BUILD_WITH_CACHES
+	// #define BUILD_WITH_CACHES
 	#define FREERTOS_ENABLED
 #else
 	#error "Please specify a build target"
