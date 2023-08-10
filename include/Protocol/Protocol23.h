@@ -16,7 +16,7 @@
 
 //----------Avionics----------
 
-STANDARD_PACKET(DummySystem_DummyPacket,
+STANDARD_PACKET(DummySystemDummyPacket,
   int data;
 )
 
@@ -24,14 +24,14 @@ STANDARD_PACKET(MassPacket,
   float mass[4];                    // [g]
 )
 
-STANDARD_PACKET(FOURINONE_Packet,
+STANDARD_PACKET(FOURINONEPacket,
   float temperature;                // [°C]
   float moisture;                    // [%]
   float conductivity;                // [us/cm]
   float pH;                            // [-]
  )
 
-STANDARD_PACKET(NPK_Packet,
+STANDARD_PACKET(NPKPacket,
   uint16_t nitrogen;                // [mg/kg]
   uint16_t phosphorus;                // [mg/kg]
   uint16_t potassium;                // [mg/kg]
@@ -41,7 +41,7 @@ STANDARD_PACKET(PotentiometerPacket,
   float angles[4];                     //[deg]
 )
 
-STANDARD_PACKET(IMU_Packet,
+STANDARD_PACKET(IMUPacket,
 float acceleration[3];				//[m/s^2]
 float angular[3];					//[°/s]
 float orientation[4];				//[-]
