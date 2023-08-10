@@ -16,7 +16,7 @@
 
 //----------Avionics----------
 
-STANDARD_PACKET(DummySystemDummyPacket,
+STANDARD_PACKET(DummyPacket,
   int data;
 )
 
