@@ -4,9 +4,10 @@
  *  Created on: Jun 4, 2023
  *      Author: YassineBakkali
  */
-#ifdef BUILD_WITH_FDCAN
 
 #include "RoCanDriver.h"
+
+#ifdef BUILD_WITH_FDCAN
 #include "Debug/Debug.h"
 #include "Lang/Operators.h"
 

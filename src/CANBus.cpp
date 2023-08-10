@@ -24,6 +24,7 @@ CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
     define<VoltmeterPacket>(4);
     define<IMU_Packet>(5);
     define<PotentiometerPacket>(6);
+    define<ColorFilterPacket>(7);
 
 	// general packets
 	define<DataPacket>(58);

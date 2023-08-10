@@ -9,9 +9,9 @@
  *
  */
 
-#ifdef BUILD_WITH_STMUART
-
 #include "STMUARTDriver.h"
+
+#ifdef BUILD_WITH_STMUART
 #include "Debug/Debug.h"
 #include "Lang/Operators.h"
 

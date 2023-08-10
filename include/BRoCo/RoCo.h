@@ -9,24 +9,15 @@
 #define ROCO_H_
 
 
-#include "Src/Protocol/Protocol.h"
+#include "Protocol/Protocol.h"
 
-#include "Src/IOBus.h"
-#include "Src/IODriver.h"
-#include "Src/BufferedIODriver.h"
-#include "Src/MessageBus.h"
-#include "Src/NetworkBus.h"
-#include "Src/NetworkClientIO.h"
-#include "Src/NetworkServerIO.h"
-#include "Src/LWIPClientIO.h"
-#include "Src/NetworkIO.h"
-#include "Src/ZephyrUARTDriver.h"
-#include "Src/RadioBus.h"
-#include "Src/UDevDriver.h"
-#include "Src/EspressifUARTDriver.h"
-#include "Src/STMUARTDriver.h"
-#include "Src/PowerBus.h"
-#include "Src/LoopbackDriver.h"
-#include "Src/RoCanDriver.h"
+#include "IOBus.h"
+#include "IODriver.h"
+#include "MessageBus.h"
+#include "NetworkBus.h"
+#include "CANBus.h"
+#include "UDevDriver.h"
+#include "STMUARTDriver.h"
+#include "RoCanDriver.h"
 
 #endif /* ROCO_H_ */
