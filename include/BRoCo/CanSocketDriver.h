@@ -13,7 +13,6 @@
 #ifdef BUILD_WITH_CAN_SOCKET_DRIVER
 
 #include "IODriver.h"
-#include "NetworkIO.h"
 
 #include <cstdint>
 #include <functional>
