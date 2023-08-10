@@ -51,25 +51,38 @@ STANDARD_PACKET(VoltmeterPacket,
   float voltage; 					//[V]
 )
 
-STANDARD_PACKET(ColorFilterPacket,
+STANDARD_PACKET(SpectroPacket,
+  bool measure;
+)
+
+STANDARD_PACKET(SpectroResponsePacket,
   float data[17];
 )
-//STANDARD_PACKET(Avionics_AccelMagPacket,
-//  float acceleration[3];			//[m/s^2]
-//  float angular[3];					//[°]
-//  float magneto[3];					//[mT]
-//)
-//
-//// Handling device + potentiometers (ads1113)
-//STANDARD_PACKET(Avionics_ADCPacket,
-//  uint8_t port;
-//  float voltage;					//[V]
-//)
-//
-//// Science
-//STANDARD_PACKET(Science_MassPacket,
-//  float mass;						//[g]
-//)
+
+STANDARD_PACKET(LaserPacket,
+  bool enable;
+)
+
+STANDARD_PACKET(LaserResponsePacket,
+  bool success;
+)
+
+STANDARD_PACKET(ServoPacket,
+  float angle;
+  uint8_t port;
+)
+
+STANDARD_PACKET(ServoResponsePacket,
+  bool success;
+)
+
+STANDARD_PACKET(LEDPacket,
+  uint8_t state;
+)
+
+STANDARD_PACKET(LEDResponsePacket,
+  bool success;
+)
 
 
 //----------General packets----------

@@ -85,18 +85,27 @@ REGISTER(FlushPacket)
 
 #ifdef PROTOCOL_23
 
-REGISTER(DataPacket)
 REGISTER(FOURINONEPacket)
 REGISTER(NPKPacket)
 REGISTER(VoltmeterPacket)
 REGISTER(MassPacket)
 REGISTER(IMUPacket)
 REGISTER(PotentiometerPacket)
-REGISTER(ColorFilterPacket)
+REGISTER(SpectroPacket)
+REGISTER(SpectroResponsePacket)
+REGISTER(LaserPacket)
+REGISTER(LaserResponsePacket)
+REGISTER(ServoPacket)
+REGISTER(ServoResponsePacket)
+REGISTER(LEDPacket)
+REGISTER(LEDResponsePacket)
+	
+REGISTER(DataPacket)
 REGISTER(PingPacket)
 REGISTER(ErrorPacket)
 REGISTER(RequestPacket)
 REGISTER(ResponsePacket)
 REGISTER(ProgressPacket)
 REGISTER(DummyPacket)
+
 #endif
