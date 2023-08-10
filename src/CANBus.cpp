@@ -17,12 +17,12 @@
 CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 
 	// avionics
-	define<DummySystem_DummyPacket>(0);
+	define<DummyPacket>(0);
 	define<MassPacket>(1);
-    define<FOURINONE_Packet>(2);
-    define<NPK_Packet>(3);
+    define<FOURINONEPacket>(2);
+    define<NPKPacket>(3);
     define<VoltmeterPacket>(4);
-    define<IMU_Packet>(5);
+    define<IMUPacket>(5);
     define<PotentiometerPacket>(6);
     define<ColorFilterPacket>(7);
 
