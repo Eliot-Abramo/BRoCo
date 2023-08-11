@@ -69,7 +69,7 @@ STANDARD_PACKET(LaserResponsePacket,
 
 STANDARD_PACKET(ServoPacket,
   float angle;
-  uint8_t port;
+  uint8_t channel;
 )
 
 STANDARD_PACKET(ServoResponsePacket,
