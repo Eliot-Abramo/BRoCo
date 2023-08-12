@@ -48,6 +48,8 @@ class ROCANDriver: public IODriver,  public Thread{
         void TxHeaderConfig(uint32_t can_id, uint32_t DataLength);
         void filterConfig();
         void start();
+        uint32_t len2dlc(uint32_t length);
+        uint32_t dlc2len(uint32_t dlc);
 
         FDCAN_RxHeaderTypeDef RxHeader;
         uint8_t* RxData;

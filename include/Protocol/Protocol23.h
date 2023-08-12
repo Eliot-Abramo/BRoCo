@@ -41,7 +41,7 @@ STANDARD_PACKET(PotentiometerPacket,
   float angles[4];                     //[deg]
 )
 
-STANDARD_PACKET(IMUPacket,
+IDENTIFIABLE_PACKET(IMUPacket,
 float acceleration[3];				//[m/s^2]
 float angular[3];					//[°/s]
 float orientation[4];				//[-]
