@@ -22,6 +22,9 @@ CanSocketDriver::CanSocketDriver(const char* ifname) {
 		perror("Error while opening socket");
 		this->connected = false;
 	}
+
+	int canfd_enabled = 1;
+	setsockopt(s, SOL_CAN_RAW, CAN_RAW_FD_FRAMES, &canfd_enabled, sizeof(int));
 	strcpy(ifr.ifr_name, ifname);
 	ioctl(s, SIOCGIFINDEX, &ifr);
 	
@@ -66,16 +69,20 @@ void CanSocketDriver::closeDevice() {
  * Handles closing connections.
  */
 void CanSocketDriver::receiveThread() {
-	uint8_t buffer[256];
-    int result;
+    int n_bytes;
 
     std::cout << "Connected to network" << std::endl;
 
 	while(connected) {
 		// New data from endpoint
-		while((result = read(s, &rxframe, sizeof(struct can_frame))) > 0) {
-            receiver(0, buffer, result);
-		}
+		// while((result = read(s, &rxframe, sizeof(struct canfd_frame))) > 0) {
+        //     receiver(0, rxframe.data, result);
+		// }
+		n_bytes = read(s, &rxframe, CANFD_MTU);
+		if (n_bytes != CANFD_MTU && n_bytes != CAN_MTU)
+			std::cout << "Invalid CAN(FD) frame" << std::endl;
+		else
+			receiver(0, rxframe.data, rxframe.len);
         std::this_thread::yield();
 	}
 
@@ -106,8 +113,7 @@ void CanSocketDriver::transmit(uint8_t* buffer, uint32_t length) {
         for(int i = 0; i < length; ++i){
 	        txframe.data[i] = buffer[i];
         }
-        result = write(s, &txframe, sizeof(struct can_frame));
-
+        result = write(s, &txframe, CANFD_MTU);
 	}
 }
 
