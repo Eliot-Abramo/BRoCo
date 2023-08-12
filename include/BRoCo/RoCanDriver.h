@@ -44,9 +44,12 @@ class ROCANDriver: public IODriver,  public Thread{
 
         void receiveFDCan(uint8_t sender_id, uint8_t* buffer, uint32_t length);
         FDCAN_HandleTypeDef* getFDCan();
-        ROCANDriver* getInstance(FDCAN_HandleTypeDef* huart);
-        void TxHeaderConfig(uint32_t can_id, uint32_t DataLength);
-        void filterConfig();
+        static ROCANDriver* getInstance(FDCAN_HandleTypeDef* fdcan);
+        void TxHeaderConfig();
+        void TxHeaderConfigID(uint32_t can_id);
+        void TxHeaderConfigLength(uint32_t length);
+        void filterConfig(uint32_t can_id);
+        uint32_t get_can_id();
         void start();
         uint32_t len2dlc(uint32_t length);
         uint32_t dlc2len(uint32_t dlc);
@@ -63,7 +66,7 @@ class ROCANDriver: public IODriver,  public Thread{
 
         FDCAN_FilterTypeDef sFilterConfig;
 
-        uint32_t can_id;
+        uint32_t can_id = 0x7FF;
 
         typedef struct {
         	uint8_t flag;

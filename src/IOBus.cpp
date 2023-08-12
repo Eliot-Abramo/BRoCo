@@ -29,6 +29,10 @@ void IOBus::receive(uint8_t sender_id, uint8_t* buffer, uint32_t length) {
 	MessageBus::receive(sender_id, buffer, length);
 }
 
+IODriver* IOBus::get_driver() {
+	return driver;
+}
+
 uint32_t IOBus::append(uint8_t* buffer, uint32_t length) {
 	uint32_t remaining_length = buffer_length - buffer_index;
 

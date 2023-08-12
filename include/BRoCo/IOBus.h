@@ -15,7 +15,7 @@
 class IOBus : public MessageBus {
 public:
 	IOBus(IODriver* driver, uint8_t* buffer, uint32_t length);
-
+	IODriver* get_driver();
 protected:
 	void transmit();
 
