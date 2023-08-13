@@ -217,9 +217,13 @@ void ROCANDriver::loop() {
 //			receiveFDCan(sender, buffer2, RxData[0]);
 		uint8_t sender = getSenderID(fdcan);
 		if((FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != 0){
-			HAL_FDCAN_GetRxMessage(fdcan, FDCAN_RX_FIFO0, &RxHeader, RxData);
-			uint32_t length = dlc2len(RxHeader.DataLength);
-			receiveFDCan(sender, RxData, length);
+			uint32_t fill_level = HAL_FDCAN_GetRxFifoFillLevel(fdcan, FDCAN_RX_FIFO0);
+			while (fill_level > 0) {
+				HAL_FDCAN_GetRxMessage(fdcan, FDCAN_RX_FIFO0, &RxHeader, RxData);
+				uint32_t length = dlc2len(RxHeader.DataLength);
+				receiveFDCan(sender, RxData, length);
+				fill_level = HAL_FDCAN_GetRxFifoFillLevel(fdcan, FDCAN_RX_FIFO0);
+			}
 		}
 	}
 }
@@ -230,10 +234,7 @@ void ROCANDriver::receive(const std::function<void (uint8_t sender_id, uint8_t* 
 
 void ROCANDriver::transmit(uint8_t* buffer, uint32_t length) {
 	//Example of TxHeader configuration
-
-		static uint32_t copy_length = length;
-//		TxHeaderConfig(0x123, copy_length);
-		TxHeaderConfigLength(copy_length);
+		TxHeaderConfigLength(length);
 		if(HAL_FDCAN_AddMessageToTxFifoQ(fdcan, &TxHeader, buffer) != HAL_OK) {
 	        printf("[RoCo] [ROCANDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
 		}
