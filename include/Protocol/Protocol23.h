@@ -53,6 +53,7 @@ IDENTIFIABLE_PACKET(SpectroPacket,
 
 IDENTIFIABLE_PACKET(SpectroResponsePacket,
   float data[17];
+  bool success;
 )
 
 IDENTIFIABLE_PACKET(LaserPacket,
@@ -69,6 +70,8 @@ IDENTIFIABLE_PACKET(ServoPacket,
 )
 
 IDENTIFIABLE_PACKET(ServoResponsePacket,
+  uint8_t channel;
+  float angle;
   bool success;
 )
 
@@ -77,6 +80,7 @@ IDENTIFIABLE_PACKET(LEDPacket,
 )
 
 IDENTIFIABLE_PACKET(LEDResponsePacket,
+  uint8_t state;
   bool success;
 )
 
