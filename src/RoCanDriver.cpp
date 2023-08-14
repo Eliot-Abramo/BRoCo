@@ -236,7 +236,7 @@ void ROCANDriver::transmit(uint8_t* buffer, uint32_t length) {
 	//Example of TxHeader configuration
 		TxHeaderConfigLength(length);
 		if(HAL_FDCAN_AddMessageToTxFifoQ(fdcan, &TxHeader, buffer) != HAL_OK) {
-	        printf("[RoCo] [ROCANDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
+//	        printf("[RoCo] [ROCANDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
 		}
 
 }

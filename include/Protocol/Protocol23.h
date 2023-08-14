@@ -20,24 +20,24 @@ STANDARD_PACKET(DummyPacket,
   int data;
 )
 
-STANDARD_PACKET(MassPacket,
+IDENTIFIABLE_PACKET(MassPacket,
   float mass[4];                    // [g]
 )
 
-STANDARD_PACKET(FOURINONEPacket,
+IDENTIFIABLE_PACKET(FOURINONEPacket,
   float temperature;                // [°C]
   float moisture;                    // [%]
   float conductivity;                // [us/cm]
   float pH;                            // [-]
  )
 
-STANDARD_PACKET(NPKPacket,
+IDENTIFIABLE_PACKET(NPKPacket,
   uint16_t nitrogen;                // [mg/kg]
   uint16_t phosphorus;                // [mg/kg]
   uint16_t potassium;                // [mg/kg]
 )
 
-STANDARD_PACKET(PotentiometerPacket,
+IDENTIFIABLE_PACKET(PotentiometerPacket,
   float angles[4];                     //[deg]
 )
 
@@ -47,40 +47,40 @@ float angular[3];					//[°/s]
 float orientation[4];				//[-]
 )
 
-STANDARD_PACKET(VoltmeterPacket,
+IDENTIFIABLE_PACKET(VoltmeterPacket,
   float voltage; 					//[V]
 )
 
-STANDARD_PACKET(SpectroPacket,
+IDENTIFIABLE_PACKET(SpectroPacket,
   bool measure;
 )
 
-STANDARD_PACKET(SpectroResponsePacket,
+IDENTIFIABLE_PACKET(SpectroResponsePacket,
   float data[17];
 )
 
-STANDARD_PACKET(LaserPacket,
+IDENTIFIABLE_PACKET(LaserPacket,
   bool enable;
 )
 
-STANDARD_PACKET(LaserResponsePacket,
+IDENTIFIABLE_PACKET(LaserResponsePacket,
   bool success;
 )
 
-STANDARD_PACKET(ServoPacket,
+IDENTIFIABLE_PACKET(ServoPacket,
   float angle;
   uint8_t channel;
 )
 
-STANDARD_PACKET(ServoResponsePacket,
+IDENTIFIABLE_PACKET(ServoResponsePacket,
   bool success;
 )
 
-STANDARD_PACKET(LEDPacket,
+IDENTIFIABLE_PACKET(LEDPacket,
   uint8_t state;
 )
 
-STANDARD_PACKET(LEDResponsePacket,
+IDENTIFIABLE_PACKET(LEDResponsePacket,
   bool success;
 )
 
@@ -91,7 +91,7 @@ STANDARD_PACKET(DataPacket,
 	uint32_t data;
 )
 
-STANDARD_PACKET(PingPacket,
+IDENTIFIABLE_PACKET(PingPacket,
 	uint64_t time;
 )
 
