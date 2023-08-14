@@ -16,10 +16,6 @@
 
 //----------Avionics----------
 
-STANDARD_PACKET(DummyPacket,
-  int data;
-)
-
 IDENTIFIABLE_PACKET(MassPacket,
   float mass[4];                    // [g]
 )

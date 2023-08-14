@@ -17,6 +17,7 @@
 CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 
 	// avionics
+	define<PingPacket>(0);
     define<FOURINONEPacket>(1);
     define<NPKPacket>(2);
     define<VoltmeterPacket>(3);
@@ -33,13 +34,11 @@ CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 	define<LEDResponsePacket>(14);
 
 	// general packets
-	define<DataPacket>(58);
-	define<PingPacket>(59);
+	define<DataPacket>(59);
 	define<ErrorPacket>(60);
 	define<RequestPacket>(61);
 	define<ResponsePacket>(62);
 	define<ProgressPacket>(63);
-	define<DummyPacket>(0);
 }
 
 #endif /* BUILD_WITH_CAN_BUS */
