@@ -65,8 +65,8 @@ IDENTIFIABLE_PACKET(LaserResponsePacket,
 )
 
 IDENTIFIABLE_PACKET(ServoPacket,
-  float angle;
   uint8_t channel;
+  float angle;
 )
 
 IDENTIFIABLE_PACKET(ServoResponsePacket,
