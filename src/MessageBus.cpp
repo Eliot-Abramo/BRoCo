@@ -251,12 +251,12 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 
 		if(copy_length == remaining_size) { // Packet is complete
 //			 printf("Full packet: %d\r\n", packet_id);
-			if(handlers[packet_id & 0b00111111] != nullptr) {
+			if(handlers[packet_id & 0b00111111]) {
 				handlers[packet_id & 0b00111111](sender_id, indexable_buffer->buffer + 2);
 			}
 
 
-			if(forwarders[packet_id & 0b00111111] != nullptr) {
+			if(forwarders[packet_id & 0b00111111]) {
 				forwarders[packet_id & 0b00111111]->internal_send(def, indexable_buffer->buffer + 2);
 			}
 
