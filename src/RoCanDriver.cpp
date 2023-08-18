@@ -120,47 +120,69 @@ void ROCANDriver::start(){
 		LOG_ERROR("Couldn't start FDCAN%d module", getSenderID(fdcan));
 }
 
-uint32_t ROCANDriver::len2dlc(uint32_t length) {
+uint32_t ROCANDriver::len2dlc(uint32_t length, bool return_raw) {
 
-	// Standard lengths
-	switch (length) {
-	case 0:
-		return FDCAN_DLC_BYTES_0;
-	case 1:
-		return FDCAN_DLC_BYTES_1;
-	case 2:
-		return FDCAN_DLC_BYTES_2;
-	case 3:
-		return FDCAN_DLC_BYTES_3;
-	case 4:
-		return FDCAN_DLC_BYTES_4;
-	case 5:
-		return FDCAN_DLC_BYTES_5;
-	case 6:
-		return FDCAN_DLC_BYTES_6;
-	case 7:
-		return FDCAN_DLC_BYTES_7;
-	case 8:
-		return FDCAN_DLC_BYTES_8;
+	if (return_raw) {
+		if (length <= 8)
+			return length;
+		else if (length <= 12)
+			return 12;
+		else if (length <= 16)
+			return 16;
+		else if (length <= 20)
+			return 20;
+		else if (length <= 24)
+			return 24;
+		else if (length <= 32)
+			return 32;
+		else if (length <= 48)
+			return 48;
+		else if (length <= 64)
+			return 64;
+		else
+			return 0;
 	}
+	else {
+		// Standard lengths
+		switch (length) {
+		case 0:
+			return FDCAN_DLC_BYTES_0;
+		case 1:
+			return FDCAN_DLC_BYTES_1;
+		case 2:
+			return FDCAN_DLC_BYTES_2;
+		case 3:
+			return FDCAN_DLC_BYTES_3;
+		case 4:
+			return FDCAN_DLC_BYTES_4;
+		case 5:
+			return FDCAN_DLC_BYTES_5;
+		case 6:
+			return FDCAN_DLC_BYTES_6;
+		case 7:
+			return FDCAN_DLC_BYTES_7;
+		case 8:
+			return FDCAN_DLC_BYTES_8;
+		}
 
-	// Extended lengths
-	if (length > 8 && length <= 12)
-		return FDCAN_DLC_BYTES_12;
-	else if (length > 12 && length <= 16)
-		return FDCAN_DLC_BYTES_16;
-	else if (length > 16 && length <= 20)
-		return FDCAN_DLC_BYTES_20;
-	else if (length > 20 && length <= 24)
-		return FDCAN_DLC_BYTES_24;
-	else if (length > 24 && length <= 32)
-		return FDCAN_DLC_BYTES_32;
-	else if (length > 32 && length <= 48)
-		return FDCAN_DLC_BYTES_48;
-	else if (length > 48 && length <= 64)
-		return FDCAN_DLC_BYTES_64;
-	else
-		return 0;
+		// Extended lengths
+		if (length <= 12)
+			return FDCAN_DLC_BYTES_12;
+		else if (length <= 16)
+			return FDCAN_DLC_BYTES_16;
+		else if (length <= 20)
+			return FDCAN_DLC_BYTES_20;
+		else if (length <= 24)
+			return FDCAN_DLC_BYTES_24;
+		else if (length <= 32)
+			return FDCAN_DLC_BYTES_32;
+		else if (length <= 48)
+			return FDCAN_DLC_BYTES_48;
+		else if (length <= 64)
+			return FDCAN_DLC_BYTES_64;
+		else
+			return 0;
+	}
 }
 
 uint32_t ROCANDriver::dlc2len(uint32_t dlc) {
@@ -227,6 +249,10 @@ void ROCANDriver::transmit(uint8_t* buffer, uint32_t length) {
 	// or Bus Off state
 	if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0) {
 		// First check status of CAN bus
+		uint32_t dlc_len = len2dlc(length, true);
+		for (uint32_t i = length; i < dlc_len; ++i) {
+			buffer[i] = 0;
+		}
 		TxHeaderConfigLength(length);
 		// Normally always HAL_OK if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0
 		if(HAL_FDCAN_AddMessageToTxFifoQ(fdcan, &TxHeader, buffer) != HAL_OK) {

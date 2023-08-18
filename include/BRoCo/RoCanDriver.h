@@ -50,7 +50,7 @@ class ROCANDriver: public IODriver,  public Thread{
         void filterConfig(uint32_t can_id);
         uint32_t get_can_id();
         void start();
-        uint32_t len2dlc(uint32_t length);
+        uint32_t len2dlc(uint32_t length, bool return_raw = false);
         uint32_t dlc2len(uint32_t dlc);
 
         FDCAN_RxHeaderTypeDef RxHeader;
