@@ -36,7 +36,7 @@ class CanSocketDriver : public IODriver {
 public:
 	CanSocketDriver(const char* ifname);
 	~CanSocketDriver();
-
+	void start_reception();
 	void receive(const std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> &receiver);
 	void transmit(uint8_t* buffer, uint32_t length);
     void TxFrameConfig(uint32_t can_id);

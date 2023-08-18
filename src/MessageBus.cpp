@@ -14,6 +14,8 @@
 #include <cstring>
 #include "stdio.h"
 
+#include <rclcpp/rclcpp.hpp>
+
 // Template explicit instantiation
 #define REGISTER(P) 												\
 	template bool MessageBus::define<P>(uint8_t);					\
@@ -25,8 +27,6 @@
 #include "Protocol/ProtocolRegisters.h"
 
 #undef REGISTER
-
-
 
 /*
  * Packet definitions
@@ -251,10 +251,8 @@ void MessageBus::receive(uint8_t sender_id, uint8_t *pointer, uint32_t length) {
 
 //		 printf("Got %d out of %d\r\n", copy_length, remaining_size);
 
-
 		if(copy_length == remaining_size) { // Packet is complete
 //			 printf("Full packet: %d\r\n", packet_id);
-
 			if(handlers[packet_id & 0b00111111] != nullptr) {
 				handlers[packet_id & 0b00111111](sender_id, indexable_buffer->buffer + 2);
 			}

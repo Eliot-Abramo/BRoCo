@@ -39,9 +39,12 @@ CanSocketDriver::CanSocketDriver(const char* ifname) {
 	} else {
 		printf("CAN connected.");
         this->connected = true;
-        this->reception_thread = std::thread(&CanSocketDriver::receiveThread, this);
 
     }
+}
+
+void CanSocketDriver::start_reception() {
+	this->reception_thread = std::thread(&CanSocketDriver::receiveThread, this);
 }
 
 
