@@ -14,8 +14,6 @@
 #include <cstring>
 #include "stdio.h"
 
-#include <rclcpp/rclcpp.hpp>
-
 // Template explicit instantiation
 #define REGISTER(P) 												\
 	template bool MessageBus::define<P>(uint8_t);					\
