@@ -13,10 +13,9 @@
 
 #ifdef BUILD_WITH_CAN_BUS
 
-
 #include "IOBus.h"
 
-#define CAN_FRAME_SIZE 256
+#define CAN_FRAME_SIZE 64
 
 
 class CANBus : public IOBus {

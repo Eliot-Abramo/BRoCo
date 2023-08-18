@@ -8,7 +8,7 @@
 #include "RoCanDriver.h"
 
 #ifdef BUILD_WITH_FDCAN
-#include "Debug/Debug.h"
+#include "Debug.h"
 #include "Lang/Operators.h"
 
 
@@ -21,26 +21,25 @@
 static ROCANDriver* instance;
 static xSemaphoreHandle semaphore;
 
-ROCANDriver::ROCANDriver(FDCAN_HandleTypeDef* fdcan, uint32_t can_id): Thread("ROCANDriver", osPriorityRealtime), fdcan(fdcan), can_id(can_id) {
+ROCANDriver::ROCANDriver(FDCAN_HandleTypeDef* fdcan, uint32_t can_id): Thread("ROCANDriver", osPriorityRealtime, 4096), fdcan(fdcan), can_id(can_id) {
 	instance = this;
+	LOG_INFO("Driver created for FDCAN%d", getSenderID(fdcan));
 	FDCANDriver_list.push_back(this);
-	this->RxData = (uint8_t*) pvPortMalloc(RX_BUFFER_SIZE);
-	this->TxData = (uint8_t*) pvPortMalloc(TX_BUFFER_SIZE);
+	this->RxData = (uint8_t*) pvPortMalloc(RX_ELEMENT_NUMBER*RX_ELEMENT_SIZE);
 
-    if((TxData == nullptr) || (RxData == nullptr)){
-        printf("[RoCo] [ROCANDriver] Unable to allocate Rx/Tx buffers for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
+    if((RxData == nullptr)){
+        LOG_ERROR("Unable to allocate Rx buffer for FDCAN%d", getSenderID(fdcan));
     }
 
     semaphore = xSemaphoreCreateCounting(16, 0);
 
     if(semaphore == nullptr) {
-        printf("[RoCo] [ROCANDriver] Unable to allocate semaphore for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
+    	LOG_ERROR("Unable to allocate semaphore for FDCAN%d", getSenderID(fdcan));
     }
     setTickDelay(0);
 }
 
 ROCANDriver::~ROCANDriver() {
-    vPortFree(TxData);
     vPortFree(RxData);
     FDCANDriver_list.erase(std::remove(FDCANDriver_list.begin(), FDCANDriver_list.end(), this), FDCANDriver_list.end());
 }
@@ -48,9 +47,10 @@ ROCANDriver::~ROCANDriver() {
 void ROCANDriver::init() {
 
 	/* Configure Rx filter */
-	if(fdcan == &hfdcan1){
-			MX_FDCAN1_Init();
-	}
+	if(fdcan == &hfdcan1)
+		MX_FDCAN1_Init();
+	else if (fdcan == &hfdcan2)
+		MX_FDCAN2_Init();
 	/* Start the FDCan line */
 	filterConfig(can_id);
 	TxHeaderConfig();
@@ -69,7 +69,7 @@ void ROCANDriver::filterConfig(uint32_t id){
 	sFilterConfig.FilterID2 = 0x7FF;
 
 	if(HAL_FDCAN_ConfigFilter(fdcan, &sFilterConfig) != HAL_OK)
-		printf("[RoCo] [ROCANDriverFilterConf] Unable to configure CAN RX filters index 0\n");
+		LOG_ERROR("Unable to configure CAN RX filters index 0 for FDCAN%d", getSenderID(fdcan));
 
 	// General ID (0x7FF)
 	sFilterConfig.IdType = FDCAN_STANDARD_ID;
@@ -79,10 +79,8 @@ void ROCANDriver::filterConfig(uint32_t id){
 	sFilterConfig.FilterID1 = 0x7FF;
 	sFilterConfig.FilterID2 = 0x7FF;
 
-
 	if(HAL_FDCAN_ConfigFilter(fdcan, &sFilterConfig) != HAL_OK)
-		printf("[RoCo] [ROCANDriverFilterConf] Unable to configure CAN RX filters index 1\n");
-
+		LOG_ERROR("Unable to configure CAN RX filters index 1 for FDCAN%d", getSenderID(fdcan));
 
 	HAL_FDCAN_ConfigGlobalFilter(fdcan, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
 	HAL_FDCAN_ActivateNotification(fdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
@@ -119,8 +117,7 @@ void ROCANDriver::TxHeaderConfigLength(uint32_t length){
 
 void ROCANDriver::start(){
 	if(HAL_FDCAN_Start(fdcan) != HAL_OK)
-		printf("[RoCo] [ROCANDriverStart] Couldn't start FDCAN module");
-
+		LOG_ERROR("Couldn't start FDCAN%d module", getSenderID(fdcan));
 }
 
 uint32_t ROCANDriver::len2dlc(uint32_t length) {
@@ -207,14 +204,6 @@ uint32_t ROCANDriver::dlc2len(uint32_t dlc) {
 
 void ROCANDriver::loop() {
 	if(xSemaphoreTake(semaphore, portMAX_DELAY)) {
-//		uint32_t end_dma_index = UART_BUFFER_SIZE - __HAL_DMA_GET_COUNTER(huart->hdmarx);
-//		uint8_t sender = getSenderID(fdcan);
-//		if((FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != 0){
-//			HAL_FDCAN_GetRxMessage(fdcan, FDCAN_RX_FIFO0, &RxHeader, RxData);
-//			uint8_t buffer2[RxData[0]];
-//			for(int i = 0; i < (RxData[0]); ++i)
-//				buffer2[i] = RxData[i+1];
-//			receiveFDCan(sender, buffer2, RxData[0]);
 		uint8_t sender = getSenderID(fdcan);
 		if((FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != 0){
 			uint32_t fill_level = HAL_FDCAN_GetRxFifoFillLevel(fdcan, FDCAN_RX_FIFO0);
@@ -233,12 +222,17 @@ void ROCANDriver::receive(const std::function<void (uint8_t sender_id, uint8_t* 
 }
 
 void ROCANDriver::transmit(uint8_t* buffer, uint32_t length) {
-	//Example of TxHeader configuration
+	// Extra condition because HAL_FDCAN_AddMessageToTxFifoQ introduces delay when not HAL_OK
+	// Important to keep trying to send messages to decrease error count to escape Error Passive
+	// or Bus Off state
+	if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0) {
+		// First check status of CAN bus
 		TxHeaderConfigLength(length);
+		// Normally always HAL_OK if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0
 		if(HAL_FDCAN_AddMessageToTxFifoQ(fdcan, &TxHeader, buffer) != HAL_OK) {
-//	        printf("[RoCo] [ROCANDriverTransmit] Transmission failed for MCU#%" PRIu32 "\r\n", getSenderID(fdcan));
+			LOG_ERROR("Transmission failed on FDCAN%d", getSenderID(fdcan));
 		}
-
+	}
 }
 
 
@@ -251,10 +245,6 @@ uint8_t* ROCANDriver::getRxBuffer() {
 	return this->RxData;
 }
 
-uint8_t* ROCANDriver::getTxBuffer() {
-	return this->TxData;
-}
-
 ROCANDriver* ROCANDriver::getInstance(FDCAN_HandleTypeDef* fdcan) {
 	for (auto & driver : FDCANDriver_list) {
 		if (driver->getFDCan() == fdcan)
@@ -262,8 +252,6 @@ ROCANDriver* ROCANDriver::getInstance(FDCAN_HandleTypeDef* fdcan) {
 	}
 	return nullptr;
 }
-
-
 
 /**
  * @brief Function handling the call to the user-defined callback routine
@@ -280,13 +268,8 @@ FDCAN_HandleTypeDef* ROCANDriver::getFDCan() {
 	return this->fdcan;
 }
 
-// RxCallback of FDCAN1
+// Fifo0 Rx Callback
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
-	ROCANDriver* driver = ROCANDriver::getInstance(hfdcan);
-	xSemaphoreGiveFromISR(driver->getSemaphore(), nullptr);
-}
-// RxCallback of FDCAN2
-void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo1ITs) {
 	ROCANDriver* driver = ROCANDriver::getInstance(hfdcan);
 	xSemaphoreGiveFromISR(driver->getSemaphore(), nullptr);
 }
@@ -298,21 +281,21 @@ void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorSt
 		MX_FDCAN1_Init();
 		ROCANDriver* driver = ROCANDriver::getInstance(hfdcan);
 		while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
-		instance->filterConfig(driver->get_can_id());
-		instance->start();
-	} else {
+		driver->filterConfig(driver->get_can_id());
+		driver->start();
+	} else if (hfdcan == &hfdcan2) {
 		MX_FDCAN2_Init();
 		ROCANDriver* driver = ROCANDriver::getInstance(hfdcan);
 		while(xSemaphoreTakeFromISR(driver->getSemaphore(), nullptr)); // Clear semaphore
-		instance->filterConfig(driver->get_can_id());
-		instance->start();
+		driver->filterConfig(driver->get_can_id());
+		driver->start();
 	}
 }
 
 /**
  * @brief Get the sender id from the FDCAN port ID
  *
- * @param huart the FDCAN port to get
+ * @param fdcan the FDCAN port to get
  * @return uint8_t the sender_id
  */
 uint8_t ROCANDriver::getSenderID(FDCAN_HandleTypeDef* fdcan) {

@@ -17,14 +17,13 @@
 #include "stm32h7xx_hal.h"
 #include "stm32h7xx_hal_fdcan.h"
 
-#include "Thread.h"
+#include <Thread.h>
 #include "fdcan.h"
 #include <vector>
 
-#define RX_BUFFER_SIZE		  64 				  // RANGE : 0...64
-#define TX_BUFFER_SIZE		  64				  // RANGE : 0...64
-#define DATA_FIELD_SIZE		  16
-#define NB_CAN_PORTS           2                    // CHANGE ONLY IF NEEDED
+#define RX_ELEMENT_SIZE		  64 				  // RANGE : 0...64
+#define RX_ELEMENT_NUMBER	  32
+#define NB_CAN_PORTS           2                  // CHANGE ONLY IF NEEDED
 
 class ROCANDriver: public IODriver,  public Thread{
     public:
@@ -57,7 +56,7 @@ class ROCANDriver: public IODriver,  public Thread{
         FDCAN_RxHeaderTypeDef RxHeader;
         uint8_t* RxData;
         FDCAN_TxHeaderTypeDef TxHeader;
-        uint8_t* TxData;
+
     private:
         static std::vector<ROCANDriver*> FDCANDriver_list;
         FDCAN_HandleTypeDef* fdcan;
@@ -68,18 +67,8 @@ class ROCANDriver: public IODriver,  public Thread{
 
         uint32_t can_id = 0x7FF;
 
-        typedef struct {
-        	uint8_t flag;
-        	uint8_t index;
-        	FDCAN_TxHeaderTypeDef TxHeader[DATA_FIELD_SIZE];
-        	uint8_t TxData[TX_BUFFER_SIZE*DATA_FIELD_SIZE];
-        } FDCAN_SendFailTypeDef;
-
-        FDCAN_SendFailTypeDef fdcan_send_fail = {0};
-
         std::function<void (uint8_t sender_id, uint8_t* buffer, uint32_t length)> receiver_func; // User-defined callback function
 
-//    	xSemaphoreHandle semaphore;
 };
 
 #endif
