@@ -17,7 +17,7 @@
 CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 
 	// avionics
-	define<PingPacket>(0);
+	define<PingPacket>(58);
     define<FOURINONEPacket>(1);
     define<NPKPacket>(2);
     define<VoltmeterPacket>(3);
