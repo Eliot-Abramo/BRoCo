@@ -99,6 +99,25 @@ REGISTER(ServoPacket)
 REGISTER(ServoResponsePacket)
 REGISTER(LEDPacket)
 REGISTER(LEDResponsePacket)
+
+REGISTER(MassConfigRequestPacket);
+REGISTER(MassConfigPacket);
+REGISTER(MassConfigResponsePacket);
+REGISTER(PotentiometerConfigRequestPacket);
+REGISTER(PotentiometerConfigPacket);
+REGISTER(PotentiometerConfigResponsePacket);
+REGISTER(AccelConfigRequestPacket);
+REGISTER(AccelConfigPacket);
+REGISTER(AccelConfigResponsePacket);
+REGISTER(GyroConfigRequestPacket);
+REGISTER(GyroConfigPacket);
+REGISTER(GyroConfigResponsePacket);
+REGISTER(MagConfigRequestPacket);
+REGISTER(MagConfigPacket);
+REGISTER(MagConfigResponsePacket);
+REGISTER(ServoConfigRequestPacket);
+REGISTER(ServoConfigPacket);
+REGISTER(ServoConfigResponsePacket);
 	
 REGISTER(DataPacket)
 REGISTER(PingPacket)

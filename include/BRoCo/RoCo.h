@@ -9,7 +9,7 @@
 #define ROCO_H_
 
 
-#include "Protocol/Protocol.h"
+#include "Protocol.h"
 
 #include "IOBus.h"
 #include "IODriver.h"

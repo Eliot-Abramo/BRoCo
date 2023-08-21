@@ -14,6 +14,8 @@
 
 #include <cstdint>
 
+#include <vector>
+
 //----------Avionics----------
 
 IDENTIFIABLE_PACKET(MassPacket,
@@ -84,6 +86,154 @@ IDENTIFIABLE_PACKET(LEDResponsePacket,
   bool success;
 )
 
+//------Configuration packets--------
+
+IDENTIFIABLE_PACKET(MassConfigRequestPacket,
+  bool req_offset;
+  bool req_scale;
+)
+
+IDENTIFIABLE_PACKET(MassConfigPacket,
+  float offset[4];
+  float scale[4];
+  bool remote_command;
+  bool set_offset;
+  bool set_scale;
+)
+
+IDENTIFIABLE_PACKET(MassConfigResponsePacket,
+  float offset[4];
+  float scale[4];
+  bool remote_command;
+  bool set_offset;
+  bool set_scale;
+  bool success;
+)
+
+IDENTIFIABLE_PACKET(PotentiometerConfigRequestPacket,
+  bool req_min_voltages;
+  bool req_max_voltages;
+  bool req_min_angles;
+  bool req_max_angles;
+)
+
+IDENTIFIABLE_PACKET(PotentiometerConfigPacket,
+  float min_voltages[4];
+  float max_voltages[4];
+  float min_angles[4];
+  float max_angles[4];
+  bool remote_command;
+  bool set_min_voltages;
+  bool set_max_voltages;
+  bool set_min_angles;
+  bool set_max_angles;
+)
+
+IDENTIFIABLE_PACKET(PotentiometerConfigResponsePacket,
+  float min_voltages[4];
+  float max_voltages[4];
+  float min_angles[4];
+  float max_angles[4];
+  bool remote_command;
+  bool set_min_voltages;
+  bool set_max_voltages;
+  bool set_min_angles;
+  bool set_max_angles;
+  bool success;
+)
+
+IDENTIFIABLE_PACKET(AccelConfigRequestPacket,
+  bool req_offset;
+  bool req_transform;
+)
+
+IDENTIFIABLE_PACKET(AccelConfigPacket,
+  float offset[3];
+  float transform[9];
+  bool remote_command;
+  bool set_offset;
+  bool set_transform;
+)
+
+IDENTIFIABLE_PACKET(AccelConfigResponsePacket,
+  float offset[3];
+  float transform[9];
+  bool remote_command;
+  bool set_offset;
+  bool set_transform;
+  bool success;
+)
+
+IDENTIFIABLE_PACKET(GyroConfigRequestPacket,
+  bool req_offset;
+)
+
+IDENTIFIABLE_PACKET(GyroConfigPacket,
+  float offset[3];
+  bool remote_command;
+  bool set_offset;
+)
+
+IDENTIFIABLE_PACKET(GyroConfigResponsePacket,
+  float offset[3];
+  bool remote_command;
+  bool set_offset;
+  bool success;
+)
+
+IDENTIFIABLE_PACKET(MagConfigRequestPacket,
+  bool req_offset;
+  bool req_transform;
+)
+
+IDENTIFIABLE_PACKET(MagConfigPacket,
+  float offset[3];
+  float transform[9];
+  bool remote_command;
+  bool set_offset;
+  bool set_transform;
+)
+
+IDENTIFIABLE_PACKET(MagConfigResponsePacket,
+  float offset[3];
+  float transform[9];
+  bool remote_command;
+  bool set_offset;
+  bool set_transform;
+  bool success;
+)
+
+IDENTIFIABLE_PACKET(ServoConfigRequestPacket,
+  bool req_min_duty;
+  bool req_max_duty;
+  bool req_min_angles;
+  bool req_max_angles;
+)
+
+IDENTIFIABLE_PACKET(ServoConfigPacket,
+  float min_duty[4];
+  float max_duty[4];
+  float min_angles[4];
+  float max_angles[4];
+  bool remote_command;
+  bool set_min_duty;
+  bool set_max_duty;
+  bool set_min_angles;
+  bool set_max_angles;
+)
+
+IDENTIFIABLE_PACKET(ServoConfigResponsePacket,
+  float min_duty[4];
+  float max_duty[4];
+  float min_angles[4];
+  float max_angles[4];
+  bool remote_command;
+  bool set_min_duty;
+  bool set_max_duty;
+  bool set_min_angles;
+  bool set_max_angles;
+  bool success;
+)
 
 //----------General packets----------
 
