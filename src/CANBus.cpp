@@ -17,41 +17,42 @@
 CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 
 	// sensors
-	define<PingPacket>(58);
-    define<FOURINONEPacket>(1);
-    define<NPKPacket>(2);
-    define<VoltmeterPacket>(3);
-	define<MassPacket>(4);
-    define<IMUPacket>(5);
-	define<PotentiometerPacket>(6);
-	define<SpectroPacket>(7);
-	define<SpectroResponsePacket>(8);
-    define<LaserPacket>(9);
-	define<LaserResponsePacket>(10);
-	define<ServoPacket>(11);
-	define<ServoResponsePacket>(12);
-	define<LEDPacket>(13);
-	define<LEDResponsePacket>(14);
+	define<PingPacket>(1);
+    define<FOURINONEPacket>(2);
+    define<NPKPacket>(3);
+    define<VoltmeterPacket>(4);
+	define<MassPacket>(5);
+    define<IMUPacket>(6);
+    define<MagPacket>(7);
+	define<PotentiometerPacket>(8);
+	define<SpectroPacket>(9);
+	define<SpectroResponsePacket>(10);
+    define<LaserPacket>(11);
+	define<LaserResponsePacket>(12);
+	define<ServoPacket>(13);
+	define<ServoResponsePacket>(14);
+	define<LEDPacket>(15);
+	define<LEDResponsePacket>(16);
 
 	// configuration packets
-	define<MassConfigRequestPacket>(15);
-	define<MassConfigPacket>(16);
-	define<MassConfigResponsePacket>(17);
-	define<PotentiometerConfigRequestPacket>(18);
-	define<PotentiometerConfigPacket>(19);
-	define<PotentiometerConfigResponsePacket>(20);
-	define<AccelConfigRequestPacket>(21);
-	define<AccelConfigPacket>(22);
-	define<AccelConfigResponsePacket>(23);
-	define<GyroConfigRequestPacket>(24);
-	define<GyroConfigPacket>(25);
-	define<GyroConfigResponsePacket>(26);
-	define<MagConfigRequestPacket>(27);
-	define<MagConfigPacket>(28);
-	define<MagConfigResponsePacket>(29);
-	define<ServoConfigRequestPacket>(30);
-	define<ServoConfigPacket>(31);
-	define<ServoConfigResponsePacket>(32);
+	define<MassConfigRequestPacket>(31);
+	define<MassConfigPacket>(32);
+	define<MassConfigResponsePacket>(33);
+	define<PotentiometerConfigRequestPacket>(34);
+	define<PotentiometerConfigPacket>(35);
+	define<PotentiometerConfigResponsePacket>(36);
+	define<AccelConfigRequestPacket>(37);
+	define<AccelConfigPacket>(38);
+	define<AccelConfigResponsePacket>(39);
+	define<GyroConfigRequestPacket>(40);
+	define<GyroConfigPacket>(41);
+	define<GyroConfigResponsePacket>(42);
+	define<MagConfigRequestPacket>(43);
+	define<MagConfigPacket>(44);
+	define<MagConfigResponsePacket>(45);
+	define<ServoConfigRequestPacket>(46);
+	define<ServoConfigPacket>(47);
+	define<ServoConfigResponsePacket>(48);
 
 	// general packets
 	define<DataPacket>(59);

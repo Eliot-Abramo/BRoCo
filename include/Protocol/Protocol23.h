@@ -45,6 +45,11 @@ float angular[3];					//[°/s]
 float orientation[4];				//[-]
 )
 
+IDENTIFIABLE_PACKET(MagPacket,
+float mag[3];
+float mag_raw[3];
+)
+
 IDENTIFIABLE_PACKET(VoltmeterPacket,
   float voltage; 					//[V]
 )
@@ -91,22 +96,32 @@ IDENTIFIABLE_PACKET(LEDResponsePacket,
 IDENTIFIABLE_PACKET(MassConfigRequestPacket,
   bool req_offset;
   bool req_scale;
+  bool req_alpha;
+  bool req_channels_status;
 )
 
 IDENTIFIABLE_PACKET(MassConfigPacket,
   float offset[4];
   float scale[4];
+  float alpha;
+  bool enabled_channels[4];
   bool remote_command;
   bool set_offset;
   bool set_scale;
+  bool set_alpha;
+  bool set_channels_status;
 )
 
 IDENTIFIABLE_PACKET(MassConfigResponsePacket,
   float offset[4];
   float scale[4];
+  float alpha;
+  bool enabled_channels[4];
   bool remote_command;
   bool set_offset;
   bool set_scale;
+  bool set_alpha;
+  bool set_channels_status;
   bool success;
 )
 
@@ -115,6 +130,7 @@ IDENTIFIABLE_PACKET(PotentiometerConfigRequestPacket,
   bool req_max_voltages;
   bool req_min_angles;
   bool req_max_angles;
+  bool req_channels_status;
 )
 
 IDENTIFIABLE_PACKET(PotentiometerConfigPacket,
@@ -122,11 +138,13 @@ IDENTIFIABLE_PACKET(PotentiometerConfigPacket,
   float max_voltages[4];
   float min_angles[4];
   float max_angles[4];
+  bool enabled_channels[4];
   bool remote_command;
   bool set_min_voltages;
   bool set_max_voltages;
   bool set_min_angles;
   bool set_max_angles;
+  bool set_channels_status;
 )
 
 IDENTIFIABLE_PACKET(PotentiometerConfigResponsePacket,
@@ -134,72 +152,74 @@ IDENTIFIABLE_PACKET(PotentiometerConfigResponsePacket,
   float max_voltages[4];
   float min_angles[4];
   float max_angles[4];
+  bool enabled_channels[4];
   bool remote_command;
   bool set_min_voltages;
   bool set_max_voltages;
   bool set_min_angles;
   bool set_max_angles;
+  bool set_channels_status;
   bool success;
 )
 
 IDENTIFIABLE_PACKET(AccelConfigRequestPacket,
-  bool req_offset;
+  bool req_bias;
   bool req_transform;
 )
 
 IDENTIFIABLE_PACKET(AccelConfigPacket,
-  float offset[3];
+  float bias[3];
   float transform[9];
   bool remote_command;
-  bool set_offset;
+  bool set_bias;
   bool set_transform;
 )
 
 IDENTIFIABLE_PACKET(AccelConfigResponsePacket,
-  float offset[3];
+  float bias[3];
   float transform[9];
   bool remote_command;
-  bool set_offset;
+  bool set_bias;
   bool set_transform;
   bool success;
 )
 
 IDENTIFIABLE_PACKET(GyroConfigRequestPacket,
-  bool req_offset;
+  bool req_bias;
 )
 
 IDENTIFIABLE_PACKET(GyroConfigPacket,
-  float offset[3];
+  float bias[3];
   bool remote_command;
-  bool set_offset;
+  bool set_bias;
 )
 
 IDENTIFIABLE_PACKET(GyroConfigResponsePacket,
-  float offset[3];
+  float bias[3];
   bool remote_command;
-  bool set_offset;
+  bool set_bias;
   bool success;
 )
 
 IDENTIFIABLE_PACKET(MagConfigRequestPacket,
-  bool req_offset;
-  bool req_transform;
+  bool req_hard_iron;
+  bool req_soft_iron;
 )
 
 IDENTIFIABLE_PACKET(MagConfigPacket,
-  float offset[3];
-  float transform[9];
+  float hard_iron[3];
+  float soft_iron[9];
   bool remote_command;
-  bool set_offset;
-  bool set_transform;
+  bool set_hard_iron;
+  bool set_soft_iron;
 )
 
 IDENTIFIABLE_PACKET(MagConfigResponsePacket,
-  float offset[3];
-  float transform[9];
+  float hard_iron[3];
+  float soft_iron[9];
   bool remote_command;
-  bool set_offset;
-  bool set_transform;
+  bool set_hard_iron;
+  bool set_soft_iron;
   bool success;
 )
 
