@@ -59,7 +59,8 @@ IDENTIFIABLE_PACKET(SpectroPacket,
 )
 
 IDENTIFIABLE_PACKET(SpectroResponsePacket,
-  float data[17];
+  uint16_t data[18];
+  float max_val;
   bool success;
 )
 
