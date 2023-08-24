@@ -58,6 +58,7 @@ IDENTIFIABLE_PACKET(SpectroPacket,
   bool measure;
 )
 
+// Total size: 2 (preamble + packet id) + 2 (id) + 18 * 2 (data) + 4 (max_val) + 2 (success) = 46
 IDENTIFIABLE_PACKET(SpectroResponsePacket,
   uint16_t data[18];
   float max_val;
@@ -135,10 +136,14 @@ IDENTIFIABLE_PACKET(PotentiometerConfigRequestPacket,
 )
 
 IDENTIFIABLE_PACKET(PotentiometerConfigPacket,
-  float min_voltages[4];
-  float max_voltages[4];
-  float min_angles[4];
-  float max_angles[4];
+  uint16_t min_voltages[4];
+  uint16_t max_voltages[4];
+  uint16_t min_angles[4];
+  uint16_t max_angles[4];
+  float min_voltages_max_val;
+  float max_voltages_max_val;
+  float min_angles_max_val;
+  float max_angles_max_val;
   bool enabled_channels[4];
   bool remote_command;
   bool set_min_voltages;
@@ -148,11 +153,16 @@ IDENTIFIABLE_PACKET(PotentiometerConfigPacket,
   bool set_channels_status;
 )
 
+// Total size: 2 (preamble + packet ID) + 2 (id) + 4*4*2 (uint16) + 4*4 (float) + 4 + 7 (bool) = 63 bytes
 IDENTIFIABLE_PACKET(PotentiometerConfigResponsePacket,
-  float min_voltages[4];
-  float max_voltages[4];
-  float min_angles[4];
-  float max_angles[4];
+  uint16_t min_voltages[4];
+  uint16_t max_voltages[4];
+  uint16_t min_angles[4];
+  uint16_t max_angles[4];
+  float min_voltages_max_val;
+  float max_voltages_max_val;
+  float min_angles_max_val;
+  float max_angles_max_val;
   bool enabled_channels[4];
   bool remote_command;
   bool set_min_voltages;
@@ -176,6 +186,7 @@ IDENTIFIABLE_PACKET(AccelConfigPacket,
   bool set_transform;
 )
 
+// Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (bias + transform) + 4 (bools) = 56 bytes
 IDENTIFIABLE_PACKET(AccelConfigResponsePacket,
   float bias[3];
   float transform[9];
@@ -215,6 +226,7 @@ IDENTIFIABLE_PACKET(MagConfigPacket,
   bool set_soft_iron;
 )
 
+// Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (hard_iron + soft_iron) + 4 (bools) = 56 bytes
 IDENTIFIABLE_PACKET(MagConfigResponsePacket,
   float hard_iron[3];
   float soft_iron[9];
@@ -231,11 +243,16 @@ IDENTIFIABLE_PACKET(ServoConfigRequestPacket,
   bool req_max_angles;
 )
 
+
 IDENTIFIABLE_PACKET(ServoConfigPacket,
-  float min_duty[4];
-  float max_duty[4];
-  float min_angles[4];
-  float max_angles[4];
+  uint16_t min_duty[4];
+  uint16_t max_duty[4];
+  uint16_t min_angles[4];
+  uint16_t max_angles[4];
+  float min_duty_max_val;
+  float max_duty_max_val;
+  float min_angles_max_val;
+  float max_angles_max_val;
   bool remote_command;
   bool set_min_duty;
   bool set_max_duty;
@@ -243,11 +260,16 @@ IDENTIFIABLE_PACKET(ServoConfigPacket,
   bool set_max_angles;
 )
 
+// Total size: 2 (preamble + packet ID) + 2 (id) + 4*4*2 (uint16) + 4*4 (float) + 6 (bool) = 58 bytes
 IDENTIFIABLE_PACKET(ServoConfigResponsePacket,
-  float min_duty[4];
-  float max_duty[4];
-  float min_angles[4];
-  float max_angles[4];
+  uint16_t min_duty[4];
+  uint16_t max_duty[4];
+  uint16_t min_angles[4];
+  uint16_t max_angles[4];
+  float min_duty_max_val;
+  float max_duty_max_val;
+  float min_angles_max_val;
+  float max_angles_max_val;
   bool remote_command;
   bool set_min_duty;
   bool set_max_duty;
