@@ -247,6 +247,24 @@ void ROCANDriver::transmit(uint8_t* buffer, uint32_t length) {
 	// Extra condition because HAL_FDCAN_AddMessageToTxFifoQ introduces delay when not HAL_OK
 	// Important to keep trying to send messages to decrease error count to escape Error Passive
 	// or Bus Off state
+//	if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0) {
+//		// First check status of CAN bus
+//		uint32_t dlc_len = len2dlc(length, true);
+//		for (uint32_t i = 0; i < dlc_len; ++i) {
+//			buffer[i] = 0;
+//		}
+//		if (dlc_len > 20) {
+//			for (uint32_t i = dlc_len-10; i < dlc_len; ++i) {
+//						buffer[i] = 1;
+//					}
+//		}
+//		TxHeaderConfigLength(length);
+//		// Normally always HAL_OK if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0
+//		if(HAL_FDCAN_AddMessageToTxFifoQ(fdcan, &TxHeader, buffer) != HAL_OK) {
+//			LOG_ERROR("Transmission failed on FDCAN%d", getSenderID(fdcan));
+//		}
+//	}
+
 	if (HAL_FDCAN_GetTxFifoFreeLevel(fdcan) > 0) {
 		// First check status of CAN bus
 		uint32_t dlc_len = len2dlc(length, true);

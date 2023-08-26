@@ -119,6 +119,9 @@ REGISTER(MagConfigResponsePacket);
 REGISTER(ServoConfigRequestPacket);
 REGISTER(ServoConfigPacket);
 REGISTER(ServoConfigResponsePacket);
+
+REGISTER(MassCalibPacket);
+REGISTER(ImuCalibPacket);
 	
 REGISTER(DataPacket)
 REGISTER(PingPacket)

@@ -278,6 +278,19 @@ IDENTIFIABLE_PACKET(ServoConfigResponsePacket,
   bool success;
 )
 
+// Calibration request packets -----------------
+
+IDENTIFIABLE_PACKET(MassCalibPacket,
+	bool tare;
+	bool calib_scale;
+	float expected_weight;
+)
+
+IDENTIFIABLE_PACKET(ImuCalibPacket,
+	bool calib_offset_accel;
+	bool calib_offset_gyro;
+)
+
 //----------General packets----------
 
 STANDARD_PACKET(DataPacket,

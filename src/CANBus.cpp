@@ -54,6 +54,10 @@ CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 	define<ServoConfigPacket>(47);
 	define<ServoConfigResponsePacket>(48);
 
+	// calibration packets
+	define<MassCalibPacket>(49);
+	define<ImuCalibPacket>(50);
+
 	// general packets
 	define<DataPacket>(59);
 	define<ErrorPacket>(60);
