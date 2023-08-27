@@ -281,7 +281,8 @@ IDENTIFIABLE_PACKET(ServoConfigResponsePacket,
 // Calibration request packets -----------------
 
 IDENTIFIABLE_PACKET(MassCalibPacket,
-	bool tare;
+	uint8_t channel; // 0 = select all enabled channels
+	bool calib_offset;
 	bool calib_scale;
 	float expected_weight;
 )
