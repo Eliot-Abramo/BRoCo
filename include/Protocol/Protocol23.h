@@ -58,7 +58,7 @@ RELIABLE_IDENTIFIABLE_PACKET(SpectroPacket,
   bool measure;
 )
 
-// Total size: 2 (preamble + packet id) + 2 (id) + 18 * 2 (data) + 4 (max_val) + 2 (success) = 46
+// Total size: 2 (preamble + packet id) + 2 (id) + 18 * 2 (data) + 4 (max_val) + 2 (success) + 2 (crc) = 48
 RELIABLE_IDENTIFIABLE_PACKET(SpectroResponsePacket,
   uint16_t data[18];
   float max_val;
@@ -152,7 +152,7 @@ RELIABLE_IDENTIFIABLE_PACKET(PotentiometerConfigPacket,
   bool set_channels_status;
 )
 
-// Total size: 2 (preamble + packet ID) + 2 (id) + 4*4*2 (uint16) + 4*4 (float) + 4 + 6 (bool) = 62 bytes
+// Total size: 2 (preamble + packet ID) + 2 (id) + 4*4*2 (uint16) + 4*4 (float) + 4 + 6 (bool) + 2 (crc) = 64 bytes
 RELIABLE_IDENTIFIABLE_PACKET(PotentiometerConfigResponsePacket,
   uint16_t min_voltages[4];
   uint16_t max_voltages[4];
@@ -184,7 +184,7 @@ RELIABLE_IDENTIFIABLE_PACKET(AccelConfigPacket,
   bool set_transform;
 )
 
-// Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (bias + transform) + 4 (bools) = 56 bytes
+// Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (bias + transform) + 3 (bools) + 2 (crc) = 57 bytes
 RELIABLE_IDENTIFIABLE_PACKET(AccelConfigResponsePacket,
   float bias[3];
   float transform[9];
@@ -222,7 +222,7 @@ RELIABLE_IDENTIFIABLE_PACKET(MagConfigPacket,
   bool set_soft_iron;
 )
 
-// Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (hard_iron + soft_iron) + 4 (bools) = 56 bytes
+// Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (hard_iron + soft_iron) + 3 (bools) + 2 (crc) = 57 bytes
 RELIABLE_IDENTIFIABLE_PACKET(MagConfigResponsePacket,
   float hard_iron[3];
   float soft_iron[9];
@@ -255,7 +255,7 @@ RELIABLE_IDENTIFIABLE_PACKET(ServoConfigPacket,
   bool set_max_angles;
 )
 
-// Total size: 2 (preamble + packet ID) + 2 (id) + 4*4*2 (uint16) + 4*4 (float) + 6 (bool) = 58 bytes
+// Total size: 2 (preamble + packet ID) + 2 (id) + 4*4*2 (uint16) + 4*4 (float) + 5 (bool) + 2 (crc) = 59 bytes
 RELIABLE_IDENTIFIABLE_PACKET(ServoConfigResponsePacket,
   uint16_t min_duty[4];
   uint16_t max_duty[4];
