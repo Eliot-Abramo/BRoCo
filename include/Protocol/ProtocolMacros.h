@@ -19,7 +19,7 @@ static uint16_t __gen_crc16(const uint8_t *data, uint16_t size) {
 #define STANDARD_PACKET(NAME, PACKET_DEF) struct NAME { PACKET_DEF } __attribute__((packed));
 #define RELIABLE_PACKET(NAME, PACKET_DEF) struct NAME { PACKET_DEF uint16_t crc; } __attribute__((packed));
 #define IDENTIFIABLE_PACKET(NAME, PACKET_DEF) struct NAME { PACKET_DEF uint16_t id; } __attribute__((packed));
-#define RELIABLE_IDENTIFIABLE_PACKET(NAME, PACKET_DEF) struct NAME { PACKET_DEF uint16_t id; uint16_t crc; }__attribute__((packed));
+#define RELIABLE_IDENTIFIABLE_PACKET(NAME, PACKET_DEF) struct NAME { PACKET_DEF uint16_t id; uint16_t crc; }__attribute__((packed, aligned(4)));
 #define MAKE_RELIABLE(PACKET) (PACKET).crc = __gen_crc16((uint8_t*) &(PACKET), sizeof((PACKET)) - 2)
 #define IS_RELIABLE(PACKET) (PACKET).crc == __gen_crc16((uint8_t*) &(PACKET), sizeof((PACKET)) - 2)
 
