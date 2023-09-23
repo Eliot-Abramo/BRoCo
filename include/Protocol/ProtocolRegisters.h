@@ -129,4 +129,6 @@ REGISTER(ErrorPacket)
 REGISTER(RequestPacket)
 REGISTER(ResponsePacket)
 REGISTER(ProgressPacket)
+
+REGISTER(DummyPacket)
 #endif

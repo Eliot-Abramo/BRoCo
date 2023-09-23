@@ -272,6 +272,11 @@ RELIABLE_IDENTIFIABLE_PACKET(ServoConfigResponsePacket,
   bool success;
 )
 
+RELIABLE_IDENTIFIABLE_PACKET(DummyPacket,
+  uint8_t dummy_data;
+)
+
+
 // Calibration request packets -----------------
 
 RELIABLE_IDENTIFIABLE_PACKET(MassCalibPacket,
