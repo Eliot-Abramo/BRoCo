@@ -58,8 +58,6 @@ CANBus::CANBus(IODriver* driver) : IOBus(driver, can_frame, sizeof(can_frame)) {
 	define<MassCalibPacket>(49);
 	define<ImuCalibPacket>(50);
 
-	define<DummyPacket>(51);
-
 	// general packets
 	define<DataPacket>(59);
 	define<ErrorPacket>(60);
