@@ -17,6 +17,16 @@
 #include <vector>
 
 //----------Avionics----------
+/** Packet definition:
+ * Preamble - first thing, defined in code of protocol - 1 byte
+ * Packet ID - id we've defined in the CANBus.cpp - 1 byte
+ * (Optional) ID Field - = to ID of board (Orion) we're working with - 2 bytes
+ * (At the end) CRC - cycle redendancy check, number we compute depending on data we're sending, can be used to check integrity of data - 2 bytes
+ *
+ * RELIABLE_IDENTIFIABLE_PACKET = Calculate CRC (Reliable), Adding board ID (Identifiable)
+ * Max 64 bytes size of packet
+ *
+*/
 
 RELIABLE_IDENTIFIABLE_PACKET(MassPacket,
   float mass[4];                    // [g]
@@ -84,12 +94,15 @@ RELIABLE_IDENTIFIABLE_PACKET(ServoResponsePacket,
   bool success;
 )
 
+// Total size: 2 (preamble + packet id) + 2 (id) + 4*4(int) + 2 (crc) = 22
 RELIABLE_IDENTIFIABLE_PACKET(LEDPacket,
-  uint8_t state;
+  uint8_t low;
+  uint8_t high;
+  uint8_t system;
+  uint8_t mode;
 )
 
 RELIABLE_IDENTIFIABLE_PACKET(LEDResponsePacket,
-  uint8_t state;
   bool success;
 )
 
@@ -221,6 +234,7 @@ RELIABLE_IDENTIFIABLE_PACKET(MagConfigPacket,
   bool set_hard_iron;
   bool set_soft_iron;
 )
+
 
 // Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (hard_iron + soft_iron) + 3 (bools) + 2 (crc) = 57 bytes
 RELIABLE_IDENTIFIABLE_PACKET(MagConfigResponsePacket,
