@@ -235,6 +235,7 @@ RELIABLE_IDENTIFIABLE_PACKET(MagConfigPacket,
   bool set_soft_iron;
 )
 
+
 // Total size: 2 (preamble + packet ID) + 2 (id) + 12*4 (hard_iron + soft_iron) + 3 (bools) + 2 (crc) = 57 bytes
 RELIABLE_IDENTIFIABLE_PACKET(MagConfigResponsePacket,
   float hard_iron[3];
