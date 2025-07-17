@@ -8,6 +8,32 @@ In addition, RoCo also includes the communication protocol, that defines which p
 
 When using the RoCo API, please do only use the __RoCo.h__ header file.
 
+```mermaid
+flowchart LR
+    subgraph Modules
+        A1[Application Module A]
+        A2[Application Module B]
+        A3[Application Module C]
+    end
+    subgraph Bus_Layer
+        MB[MessageBus]
+        IOB[IOBus]
+        NetB[NetworkBus]
+    end
+    subgraph Core
+        PD[Packet Definitions]
+        PV[Protocol Versioning]
+    end
+
+    A1 -->|pub/sub| MB
+    A2 -->|pub/sub| MB
+    A3 -->|pub/sub| MB
+    MB --> IOB
+    MB --> NetB
+    PD --- MB
+    PV --- MB
+```
+
 ## MessageBus API
 RoCo's highest degree of abstraction is the MessageBus API, which defines how packets are defined, handled, sent or forwarded.
 This MessageBus class only requires the implementations to define standard read and write functions to be functional, as described later.
